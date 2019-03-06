@@ -1,0 +1,19 @@
+{
+  "name": "ven.u",
+  "version": "1.0.0",
+  "description": "Ven.u server and web app",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "server": "nodemon server.js"
+  },
+  "author": "Benjamin Sinaiko",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
