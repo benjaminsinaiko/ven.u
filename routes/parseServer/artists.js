@@ -5,8 +5,8 @@ const router = express.Router()
 // Test route
 router.get('/test', (req, res) => res.json({ msg: 'parse route works' }))
 
-// Artist
-router.get('/artists/:artist', (req, res) => {
+// Artists
+router.get('/:artist', (req, res) => {
   const Artists = Parse.Object.extend('Artists')
   const query = new Parse.Query(Artists)
   query.limit(10)
@@ -21,6 +21,11 @@ router.get('/artists/:artist', (req, res) => {
       res.json(error)
       console.log('Error', error)
     })
+})
+
+// Venues
+router.get('/venues', (req, res) => {
+  const Venues = Parse.Object.extend('Venues')
 })
 
 module.exports = router

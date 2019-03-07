@@ -1,6 +1,8 @@
 const express = require('express')
+const artists = require('./artists')
+
 const router = express.Router()
 
-router.get('/', (req, res) => res.send('API Route'))
+router.use('/artists', artists)
 
 module.exports = router
