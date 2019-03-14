@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
-import NavBar from './UI/Navbar';
+import NavBar from './components/layout/Navbar';
 
 import './App.css';
 const theme = createMuiTheme({

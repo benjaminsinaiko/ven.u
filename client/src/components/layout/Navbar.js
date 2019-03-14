@@ -34,7 +34,12 @@ function ButtonAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography
+            variant="h6"
+            color="inherit"
+            align="left"
+            className={classes.grow}
+          >
             Ven.u
           </Typography>
           <Button color="inherit">Login</Button>
