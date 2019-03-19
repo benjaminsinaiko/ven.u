@@ -9,7 +9,6 @@ import logoIcon from '../../assets/logoIcon.png';
 const styles = theme => ({
   heroUnit: {
     background: `url(${heroImage})`
-    // background: 'linear-gradient(to right top, #E48611, #F9C851)'
   },
   heroContent: {
     maxWidth: 600,

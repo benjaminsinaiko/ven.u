@@ -3,9 +3,9 @@ import { Grid, Paper, Typography } from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 
-import discoverIcon from '../../assets/discoverIcon.png';
-import seeIcon from '../../assets/seeIcon.png';
-import reliveIcon from '../../assets/reliveIcon.png';
+import discoverIcon from '../../assets/iconDiscover.png';
+import seeIcon from '../../assets/iconSee.png';
+import reliveIcon from '../../assets/iconRelive.png';
 
 const styles = {
   paper: {
