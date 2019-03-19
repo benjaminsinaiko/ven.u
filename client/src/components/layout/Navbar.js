@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import logoName from '../../assets/navLogo.png';
+
 const styles = {
   root: {
     flexGrow: 1
@@ -41,7 +43,7 @@ function ButtonAppBar(props) {
             align="left"
             className={classes.grow}
           >
-            Ven.u
+            {<img src={logoName} alt="logo" style={{ zoom: '65%' }} />}
           </Typography>
           <Button variant="outlined" color="inherit" style={{ color: 'white' }}>
             Login
