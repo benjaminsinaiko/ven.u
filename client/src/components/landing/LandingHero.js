@@ -38,10 +38,10 @@ const LandingHero = props => {
           component="h1"
           variant="h3"
           align="left"
-          style={{ color: 'white' }}
+          style={{ color: 'white', fontWeight: '500' }}
           gutterBottom
         >
-          Discover, See, Relive
+          get more from your shows
         </Typography>
         <Typography
           variant="h6"
@@ -49,8 +49,7 @@ const LandingHero = props => {
           style={{ color: 'white' }}
           paragraph
         >
-          Find out who's coming to town, see them live, look back at where
-          you've been.
+          Discover who's coming to town, see them live, relive the moment.
         </Typography>
       </div>
     </div>

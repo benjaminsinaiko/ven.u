@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import LandingHero from './LandingHero';
+import LandingIconInfo from './LandingIconInfo';
 
 class LandingPage extends Component {
-  static propTypes = {
-    prop: PropTypes
-  };
-
   render() {
     return (
       <div>
         <LandingHero />
+        <LandingIconInfo />
       </div>
     );
   }
