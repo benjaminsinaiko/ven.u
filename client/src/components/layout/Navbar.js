@@ -23,26 +23,29 @@ const styles = {
 
 function ButtonAppBar(props) {
   const { classes } = props;
+
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar style={{ background: '#212121' }} position="static">
         <Toolbar>
           <IconButton
             className={classes.menuButton}
-            color="inherit"
+            style={{ color: 'white' }}
             aria-label="Menu"
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
-            color="inherit"
+            style={{ color: 'white' }}
             align="left"
             className={classes.grow}
           >
             Ven.u
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button variant="outlined" color="inherit" style={{ color: 'white' }}>
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
