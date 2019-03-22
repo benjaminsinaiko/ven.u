@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import NavBar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
 import LandingPage from './components/landing/LandingPage';
 
 import './App.css';
@@ -21,6 +22,7 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <LandingPage />
+          <Footer />
         </div>
       </MuiThemeProvider>
     );
