@@ -8,16 +8,17 @@ import logoIcon from '../../assets/logoIcon.png';
 
 const styles = theme => ({
   heroUnit: {
-    background: `url(${heroImage})`
+    background: `url(${heroImage})`,
+    height: 600,
   },
   heroContent: {
     maxWidth: 600,
     margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`
+    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
   },
   heroLogo: {
-    marginBottom: theme.spacing.unit * 4
-  }
+    marginBottom: theme.spacing.unit * 4,
+  },
 });
 
 const LandingHero = props => {

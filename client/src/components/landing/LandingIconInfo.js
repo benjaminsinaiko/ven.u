@@ -9,10 +9,10 @@ import reliveIcon from '../../assets/iconRelive.png';
 
 const styles = {
   paper: {
-    margin: '20px auto',
+    margin: '-40px auto 20px auto',
     padding: '50px 20px',
-    maxWidth: 1000
-  }
+    maxWidth: 1000,
+  },
 };
 
 const LandingIconInfo = props => {
