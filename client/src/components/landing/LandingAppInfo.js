@@ -11,7 +11,7 @@ import downloadAppStore from '../../assets/downloadAppStore.png';
 
 const styles = theme => ({
   root: {
-    backgroundColor: '#CFD8DC',
+    background: 'linear-gradient( #CFD8DC, #CFD8DC 60%, #5284AD)',
     paddingTop: 50,
     paddingBottom: 20,
   },
