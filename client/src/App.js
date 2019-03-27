@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import { Route, BrowserRouter } from 'react-router-dom';
 import NavBar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import LandingPage from './components/landing/LandingPage';
@@ -7,23 +8,25 @@ import LandingPage from './components/landing/LandingPage';
 import './App.css';
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true
+    useNextVariants: true,
   },
   palette: {
     primary: { main: '#E48611' },
-    secondary: { main: '#5284AD' }
-  }
+    secondary: { main: '#5284AD' },
+  },
 });
 
 class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <div className="App">
-          <NavBar />
-          <LandingPage />
-          <Footer />
-        </div>
+        <BrowserRouter>
+          <div className="App">
+            <NavBar />
+            <Route path="/" component={LandingPage} />
+            <Footer />
+          </div>
+        </BrowserRouter>
       </MuiThemeProvider>
     );
   }
