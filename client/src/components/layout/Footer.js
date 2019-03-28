@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Grid, Typography } from '@material-ui/core';
 
@@ -8,20 +9,27 @@ import logoName from '../../assets/navLogo.png';
 const styles = theme => ({
   root: {
     backgroundColor: '#212121',
-    padding: theme.spacing.unit * 3
+    padding: theme.spacing.unit * 3,
   },
   social: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-end'
+    alignItems: 'flex-end',
   },
   socialIcons: {
     color: 'white',
-    margin: theme.spacing.unit * 2
+    margin: theme.spacing.unit * 2,
   },
   text: {
-    color: 'white'
-  }
+    color: 'white',
+  },
+  links: {
+    color: 'white',
+    textDecoration: 'none',
+    '&:hover': {
+      color: '#E48611',
+    },
+  },
 });
 
 const Footer = props => {
@@ -31,7 +39,9 @@ const Footer = props => {
     <footer className={classes.root}>
       <Grid container className={classes.text}>
         <Grid item sm={4} style={{ alignSelf: 'center' }}>
-          <img src={logoName} alt="logo" />
+          <Link to="/" className={classes.links}>
+            <img src={logoName} alt="logo" />
+          </Link>
         </Grid>
         <Grid item className={classes.social} sm={4}>
           <i className={`fab fa-facebook-f ${classes.socialIcons}`} />
@@ -41,9 +51,11 @@ const Footer = props => {
         </Grid>
         <Grid item sm={4}>
           <Typography className={classes.text} variant="body2">
-            Privacy policy
+            <Link to="/privacy" className={classes.links}>
+              Privacy Policy
+            </Link>
           </Typography>
-          <Typography className={classes.text} variant="body2">
+          <Typography className={classes.text} variant="caption">
             &copy; {new Date().getFullYear()} Tunimal, LLC
           </Typography>
         </Grid>
@@ -53,7 +65,7 @@ const Footer = props => {
 };
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
 };
 
 export default withStyles(styles)(Footer);

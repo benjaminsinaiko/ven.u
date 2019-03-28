@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import { Route, BrowserRouter } from 'react-router-dom';
+
 import NavBar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import Privacy from './components/privacy/Privacy';
 import LandingPage from './components/landing/LandingPage';
 
 import './App.css';
@@ -23,7 +25,8 @@ class App extends Component {
         <BrowserRouter>
           <div className="App">
             <NavBar />
-            <Route path="/" component={LandingPage} />
+            <Route exact path="/" component={LandingPage} />
+            <Route path="/privacy" component={Privacy} /
             <Footer />
           </div>
         </BrowserRouter>
