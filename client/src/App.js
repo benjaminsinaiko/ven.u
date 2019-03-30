@@ -26,7 +26,7 @@ class App extends Component {
           <div className="App">
             <NavBar />
             <Route exact path="/" component={LandingPage} />
-            <Route path="/privacy" component={Privacy} /
+            <Route path="/privacy" component={Privacy} />
             <Footer />
           </div>
         </BrowserRouter>
