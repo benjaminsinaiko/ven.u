@@ -18,6 +18,9 @@ const styles = theme => ({
   },
   socialIcons: {
     color: 'white',
+    '&:hover': {
+      color: '#E48611',
+    },
     margin: theme.spacing.unit * 2,
   },
   text: {
@@ -43,11 +46,19 @@ const Footer = props => {
             <img src={logoName} alt="logo" />
           </Link>
         </Grid>
-        <Grid item className={classes.social} sm={4}>
-          <i className={`fab fa-facebook-f ${classes.socialIcons}`} />
-          <i className={`fab fa-twitter ${classes.socialIcons}`} />
-          <i className={`fab fa-instagram ${classes.socialIcons}`} />
-          <i className={`fas fa-at ${classes.socialIcons}`} />
+        <Grid item sm={4} className={classes.social}>
+          <a href="http://www.facebook.com/getvenu">
+            <i className={`fab fa-facebook-f ${classes.socialIcons}`} />
+          </a>
+          <a href="http://www.twitter.com/venuCrew">
+            <i className={`fab fa-twitter ${classes.socialIcons}`} />
+          </a>
+          <a href="http://www.instagram.com/venuCrew">
+            <i className={`fab fa-instagram ${classes.socialIcons}`} />
+          </a>
+          <a href="mailto:hello@getvenu.com">
+            <i className={`fas fa-at ${classes.socialIcons}`} />
+          </a>
         </Grid>
         <Grid item sm={4}>
           <Typography className={classes.text} variant="body2">
