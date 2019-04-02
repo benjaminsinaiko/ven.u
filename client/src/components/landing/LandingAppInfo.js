@@ -1,5 +1,11 @@
 import React from 'react';
-import { Grid, Typography, Card, CardMedia, Button } from '@material-ui/core';
+import {
+  Grid,
+  Typography,
+  Card,
+  CardMedia,
+  ButtonBase,
+} from '@material-ui/core';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -91,7 +97,10 @@ const LandingAppInfo = props => {
         </Grid>
       </Grid>
 
-      <Button className={classes.appButton} />
+      <ButtonBase
+        className={classes.appButton}
+        href="https://itunes.apple.com/us/app/ven-u/id1027450596"
+      />
     </div>
   );
 };
