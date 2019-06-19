@@ -1,59 +1,31 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import { withStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
-import heroImage from '../../assets/heroBackground.svg';
+import useStyles from './styles/LandingHeroStyles';
 import logoIcon from '../../assets/logoIcon.png';
 
-const styles = theme => ({
-  heroUnit: {
-    background: `url(${heroImage})`,
-    height: 600,
-  },
-  heroContent: {
-    maxWidth: 600,
-    margin: '0 auto',
-    padding: `${theme.spacing.unit * 8}px 0 ${theme.spacing.unit * 6}px`,
-  },
-  heroLogo: {
-    marginBottom: theme.spacing.unit * 4,
-  },
-});
-
 const LandingHero = props => {
-  const { classes } = props;
+  const classes = useStyles();
 
   return (
-    <div className={classes.heroUnit}>
+    <div className={classes.root}>
       <div className={classes.heroContent}>
         <div className={classes.heroLogo}>
-          <Grid container spacine={16} alignItems="center" justify="center">
-            <Grid item>
-              <img src={logoIcon} alt="Logo icon" style={{ zoom: '75%' }} />
-            </Grid>
-          </Grid>
+          <img src={logoIcon} alt="Logo icon" />
         </div>
-        <Typography
-          component="h1"
-          variant="h3"
-          align="left"
-          style={{ color: 'white', fontWeight: '500' }}
-          gutterBottom
-        >
-          get more from your shows
-        </Typography>
-        <Typography
-          variant="h6"
-          align="left"
-          style={{ color: 'white' }}
-          paragraph
-        >
-          Discover who's coming to town, see them live, relive the moment.
-        </Typography>
+
+        <div className={classes.heroText}>
+          <p>Discover bands.</p>
+          <p>See them live.</p>
+          <p>Relive the moment.</p>
+          <p className={classes.textPhrase} variant="h4">
+            get more from your shows.
+          </p>
+        </div>
+        <Button className={classes.herobutton}>Find Shows</Button>
       </div>
     </div>
   );
 };
 
-export default withStyles(styles)(LandingHero);
+export default LandingHero;
