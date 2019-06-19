@@ -30,19 +30,10 @@ const NavBar = props => {
     <div className={classes.root}>
       <AppBar style={{ background: '#212121' }} position="static">
         <Toolbar>
-          <IconButton
-            className={classes.menuButton}
-            style={{ color: 'white' }}
-            aria-label="Menu"
-          >
+          <IconButton className={classes.menuButton} style={{ color: 'white' }} aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            style={{ color: 'white' }}
-            align="left"
-            className={classes.grow}
-          >
+          <Typography variant="h6" style={{ color: 'white' }} align="left" className={classes.grow}>
             {<img src={logoName} alt="logo" style={{ zoom: '65%' }} />}
           </Typography>
           <Button variant="outlined" color="inherit" style={{ color: 'white' }}>

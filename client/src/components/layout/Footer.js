@@ -9,30 +9,30 @@ import logoName from '../../assets/navLogo.png';
 const styles = theme => ({
   root: {
     backgroundColor: '#212121',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 3
   },
   social: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   socialIcons: {
     color: 'white',
     '&:hover': {
-      color: '#E48611',
+      color: '#E48611'
     },
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing.unit * 2
   },
   text: {
-    color: 'white',
+    color: 'white'
   },
   links: {
     color: 'white',
     textDecoration: 'none',
     '&:hover': {
-      color: '#E48611',
-    },
-  },
+      color: '#E48611'
+    }
+  }
 });
 
 const Footer = props => {
@@ -76,7 +76,7 @@ const Footer = props => {
 };
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(Footer);

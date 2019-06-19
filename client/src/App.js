@@ -10,12 +10,12 @@ import LandingPage from './components/landing/LandingPage';
 import './App.css';
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true,
+    useNextVariants: true
   },
   palette: {
     primary: { main: '#E48611' },
-    secondary: { main: '#5284AD' },
-  },
+    secondary: { main: '#5284AD' }
+  }
 });
 
 class App extends Component {

@@ -1,14 +1,14 @@
-const express = require('express')
-const apiRouter = require('./api')
-const parseServerRouter = require('./parseServer')
+const express = require('express');
+const apiRouter = require('./api');
+const parseServerRouter = require('./parseServer');
 
-const router = express.Router()
+const router = express.Router();
 
-router.use('/api', apiRouter)
-router.use('/parse', parseServerRouter)
+router.use('/api', apiRouter);
+router.use('/parse', parseServerRouter);
 
 router.get('*', (req, res) => {
-  res.render('index')
-})
+  res.render('index');
+});
 
-module.exports = router
+module.exports = router;
