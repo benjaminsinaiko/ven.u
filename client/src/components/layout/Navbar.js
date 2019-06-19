@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -8,45 +6,29 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
 
-const styles = {
-  root: {
-    flexGrow: 1
-  },
-  grow: {
-    flexGrow: 1
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20
-  }
-};
-
-const NavBar = props => {
-  const { classes } = props;
+function Navbar() {
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <AppBar style={{ background: '#212121' }} position="static">
+      <AppBar position="static" className={classes.navbar}>
         <Toolbar>
-          <IconButton className={classes.menuButton} style={{ color: 'white' }} aria-label="Menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" style={{ color: 'white' }} align="left" className={classes.grow}>
-            {<img src={logoName} alt="logo" style={{ zoom: '65%' }} />}
+          <Typography variant="h6" className={classes.logo}>
+            {<img src={logoName} alt="logo" />}
           </Typography>
-          <Button variant="outlined" color="inherit" style={{ color: 'white' }}>
+          <Button color="inherit" variant="outlined">
             Login
           </Button>
         </Toolbar>
       </AppBar>
     </div>
   );
-};
+}
 
-NavBar.propTypes = {
-  classes: PropTypes.object.isRequired
-};
-
-export default withStyles(styles)(NavBar);
+export default Navbar;
