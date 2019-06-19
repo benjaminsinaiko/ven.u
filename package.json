@@ -17,11 +17,11 @@
   "author": "Benjamin Sinaiko",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "body-parser": "^1.19.0",
     "concurrently": "^4.1.0",
-    "dotenv": "^6.2.0",
-    "express": "^4.16.4",
-    "parse": "^2.2.1"
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "parse": "^2.4.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
@@ -29,6 +29,6 @@
     "eslint-plugin-import": "^2.17.3",
     "eslint-plugin-jsx-a11y": "^6.2.1",
     "eslint-plugin-react": "^7.13.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.1"
   }
 }
