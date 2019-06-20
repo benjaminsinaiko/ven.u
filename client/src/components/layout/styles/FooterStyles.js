@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     color: 'white',
     backgroundColor: '#212121',
-    padding: theme.spacing.unit * 3,
+    padding: theme.spacing(3),
     justifyContent: 'space-between',
     alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
@@ -25,7 +25,7 @@ const useStyles = makeStyles(theme => ({
   socialIcons: {
     color: 'white',
     fontSize: '1.3rem',
-    margin: theme.spacing.unit * 2,
+    margin: theme.spacing(2),
     '&:hover': {
       color: '#E48611'
     }
