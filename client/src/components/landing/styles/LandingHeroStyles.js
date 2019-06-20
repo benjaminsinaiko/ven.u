@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 764,
+    height: '90vh',
     marginTop: -64,
     backgroundColor: '#5284ad',
     backgroundImage: `url(${bg})`,
@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(8),
     marginBottom: theme.spacing(10),
     '& img': {
-      height: '8em',
+      height: '9em',
       width: 'auto'
     }
   },

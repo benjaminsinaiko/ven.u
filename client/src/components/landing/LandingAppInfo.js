@@ -7,7 +7,7 @@ import artistImage from '../../assets/artistImage.png';
 import venueImage from '../../assets/venueImage.png';
 import historyImage from '../../assets/historyImage.png';
 
-const LandingAppInfo = props => {
+const LandingAppInfo = () => {
   const classes = useStyles();
 
   return (
@@ -16,7 +16,7 @@ const LandingAppInfo = props => {
         Chicago's best live music companion app.
       </Typography>
 
-      <Grid container className={classes.grid} spacing={16}>
+      <Grid container className={classes.grid}>
         <Grid item xs={12} sm={6} md={3}>
           <Card className={classes.card} raised>
             <CardMedia component="img" image={discoverImage} title="Discover" />
