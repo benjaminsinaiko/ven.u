@@ -7,7 +7,8 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-center'
   },
   navbar: {
-    backgroundColor: '#212121'
+    backgroundColor: '#4b7da5',
+    opacity: 0.8
   },
   menuButton: {
     marginRight: theme.spacing(2)

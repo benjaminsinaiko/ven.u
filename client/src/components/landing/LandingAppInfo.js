@@ -42,6 +42,7 @@ const LandingAppInfo = props => {
       <ButtonBase
         className={classes.appButton}
         href="https://itunes.apple.com/us/app/ven-u/id1027450596"
+        target="blank"
       />
     </div>
   );

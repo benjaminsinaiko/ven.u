@@ -7,8 +7,8 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: 700,
-
+    height: 764,
+    marginTop: -64,
     backgroundColor: '#5284ad',
     backgroundImage: `url(${bg})`,
     backgroundAttachment: 'fixed',
@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '1000px'
   },
   heroLogo: {
+    marginTop: theme.spacing(8),
     marginBottom: theme.spacing(10),
     '& img': {
       height: '8em',
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignSelf: 'flex-start',
     fontSize: '2.5rem',
+    fontWeight: 700,
     '& p': {
       margin: 0
     },
@@ -58,6 +60,10 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(2),
     margin: theme.spacing(6),
     fontSize: '1.1em',
+    '&:hover': {
+      color: '#db7f0f',
+      backgroundColor: 'white'
+    },
     [theme.breakpoints.down('sm')]: {
       width: '60%',
       fontSize: '1rem',
