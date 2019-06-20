@@ -1,47 +1,42 @@
 import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
 
-import { withStyles } from '@material-ui/core/styles';
-
+import useStyles from './styles/LandingIconInfoStyles';
 import discoverIcon from '../../assets/iconDiscover.png';
 import seeIcon from '../../assets/iconSee.png';
 import reliveIcon from '../../assets/iconRelive.png';
 
-const styles = {
-  paper: {
-    margin: '-40px auto 20px auto',
-    padding: '50px 20px',
-    maxWidth: 1000,
-  },
-};
-
-const LandingIconInfo = props => {
-  const { classes } = props;
+const LandingIconInfo = () => {
+  const classes = useStyles();
 
   return (
-    <Paper className={classes.paper}>
-      <Typography variant="h6" sytle={{ fontWeight: 500 }} gutterBottom>
-        You love the music. You've seen the show. Look back and get more.
-      </Typography>
-      <Grid container spacing={40} justify="center" alignItems="center">
-        <Grid item sm={4}>
-          <img src={discoverIcon} alt="discover icon" align="center" />
-          <Typography variant="h5">Discover</Typography>
-          <Typography variant="body1">Find live music around you.</Typography>
-        </Grid>
-        <Grid item sm={4}>
-          <img src={seeIcon} alt="see icon" />
-          <Typography variant="h5">See</Typography>
-          <Typography variant="body1">Enjoy the show.</Typography>
-        </Grid>
-        <Grid item sm={4}>
-          <img src={reliveIcon} alt="relive icon" />
-          <Typography variant="h5">Relive</Typography>
-          <Typography variant="body1">Look back at the memories.</Typography>
-        </Grid>
-      </Grid>
-    </Paper>
+    <div className={classes.root}>
+      <Paper className={classes.paper}>
+        <div className={classes.title}>
+          <span>You love the music. </span> <span> You've seen the show. </span>
+          <span> Look back and get more.</span>
+        </div>
+
+        <div className={classes.iconsGroup}>
+          <div className={classes.icons}>
+            <img src={discoverIcon} alt="discover icon" />
+            <h4>Discover</h4>
+            <p>Find live music around you.</p>
+          </div>
+          <div className={classes.icons}>
+            <img src={seeIcon} alt="see icon" />
+            <h4>See</h4>
+            <p>Enjoy the show.</p>
+          </div>
+          <div className={classes.icons}>
+            <img src={reliveIcon} alt="relive icon" />
+            <h4>Relive</h4>
+            <p>Look back at the memories.</p>
+          </div>
+        </div>
+      </Paper>
+    </div>
   );
 };
 
-export default withStyles(styles)(LandingIconInfo);
+export default LandingIconInfo;
