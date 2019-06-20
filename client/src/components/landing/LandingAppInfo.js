@@ -1,98 +1,40 @@
 import React from 'react';
-import {
-  Grid,
-  Typography,
-  Card,
-  CardMedia,
-  ButtonBase,
-} from '@material-ui/core';
+import { Grid, Typography, Card, CardMedia, ButtonBase } from '@material-ui/core';
 
-import { withStyles } from '@material-ui/core/styles';
-
+import useStyles from './styles/LandingAppInfoStyles';
 import discoverImage from '../../assets/discoverImage.png';
 import artistImage from '../../assets/artistImage.png';
 import venueImage from '../../assets/venueImage.png';
 import historyImage from '../../assets/historyImage.png';
-import downloadAppStore from '../../assets/downloadAppStore.png';
-
-const styles = theme => ({
-  root: {
-    background: 'linear-gradient( #CFD8DC, #CFD8DC 60%, #5284AD)',
-    paddingTop: 50,
-    paddingBottom: 20,
-  },
-  grid: {
-    maxWidth: 1200,
-    margin: 'auto',
-  },
-  card: {
-    maxHeight: 500,
-    maxWidth: 281.25,
-    [theme.breakpoints.down('md')]: {
-      maxHeight: 400,
-      maxWidth: 225,
-    },
-    margin: '20px auto',
-  },
-  media: {
-    height: '100%',
-    width: '100%',
-  },
-  appButton: {
-    backgroundImage: `url(${downloadAppStore})`,
-    width: 135,
-    height: 40,
-  },
-});
 
 const LandingAppInfo = props => {
-  const { classes } = props;
+  const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Typography variant="h5" gutterBottom>
-        The best companion app for live music fans in Chicago.
+      <Typography className={classes.header} gutterBottom>
+        Chicago's best live music companion app.
       </Typography>
 
       <Grid container className={classes.grid} spacing={16}>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={discoverImage}
-              title="Discover"
-            />
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className={classes.card} raised>
+            <CardMedia component="img" image={discoverImage} title="Discover" />
           </Card>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={artistImage}
-              title="Artist info"
-            />
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className={classes.card} raised>
+            <CardMedia component="img" image={artistImage} title="Artist info" />
           </Card>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={venueImage}
-              title="Venue info"
-            />
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className={classes.card} raised>
+            <CardMedia component="img" image={venueImage} title="Venue info" />
           </Card>
         </Grid>
-        <Grid item md={3}>
-          <Card className={classes.card}>
-            <CardMedia
-              className={classes.media}
-              component="img"
-              image={historyImage}
-              title="Show history"
-            />
+        <Grid item xs={12} sm={6} md={3}>
+          <Card className={classes.card} raised>
+            <CardMedia component="img" image={historyImage} title="Show history" />
           </Card>
         </Grid>
       </Grid>
@@ -105,4 +47,4 @@ const LandingAppInfo = props => {
   );
 };
 
-export default withStyles(styles)(LandingAppInfo);
+export default LandingAppInfo;
