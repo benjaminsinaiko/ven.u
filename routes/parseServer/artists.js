@@ -10,8 +10,9 @@ router.get('/test', (req, res) => res.json({ msg: 'parse route works' }));
 router.get('/:artist', (req, res) => {
   const Artists = Parse.Object.extend('Artists');
   const query = new Parse.Query(Artists);
-  query.limit(10);
+
   query.fullText('artistName', `${req.params.artist}`);
+  query.limit(10);
   query
     .find()
     .then((results) => {

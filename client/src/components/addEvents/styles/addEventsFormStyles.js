@@ -4,12 +4,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center'
-  },
-  eventsDisplay: {
-    display: 'flex',
-    padding: theme.spacing(1),
-    margin: theme.spacing(1)
+    textAlign: 'center',
+    padding: theme.spacing(2),
+    margin: theme.spacing(2)
   }
 }));
 
