@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, memo, useEffect } from 'react';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
@@ -17,6 +17,12 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
     setTimeout(() => setShowOptions(false), 200);
   };
 
+  useEffect(() => {
+    return () => {
+      console.log('*****ArtistSearch Rendered');
+    };
+  });
+
   return (
     <>
       <TextField
@@ -26,6 +32,7 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
         onBlur={handleOnBlur}
         margin="normal"
         label={placeholder}
+        type="search"
         fullWidth
       />
       {loading && <span style={{ color: 'black' }}>Loading...</span>}
@@ -42,4 +49,4 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
   );
 };
 
-export default ArtistSearch;
+export default memo(ArtistSearch);

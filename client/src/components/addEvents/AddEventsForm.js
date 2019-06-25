@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
+import AddTitle from './AddTitle';
 import ArtistSearch from './ArtistSearch';
 import useStyles from './styles/addEventsFormStyles';
 
@@ -14,6 +15,7 @@ function AddEventsForm() {
 
   const classes = useStyles();
 
+  console.log('titleState', title);
   console.log('artistState', artist);
 
   const handleSubmit = e => {
@@ -23,7 +25,7 @@ function AddEventsForm() {
     <Paper className={classes.root}>
       <Typography>Add Events</Typography>
       <form onSubmit={handleSubmit}>
-        <input value={title} onChange={setTitle} placeholder="Title" />
+        <AddTitle value={title} onChange={setTitle} placeholder="Title" />
         <input value={venue} onChange={setVenue} placeholder="Venue search" />
         <ArtistSearch value={artist.artistName} onChange={setArtist} placeholder="Artist Search" />
         <input value={startTime} onChange={setStartTime} placeholder="Start Time" />
