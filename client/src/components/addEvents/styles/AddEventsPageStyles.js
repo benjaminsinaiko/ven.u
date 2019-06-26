@@ -4,7 +4,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    textAlign: 'center'
+    textAlign: 'center',
+    minHeight: '82vh'
   },
   eventsDisplay: {
     display: 'flex',

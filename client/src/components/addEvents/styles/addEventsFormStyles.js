@@ -7,6 +7,13 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     padding: theme.spacing(2),
     margin: theme.spacing(2)
+  },
+  form: {
+    padding: theme.spacing(1)
+  },
+  timePickers: {
+    display: 'flex',
+    justifyContent: 'space-evenly'
   }
 }));
 

@@ -19,7 +19,7 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
 
   useEffect(() => {
     return () => {
-      console.log('*****ArtistSearch Rendered');
+      console.log('*****ArtistSearch');
     };
   });
 
@@ -36,15 +36,13 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
         fullWidth
       />
       {loading && <span style={{ color: 'black' }}>Loading...</span>}
-      {showOptions && artists.length > 2 && (
-        <div>
-          {artists.map(artist => (
-            <MenuItem key={artist.objectId} onClick={() => onChange(artist)}>
-              {artist.artistName}
-            </MenuItem>
-          ))}
-        </div>
-      )}
+      {showOptions &&
+        artists.length > 2 &&
+        artists.map(artist => (
+          <MenuItem key={artist.objectId} onClick={() => onChange(artist)}>
+            {artist.artistName}
+          </MenuItem>
+        ))}
     </>
   );
 };
