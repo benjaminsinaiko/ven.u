@@ -19,3 +19,13 @@ export function getVenues() {
     })
     .catch(e => e);
 }
+
+export function addEvent(newEvent) {
+  return axios
+    .post('/parse/events', newEvent)
+    .then(({ data }) => {
+      console.log('added: ', data);
+      return data;
+    })
+    .catch(e => e);
+}

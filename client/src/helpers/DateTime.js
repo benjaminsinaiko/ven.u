@@ -9,7 +9,7 @@ export function defaultDate(offset) {
     .format('YYYY-MM-DDTHH:mm:ss');
 }
 
-export function utcConvert(dateTime) {
+export function convertUtc(dateTime) {
   return moment(dateTime)
     .utc()
     .format();

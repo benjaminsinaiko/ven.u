@@ -27,8 +27,6 @@ function AddEventsPage() {
     }
   }, [setVenues]);
 
-  // console.log(selectedVenue);
-
   return (
     <Paper className={classes.root}>
       <div>

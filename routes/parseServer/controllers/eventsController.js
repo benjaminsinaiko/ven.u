@@ -52,19 +52,18 @@ exports.createEvent = async (req, res) => {
   // create new event
   const newEvent = new Events();
   newEvent.set('eventId', lastId);
-  newEvent.set('eventStartDateTime', new Date());
-  newEvent.set('eventEndDateTime', new Date());
+  newEvent.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
+  newEvent.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
   newEvent.set('artist', newArtist);
   newEvent.set('venue', newVenue);
-  newEvent.set('NotPublished', true);
-  newEvent.set('short_title', 'A string');
-  newEvent.set('title', 'A string');
+  newEvent.set('short_title', req.body.title);
+  newEvent.set('title', req.body.title);
   newEvent.increment('eventId');
 
   const savedEvent = await newEvent.save();
   try {
-    res.json([lastId, savedEvent]);
+    res.json(savedEvent);
   } catch (err) {
-    res.send(err);
+    res.json(err);
   }
 };

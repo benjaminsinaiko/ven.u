@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import AddVenue from './AddVenue';
 import AddTitle from './AddTitle';
 import ArtistSearch from './ArtistSearch';
 import DateTimePicker from './DateTimePicker';
-import { defaultDate } from '../../helpers/DateTime';
+import { defaultDate, convertUtc } from '../../helpers/DateTime';
+import { addEvent } from '../../api/parseApi';
 import useStyles from './styles/addEventsFormStyles';
 
 function AddEventsForm({ selectedVenue }) {
@@ -22,22 +24,22 @@ function AddEventsForm({ selectedVenue }) {
     setVenue(selectedVenue);
   }, [selectedVenue]);
 
-  // const newEvent = {
-  //   eventStartDateTime: startTime,
-  //   eventEndDateTime: endTime,
-  //   artist: artist.objectId,
-  //   venue: venue.objectId,
-  //   title: title
-  // };
-
-  // console.table(newEvent);
+  const newEvent = {
+    eventStartDateTime: convertUtc(startTime),
+    eventEndDateTime: convertUtc(endTime),
+    artist: artist.objectId,
+    venue: venue.objectId,
+    title: title
+  };
 
   const handleSubmit = e => {
     e.preventDefault();
+    addEvent(newEvent);
   };
+
   return (
     <Paper className={classes.root}>
-      <Typography>Add Events</Typography>
+      <Typography>New Event</Typography>
       <form onSubmit={handleSubmit} className={classes.form}>
         <div className={classes.timePickers}>
           <DateTimePicker value={startTime} onChange={setStartTime} label="Start Time" />
@@ -46,19 +48,12 @@ function AddEventsForm({ selectedVenue }) {
         <AddTitle value={title} onChange={setTitle} placeholder="Title" />
         <AddVenue value={venue} onChange={setVenue} />
         <ArtistSearch value={artist.artistName} onChange={setArtist} placeholder="Artist Search" />
+        <Button variant="contained" className={classes.button} type="submit">
+          Add Event
+        </Button>
       </form>
     </Paper>
   );
 }
 
 export default AddEventsForm;
-
-// newEvent.set('eventId', lastId);
-// newEvent.set('eventStartDateTime', new Date());
-// newEvent.set('eventEndDateTime', new Date());
-// newEvent.set('artist', newArtist);
-// newEvent.set('venue', newVenue);
-// newEvent.set('NotPublished', true);
-// newEvent.set('short_title', 'A string');
-// newEvent.set('title', 'A string');
-// newEvent.increment('eventId');

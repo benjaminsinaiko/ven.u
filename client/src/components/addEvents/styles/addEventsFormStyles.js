@@ -14,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   timePickers: {
     display: 'flex',
     justifyContent: 'space-evenly'
+  },
+  button: {
+    backgroundColor: '#f0c04a',
+    marginTop: theme.spacing(2)
   }
 }));
 
