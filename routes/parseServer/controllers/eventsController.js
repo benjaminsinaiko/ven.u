@@ -19,9 +19,16 @@ exports.searchByVenue = function (req, res) {
 
   const Venues = Parse.Object.extend('Venues');
   const venue = new Venues();
-  venue.id = req.body.venueId;
+  venue.id = req.params.venueId;
 
   queryEvents.equalTo('venue', venue);
+  if (JSON.parse(req.body.future) === true) {
+    queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
+  } else if (JSON.parse(req.body.future) === false) {
+    queryEvents.lessThan('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
+  }
+  queryEvents.ascending('eventStartDateTime');
+
   queryEvents
     .find()
     .then((events) => {
