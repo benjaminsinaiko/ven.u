@@ -1,11 +1,16 @@
 import React from 'react';
 import MenuItem from '@material-ui/core/MenuItem';
 
-const SearchOptions = ({ artist, onClick }) => {
-  const handleClick = () => {
-    onClick(artist);
+const SearchOptions = ({ venueOption, venueName, handleChange, onSelect }) => {
+  const handleClick = e => {
+    onSelect(venueOption);
+    handleChange(venueName);
   };
-  return <MenuItem onClick={handleClick}>{artist}</MenuItem>;
+  return (
+    <MenuItem component="option" onClick={handleClick} value={venueName}>
+      {venueName}
+    </MenuItem>
+  );
 };
 
 export default SearchOptions;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
@@ -9,8 +9,8 @@ import DateTimePicker from './DateTimePicker';
 import { defaultDate } from '../../helpers/DateTime';
 import useStyles from './styles/addEventsFormStyles';
 
-function AddEventsForm() {
-  const [venue, setVenue] = useState('Default Venue');
+function AddEventsForm({ selectedVenue }) {
+  const [venue, setVenue] = useState({});
   const [artist, setArtist] = useState('');
   const [startTime, setStartTime] = useState(defaultDate(0));
   const [endTime, setEndTime] = useState(defaultDate(6));
@@ -18,15 +18,19 @@ function AddEventsForm() {
 
   const classes = useStyles();
 
-  const newEvent = {
-    eventStartDateTime: startTime,
-    eventEndDateTime: endTime,
-    artist: artist.objectId,
-    venue: venue.objectId,
-    title: title
-  };
+  useEffect(() => {
+    setVenue(selectedVenue);
+  }, [selectedVenue]);
 
-  console.table(newEvent);
+  // const newEvent = {
+  //   eventStartDateTime: startTime,
+  //   eventEndDateTime: endTime,
+  //   artist: artist.objectId,
+  //   venue: venue.objectId,
+  //   title: title
+  // };
+
+  // console.table(newEvent);
 
   const handleSubmit = e => {
     e.preventDefault();
