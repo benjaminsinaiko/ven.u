@@ -16,8 +16,11 @@ router.get('/', eventsController.index);
 // GET Event
 router.get('/:eventId', eventsController.searchEvent);
 
-// GET Events by Venue
-router.get('/venue/:venueId', eventsController.searchByVenue);
+// GET Future Events by Venue
+router.get('/venue/:venueId', eventsController.futureEventsByVenue);
+
+// GET Past Events by Venue
+router.get('/venue/:venueId', eventsController.pastEventsByVenue);
 
 // POST create Event
 router.post('/', eventsController.createEvent);

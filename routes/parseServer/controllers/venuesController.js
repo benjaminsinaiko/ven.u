@@ -4,7 +4,7 @@ exports.index = async (req, res) => {
   const Venues = Parse.Object.extend('Venues');
   const queryVenues = new Parse.Query(Venues);
 
-  queryVenues.equalTo('testVenue', true);
+  queryVenues.equalTo('testVenue', false);
   queryVenues.ascending('venueName');
 
   const venues = await queryVenues.find();

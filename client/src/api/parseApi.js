@@ -20,13 +20,13 @@ export function getVenues() {
     .catch(e => e);
 }
 
-export function getVenueEvents(venueId) {
+export function getFutureVenueEvents(venueId) {
   return axios
-    .get(`/parse/events/${venueId}`)
-    .then(({data}) => {
-     return data;
+    .get(`/parse/events/venue/${venueId}`)
+    .then(({ data }) => {
+      return data;
     })
-    .catch(e => e)
+    .catch(e => e);
 }
 
 export function addEvent(newEvent) {

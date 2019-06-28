@@ -9,8 +9,6 @@ import { convertLocal } from '../../../helpers/DateTime';
 const ViewEventsForm = ({ event }) => {
   const classes = useStyles();
 
-  console.log(event);
-
   return (
     <Paper className={classes.root}>
       <form className={classes.form}>
@@ -18,13 +16,17 @@ const ViewEventsForm = ({ event }) => {
           <DateTimePicker
             disabled
             label="Start Time"
-            value={convertLocal(event.eventStartDateTime)}
+            value={convertLocal(event.eventStartDateTime.iso)}
           />
-          <DateTimePicker disabled label="End Time" value={convertLocal(event.eventEndDateTime)} />
+          <DateTimePicker
+            disabled
+            label="End Time"
+            value={convertLocal(event.eventEndDateTime.iso)}
+          />
         </div>
-        <EventTextField disabled placeholder="Title" value={event.eventTitle} />
-        <EventTextField disabled placeholder="Venue" value={event.venue} />
-        <EventTextField disabled placeholder="Artist" value={event.artist} />
+        <EventTextField disabled placeholder="Title" value={event.title} />
+        <EventTextField disabled placeholder="Venue" value={event.venue.venueName} />
+        <EventTextField disabled placeholder="Artist" value={event.artist.artistName} />
       </form>
     </Paper>
   );

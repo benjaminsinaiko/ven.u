@@ -38,8 +38,8 @@ exports.searchEvent = function (req, res) {
     .catch(err => res.json(err));
 };
 
-/* ############### EVENTS BY VENUE ############### */
-exports.searchByVenue = function (req, res) {
+/* ############### FUTURE EVENTS BY VENUE ############### */
+exports.futureEventsByVenue = function (req, res) {
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
 
@@ -58,12 +58,38 @@ exports.searchByVenue = function (req, res) {
     'venue.venueName',
     'artist.artistName',
   ]);
+  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
+  queryEvents.ascending('eventStartDateTime');
 
-  if (JSON.parse(req.body.future) === true) {
-    queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
-  } else if (JSON.parse(req.body.future) === false) {
-    queryEvents.lessThan('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
-  }
+  queryEvents
+    .find()
+    .then((events) => {
+      res.json(events);
+    })
+    .catch(err => res.json(err));
+};
+
+/* ############### PAST EVENTS BY VENUE ############### */
+exports.pastEventsByVenue = function (req, res) {
+  const Events = Parse.Object.extend('Events');
+  const queryEvents = new Parse.Query(Events);
+
+  queryEvents.equalTo('venue', {
+    __type: 'Pointer',
+    className: 'Venues',
+    objectId: req.params.venueId,
+  });
+
+  queryEvents.include('artist');
+  queryEvents.include('venue');
+  queryEvents.select([
+    'eventStartDateTime.iso',
+    'eventEndDateTime.iso',
+    'title',
+    'venue.venueName',
+    'artist.artistName',
+  ]);
+  queryEvents.lessThan('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
   queryEvents.ascending('eventStartDateTime');
 
   queryEvents

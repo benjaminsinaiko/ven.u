@@ -13,6 +13,7 @@ import { getVenues } from '../../api/parseApi';
 function AddEventsPage() {
   const [venues, setVenues] = useLocalStorageState('venues', []);
   const [selectedVenue, setSelectedVenue] = useState('');
+  const [eventCount, setEventCount] = useState(0);
   const classes = useStyles();
 
   useEffect(() => {
@@ -44,8 +45,8 @@ function AddEventsPage() {
           <AddEventsForm selectedVenue={selectedVenue} />
         </Grid>
         <Grid item md={6}>
-          <Typography className={classes.eventsHeader}>Current Events</Typography>
-          <ViewEventsList selectedVenue={selectedVenue} />
+          <Typography className={classes.eventsHeader}>Upcoming Events: {eventCount}</Typography>
+          <ViewEventsList selectedVenue={selectedVenue} setEventCount={setEventCount} />
         </Grid>
       </Grid>
     </Paper>
