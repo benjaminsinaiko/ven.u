@@ -20,6 +20,15 @@ export function getVenues() {
     .catch(e => e);
 }
 
+export function getVenueEvents(venueId) {
+  return axios
+    .get(`/parse/events/${venueId}`)
+    .then(({data}) => {
+     return data;
+    })
+    .catch(e => e)
+}
+
 export function addEvent(newEvent) {
   return axios
     .post('/parse/events', newEvent)

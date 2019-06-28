@@ -2,8 +2,8 @@ import React, { useState, memo } from 'react';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 
-import useSearchArtists from '../../hooks/useSearchArtists.js';
-import useInputState from '../../hooks/useInputState';
+import useSearchArtists from '../../../hooks/useSearchArtists.js';
+import useInputState from '../../../hooks/useInputState';
 
 const ArtistSearch = ({ value, onChange, placeholder }) => {
   const [searchString, handleChange] = useInputState('');

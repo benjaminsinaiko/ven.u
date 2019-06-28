@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles/AddEventsPageStyles';
-import AddEventsForm from './AddEventsForm';
 import VenueSelect from './VenueSelect';
+import AddEventsForm from './addEvents/AddEventsForm';
+import ViewEventsList from './viewEvents/ViewEventsList';
 import useLocalStorageState from '../../hooks/useLocalStorageState';
 import { getVenues } from '../../api/parseApi';
 
@@ -30,17 +33,23 @@ function AddEventsPage() {
   return (
     <Paper className={classes.root}>
       <div>
-        <h1>Select Venue</h1>
         <VenueSelect
           venues={venues}
           selectedVenue={selectedVenue}
           setSelectedVenue={setSelectedVenue}
         />
       </div>
-      <div className={classes.eventsDisplay}>
-        <AddEventsForm selectedVenue={selectedVenue} />
-        <div>Events List</div>
-      </div>
+
+      <Grid container className={classes.eventsDisplay}>
+        <Grid item md={6}>
+          <Typography className={classes.eventsHeader}>New Events</Typography>
+          <AddEventsForm selectedVenue={selectedVenue} />
+        </Grid>
+        <Grid item md={6}>
+          <Typography className={classes.eventsHeader}>Current Events</Typography>
+          <ViewEventsList selectedVenue={selectedVenue} />
+        </Grid>
+      </Grid>
     </Paper>
   );
 }

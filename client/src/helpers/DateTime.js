@@ -9,10 +9,17 @@ export function defaultDate(offset) {
     .format('YYYY-MM-DDTHH:mm:ss');
 }
 
-export function convertUtc(dateTime) {
-  return moment(dateTime)
+export function convertUtc(localDateTime) {
+  return moment(localDateTime)
     .utc()
     .format();
+}
+
+export function convertLocal(utcDateTime) {
+  return moment
+    .utc(utcDateTime)
+    .local()
+    .format('YYYY-MM-DDTHH:mm');
 }
 
 // 2019-06-21T05:23:19.559Z

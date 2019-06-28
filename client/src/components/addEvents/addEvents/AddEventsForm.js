@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 
 import AddVenue from './AddVenue';
 import AddTitle from './AddTitle';
 import ArtistSearch from './ArtistSearch';
 import DateTimePicker from './DateTimePicker';
-import { defaultDate, convertUtc } from '../../helpers/DateTime';
-import { addEvent } from '../../api/parseApi';
-import useStyles from './styles/addEventsFormStyles';
+import { defaultDate, convertUtc } from '../../../helpers/DateTime';
+import { addEvent } from '../../../api/parseApi';
+import useStyles from '../styles/EventsFormStyles';
 
 function AddEventsForm({ selectedVenue }) {
   const [venue, setVenue] = useState({});
@@ -38,8 +37,7 @@ function AddEventsForm({ selectedVenue }) {
   };
 
   return (
-    <Paper className={classes.root}>
-      <Typography>New Event</Typography>
+    <Paper className={classes.root} elevation={10}>
       <form onSubmit={handleSubmit} className={classes.form}>
         <div className={classes.timePickers}>
           <DateTimePicker value={startTime} onChange={setStartTime} label="Start Time" />

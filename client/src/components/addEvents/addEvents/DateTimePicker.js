@@ -1,9 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 
-import useStyles from './styles/DateTimePickerStyles';
+import useStyles from '../styles/DateTimePickerStyles';
 
-const DateTimePicker = ({ label, value, onChange }) => {
+const DateTimePicker = ({ label, value, onChange, disabled = false }) => {
   const classes = useStyles();
 
   const handleChange = e => {
@@ -14,6 +14,7 @@ const DateTimePicker = ({ label, value, onChange }) => {
   return (
     <div className={classes.container} noValidate>
       <TextField
+        disabled={disabled}
         id="datetime-local"
         label={label}
         type="datetime-local"
