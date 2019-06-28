@@ -21,11 +21,9 @@ function AddEventsPage() {
       await setVenues(fetchedVenues);
     }
     const cachedVenues = window.localStorage.getItem('venues');
-    if (!cachedVenues === null) {
-      console.log('FOUND CACHED');
+    if (cachedVenues !== '[]') {
       setVenues(JSON.parse(cachedVenues));
     } else {
-      console.log('NO CACHED');
       fetchVenues();
     }
   }, [setVenues]);
