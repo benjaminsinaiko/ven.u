@@ -21,7 +21,7 @@ function AddEventsPage() {
       await setVenues(fetchedVenues);
     }
     const cachedVenues = window.localStorage.getItem('venues');
-    if (cachedVenues) {
+    if (!cachedVenues === null) {
       console.log('FOUND CACHED');
       setVenues(JSON.parse(cachedVenues));
     } else {
