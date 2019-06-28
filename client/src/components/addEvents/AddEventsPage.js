@@ -31,7 +31,7 @@ function AddEventsPage() {
 
   return (
     <Paper className={classes.root}>
-      <div>
+      <div className={classes.select}>
         <VenueSelect
           venues={venues}
           selectedVenue={selectedVenue}
@@ -44,7 +44,7 @@ function AddEventsPage() {
           <Typography className={classes.eventsHeader}>New Events</Typography>
           <AddEventsForm selectedVenue={selectedVenue} />
         </Grid>
-        <Grid item md={6}>
+        <Grid item md={6} className={classes.upcomingEvents}>
           <Typography className={classes.eventsHeader}>Upcoming Events: {eventCount}</Typography>
           <ViewEventsList selectedVenue={selectedVenue} setEventCount={setEventCount} />
         </Grid>

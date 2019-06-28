@@ -22,4 +22,11 @@ export function convertLocal(utcDateTime) {
     .format('YYYY-MM-DDTHH:mm');
 }
 
+export function converLocalDisplay(utcDateTime) {
+  return moment
+    .utc(utcDateTime)
+    .local()
+    .format('MMM Do YYYY, h:mm a');
+}
+
 // 2019-06-21T05:23:19.559Z

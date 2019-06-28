@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 import DateTimePicker from '../addEvents/DateTimePicker';
 import EventTextField from './EventTextField';
 import useStyles from '../styles/EventsFormStyles';
-import { convertLocal } from '../../../helpers/DateTime';
+import { converLocalDisplay } from '../../../helpers/DateTime';
 
 const ViewEventsForm = ({ event }) => {
   const classes = useStyles();
@@ -13,20 +13,20 @@ const ViewEventsForm = ({ event }) => {
     <Paper className={classes.root}>
       <form className={classes.form}>
         <div className={classes.timePickers}>
-          <DateTimePicker
-            disabled
-            label="Start Time"
-            value={convertLocal(event.eventStartDateTime.iso)}
+          <EventTextField
+            placeholder="Start Time"
+            value={converLocalDisplay(event.eventStartDateTime.iso)}
+            readOnly={true}
           />
-          <DateTimePicker
-            disabled
-            label="End Time"
-            value={convertLocal(event.eventEndDateTime.iso)}
+          <EventTextField
+            placeholder="End Time"
+            value={converLocalDisplay(event.eventEndDateTime.iso)}
+            readOnly={true}
           />
         </div>
-        <EventTextField disabled placeholder="Title" value={event.title} />
-        <EventTextField disabled placeholder="Venue" value={event.venue.venueName} />
-        <EventTextField disabled placeholder="Artist" value={event.artist.artistName} />
+        <EventTextField placeholder="Title" value={event.title} readOnly={true} />
+        <EventTextField placeholder="Venue" value={event.venue.venueName} readOnly={true} />
+        <EventTextField placeholder="Artist" value={event.artist.artistName} readOnly={true} />
       </form>
     </Paper>
   );

@@ -64,6 +64,7 @@ exports.futureEventsByVenue = function (req, res) {
   queryEvents
     .find()
     .then((events) => {
+      console.log('***Request sent for events');
       res.json(events);
     })
     .catch(err => res.json(err));

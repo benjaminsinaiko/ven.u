@@ -10,11 +10,13 @@ const ViewEventsList = ({ selectedVenue, setEventCount }) => {
     async function fetchEvents() {
       const fetchedEvents = await getFutureVenueEvents(selectedVenue.objectId);
       await setEvents(fetchedEvents);
-
-      setEventCount(events.length);
     }
     if (selectedVenue) fetchEvents(selectedVenue.objectId);
-  }, [events.length, selectedVenue, setEventCount]);
+  }, [selectedVenue]);
+
+  useEffect(() => {
+    setEventCount(events.length);
+  }, [events.length, setEventCount]);
 
   return (
     <>

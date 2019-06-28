@@ -8,6 +8,9 @@ const useStyles = makeStyles(theme => ({
     textAlign: 'center',
     minHeight: '82vh'
   },
+  select: {
+    marginTop: theme.spacing(2)
+  },
   eventsDisplay: {
     display: 'flex',
     padding: theme.spacing(1),
@@ -15,6 +18,10 @@ const useStyles = makeStyles(theme => ({
   },
   eventsHeader: {
     fontSize: '1.5rem'
+  },
+  upcomingEvents: {
+    maxHeight: '81vh',
+    overflow: 'scroll'
   }
 }));
 
