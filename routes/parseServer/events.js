@@ -13,10 +13,13 @@ router.get('/test', (req, res) => {
 // GET Events search
 router.get('/', eventsController.index);
 
+// GET Event
+router.get('/:eventId', eventsController.searchEvent);
+
+// GET Events by Venue
+router.get('/venue/:venueId', eventsController.searchByVenue);
+
 // POST create Event
 router.post('/', eventsController.createEvent);
-
-// Events by Venue
-router.get('/:venueId', eventsController.searchByVenue);
 
 module.exports = router;

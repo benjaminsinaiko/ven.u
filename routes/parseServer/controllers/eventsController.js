@@ -1,5 +1,6 @@
 const Parse = require('parse/node');
 
+/* ############### ALL EVENTS ############### */
 exports.index = function (req, res) {
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
@@ -13,15 +14,51 @@ exports.index = function (req, res) {
     .catch(err => res.json(err));
 };
 
+/* ############### GET EVENT ############### */
+exports.searchEvent = function (req, res) {
+  const Events = Parse.Object.extend('Events');
+  const queryEvents = new Parse.Query(Events);
+
+  queryEvents.equalTo('objectId', req.params.eventId);
+  queryEvents.include('artist');
+  queryEvents.include('venue');
+  queryEvents.select([
+    'eventStartDateTime.iso',
+    'eventEndDateTime.iso',
+    'title',
+    'venue.venueName',
+    'artist.artistName',
+  ]);
+
+  queryEvents
+    .find()
+    .then((events) => {
+      res.json(events);
+    })
+    .catch(err => res.json(err));
+};
+
+/* ############### EVENTS BY VENUE ############### */
 exports.searchByVenue = function (req, res) {
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
 
-  const Venues = Parse.Object.extend('Venues');
-  const venue = new Venues();
-  venue.id = req.params.venueId;
+  queryEvents.equalTo('venue', {
+    __type: 'Pointer',
+    className: 'Venues',
+    objectId: req.params.venueId,
+  });
 
-  queryEvents.equalTo('venue', venue);
+  queryEvents.include('artist');
+  queryEvents.include('venue');
+  queryEvents.select([
+    'eventStartDateTime.iso',
+    'eventEndDateTime.iso',
+    'title',
+    'venue.venueName',
+    'artist.artistName',
+  ]);
+
   if (JSON.parse(req.body.future) === true) {
     queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
   } else if (JSON.parse(req.body.future) === false) {
@@ -37,6 +74,7 @@ exports.searchByVenue = function (req, res) {
     .catch(err => res.json(err));
 };
 
+/* ############### CREATE EVENT ############### */
 exports.createEvent = async (req, res) => {
   // set artist pointer
   const Artists = Parse.Object.extend('Artists');
