@@ -103,22 +103,13 @@ exports.pastEventsByVenue = function (req, res) {
 
 /* ############### CREATE EVENT ############### */
 exports.createEvent = async (req, res) => {
-  // set artist pointer
-  const Artists = Parse.Object.extend('Artists');
-  const newArtist = new Artists();
-  newArtist.set('id', req.body.artist);
-
-  // set venue pointer
-  const Venues = Parse.Object.extend('Venues');
-  const newVenue = new Venues();
-  newVenue.set('id', req.body.venue);
-
   const Events = Parse.Object.extend('Events');
   // increment eventId
   const queryEvents = new Parse.Query(Events);
   queryEvents.descending('eventId');
-  queryEvents.limit(1);
+  queryEvents.first();
   const events = await queryEvents.find();
+  console.log(events);
   const lastId = events[0].get('eventId');
 
   // create new event
@@ -126,8 +117,16 @@ exports.createEvent = async (req, res) => {
   newEvent.set('eventId', lastId);
   newEvent.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
   newEvent.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
-  newEvent.set('artist', newArtist);
-  newEvent.set('venue', newVenue);
+  newEvent.set('artist', {
+    __type: 'Pointer',
+    className: 'Artists',
+    objectId: req.body.artist,
+  });
+  newEvent.set('venue', {
+    __type: 'Pointer',
+    className: 'Venues',
+    objectId: req.body.venue,
+  });
   newEvent.set('short_title', req.body.title);
   newEvent.set('title', req.body.title);
   newEvent.increment('eventId');
@@ -138,4 +137,37 @@ exports.createEvent = async (req, res) => {
   } catch (err) {
     res.json(err);
   }
+};
+
+/* ############### UPDATE EVENT ############### */
+exports.updateEvent = async function (req, res) {
+  const Events = Parse.Object.extend('Events');
+  const query = new Parse.Query(Events);
+  query.get(req.params.eventId).then((event) => {
+    if (req.body.eventStartDateTime) event.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
+    if (req.body.eventEndDateTime) event.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
+    if (req.body.artist) {
+      event.set('artist', {
+        __type: 'Pointer',
+        className: 'Artists',
+        objectId: req.body.artist,
+      });
+    }
+    if (req.body.venue) {
+      event.equalTo('venue', {
+        __type: 'Pointer',
+        className: 'Venues',
+        objectId: req.body.venue,
+      });
+    }
+    if (req.body.title) event.set('short_title', req.body.title);
+    event.set('title', req.body.title);
+
+    event
+      .save()
+      .then((updatedEvent) => {
+        res.json(updatedEvent);
+      })
+      .catch(err => res.json(err));
+  });
 };

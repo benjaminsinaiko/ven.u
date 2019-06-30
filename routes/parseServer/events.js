@@ -10,19 +10,22 @@ router.get('/test', (req, res) => {
   res.json({ msg: 'Test route' });
 });
 
-// GET Events search
+// GET events search
 router.get('/', eventsController.index);
 
-// GET Event
+// GET event
 router.get('/:eventId', eventsController.searchEvent);
 
-// GET Future Events by Venue
+// GET future Events by Venue
 router.get('/venue/:venueId', eventsController.futureEventsByVenue);
 
-// GET Past Events by Venue
+// GET past Events by Venue
 router.get('/venue/:venueId', eventsController.pastEventsByVenue);
 
 // POST create Event
 router.post('/', eventsController.createEvent);
+
+// POST update Event
+router.post('/:eventId', eventsController.updateEvent);
 
 module.exports = router;
