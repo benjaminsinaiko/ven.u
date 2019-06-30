@@ -109,7 +109,6 @@ exports.createEvent = async (req, res) => {
   queryEvents.descending('eventId');
   queryEvents.first();
   const events = await queryEvents.find();
-  console.log(events);
   const lastId = events[0].get('eventId');
 
   // create new event

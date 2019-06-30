@@ -5,7 +5,6 @@ const router = express.Router();
 const eventsController = require('./controllers/eventsController');
 
 // GET catalog home page.
-// router.get('/', book_controller.index);
 router.get('/test', (req, res) => {
   res.json({ msg: 'Test route' });
 });

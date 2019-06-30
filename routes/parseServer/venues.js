@@ -1,5 +1,4 @@
 const express = require('express');
-const Parse = require('parse/node');
 
 const router = express.Router();
 

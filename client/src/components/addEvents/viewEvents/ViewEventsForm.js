@@ -1,7 +1,6 @@
 import React from 'react';
 import Paper from '@material-ui/core/Paper';
 
-import DateTimePicker from '../addEvents/DateTimePicker';
 import EventTextField from './EventTextField';
 import useStyles from '../styles/EventsFormStyles';
 import { converLocalDisplay } from '../../../helpers/DateTime';
