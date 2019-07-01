@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 
 import EventTextField from './EventTextField';
 import useStyles from '../styles/EventsFormStyles';
-import { converLocalDisplay } from '../../../helpers/DateTime';
+import { converLocalDisplay } from '../../../utils/dateTime';
 
 const ViewEventsForm = ({ event }) => {
   const classes = useStyles();

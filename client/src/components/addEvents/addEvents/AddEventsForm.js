@@ -6,7 +6,7 @@ import AddVenue from './AddVenue';
 import AddTitle from './AddTitle';
 import ArtistSearch from './ArtistSearch';
 import DateTimePicker from './DateTimePicker';
-import { defaultDate, convertUtc } from '../../../helpers/DateTime';
+import { defaultDate, convertUtc } from '../../../utils/dateTime';
 import { addEvent } from '../../../api/parseApi';
 import useStyles from '../styles/EventsFormStyles';
 

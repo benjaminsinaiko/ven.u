@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
+import { useUser } from './contexts/userContext';
 import AppLanding from './AppLanding';
 
 import init from './api/init';
@@ -8,6 +9,10 @@ import { getCurrentUser } from './api/parseApi';
 
 function App() {
   const [currentUser, setCurrentUser] = useState();
+
+  const user = useUser();
+
+  console.log('useUser:', user);
 
   // Load Facebook SDK
   useEffect(() => {
