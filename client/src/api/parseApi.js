@@ -1,3 +1,4 @@
+import Parse from 'parse';
 import axios from 'axios';
 
 export function searchParseArtists(searchString) {
@@ -37,4 +38,9 @@ export function addEvent(newEvent) {
       return data;
     })
     .catch(e => e);
+}
+
+export function getCurrentUser() {
+  const currentUser = Parse.User.current();
+  return currentUser;
 }
