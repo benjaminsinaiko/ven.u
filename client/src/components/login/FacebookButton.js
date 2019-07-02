@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import fb_icon from '../../assets/icon_facebook.png';
 
 const useStyles = makeStyles(theme => ({
   loginButton: {
@@ -27,8 +28,7 @@ const useStyles = makeStyles(theme => ({
     },
     '&:before': {
       borderRight: '#364e92 1px solid',
-      background: '6px 6px no-repeat',
-      backgroundImage: 'url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/14082/icon_facebook.png)'
+      background: `url(${fb_icon}) 6px 6px no-repeat`
     },
     '&:hover': {
       backgroundColor: '#5b7bd5',

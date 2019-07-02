@@ -9,14 +9,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
 import LoginForm from '../login/LoginModal';
+import { useAuth } from '../../contexts/authContext';
 
 function Navbar() {
   const classes = useStyles();
 
   const [loginOpen, setLoginOpen] = useState(true);
+  const { logout } = useAuth();
 
   const handleClick = () => {
     setLoginOpen(true);
+  };
+
+  const handleLogout = () => {
+    logout();
   };
 
   return (
@@ -31,6 +37,9 @@ function Navbar() {
           </Typography>
           <Button onClick={handleClick} color="inherit" variant="outlined">
             Login
+          </Button>
+          <Button onClick={handleLogout} color="inherit" variant="outlined">
+            Logout
           </Button>
           <LoginForm open={loginOpen} setOpen={setLoginOpen} />
         </Toolbar>

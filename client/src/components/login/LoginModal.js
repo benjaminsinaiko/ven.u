@@ -6,31 +6,34 @@ import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
 
 import useStyles from './styles/LoginModalStyles';
 import { useAuth } from '../../contexts/authContext.js';
+import { useUser } from '../../contexts/userContext.js';
 import FacebookButton from './FacebookButton';
 
 function LoginModal({ open, setOpen }) {
   const classes = useStyles();
-  const { fbLogin, fbLogout } = useAuth();
+  const { login, logout, register, fbLogin, fbLogout } = useAuth();
 
+  const currentUser = useUser();
+  const [isLogin, setIsLogIn] = useState(true);
   const [state, setState] = useState({
     username: '',
     password: '',
     email: ''
   });
-  const [isLogin, setIsLogIn] = useState(true);
 
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.value });
   };
 
-  const handleClick = () => {
+  const handleLoginClick = () => {
+    login(state.username, state.password);
+  };
+
+  const handleFacebookClick = () => {
     fbLogin();
     setOpen(false);
   };
@@ -39,7 +42,7 @@ function LoginModal({ open, setOpen }) {
     setOpen(false);
   }
 
-  console.log('state', state);
+  console.log('currentUser', currentUser);
 
   return (
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -68,11 +71,15 @@ function LoginModal({ open, setOpen }) {
           />
         </DialogContent>
         <DialogActions className={classes.actionButtons}>
-          <Button onClick={handleClose} fullWidth variant="contained" className={classes.button}>
+          <Button
+            onClick={handleLoginClick}
+            fullWidth
+            variant="contained"
+            className={classes.button}>
             Log In
           </Button>
 
-          <FacebookButton handleClick={handleClick} />
+          <FacebookButton handleClick={handleFacebookClick} />
         </DialogActions>
       </div>
     </Dialog>

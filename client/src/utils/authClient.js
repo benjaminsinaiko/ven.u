@@ -1,6 +1,6 @@
 import Parse from 'parse';
 
-async function login({ username, password }) {
+async function login(username, password) {
   const user = await Parse.user.logIn(username, password);
   try {
     console.log('User logged in', user);
@@ -10,7 +10,7 @@ async function login({ username, password }) {
   }
 }
 
-async function register({ username, password, email }) {
+async function register(username, password, email) {
   const user = new Parse.User();
   user.set('username', username);
   user.set('password', password);
