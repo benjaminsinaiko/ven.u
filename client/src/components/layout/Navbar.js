@@ -8,7 +8,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 
 import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
-import LoginForm from '../login/LoginForm';
+import LoginForm from '../login/LoginModal';
 
 function Navbar() {
   const classes = useStyles();
