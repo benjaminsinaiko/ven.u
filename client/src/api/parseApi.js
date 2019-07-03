@@ -44,3 +44,12 @@ export function getCurrentUser() {
   const currentUser = Parse.User.current();
   return currentUser;
 }
+
+export function userHasRole(user, roleName) {
+  const queryRoles = new Parse.Query(Parse.Role);
+  queryRoles.equalTo('name', roleName);
+  queryRoles.equalTo('users', user);
+  return queryRoles.find().then(function(roles) {
+    return roles.length > 0;
+  });
+}

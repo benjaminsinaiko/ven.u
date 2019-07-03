@@ -1,12 +1,12 @@
 import Parse from 'parse';
 
 async function login(username, password) {
-  const user = await Parse.user.logIn(username, password);
+  const user = await Parse.User.logIn(username, password);
   try {
-    console.log('User logged in', user);
     return user;
   } catch (e) {
     console.log(`Error: ${e.code} ${e.message}`);
+    return e;
   }
 }
 

@@ -1,30 +1,42 @@
 import React, { useState, createContext, useContext } from 'react';
-import Parse from 'parse';
 
 import * as authClient from '../utils/authClient';
-import { getCurrentUser } from '../api/parseApi';
-Parse.initialize(process.env.REACT_APP_APP_ID, process.env.REACT_APP_JS_KEY);
-Parse.serverURL = 'https://parseapi.back4app.com/';
+import { getCurrentUser, userHasRole } from '../api/parseApi';
 
 const AuthContext = createContext();
 
 function AuthProvider(props) {
   const [user, setUser] = useState(getCurrentUser() || null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  if (user)
+    userHasRole(user, 'admin').then(isAdmin => {
+      setIsAdmin(isAdmin);
+    });
 
   const login = async (username, password) => {
     const user = await authClient.login(username, password);
-    if (user) console.log('User logged in: ', user);
-    setUser(user);
+    try {
+      setUser(user);
+      return user;
+    } catch (e) {
+      return e;
+    }
   };
 
   const register = async (username, password, email) => {
     const newUser = await authClient.register(username, password, email);
-    setUser(newUser);
+    try {
+      setUser(newUser);
+      return user;
+    } catch (e) {
+      return e;
+    }
   };
 
   const logout = async () => {
     await authClient.logout();
-    console.log('Logged out');
+    setUser(null);
   };
 
   const fbLogin = async () => {
@@ -37,7 +49,10 @@ function AuthProvider(props) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, register, fbLogin, fbLogout }} {...props} />
+    <AuthContext.Provider
+      value={{ isAdmin, user, login, logout, register, fbLogin, fbLogout }}
+      {...props}
+    />
   );
 }
 

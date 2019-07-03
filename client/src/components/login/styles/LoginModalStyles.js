@@ -29,6 +29,12 @@ const useStyles = makeStyles(theme => ({
   button: {
     backgroundColor: '#f0c04a',
     margin: theme.spacing(1)
+  },
+  signUpButton: {
+    display: 'flex',
+    alignSelf: 'flex-end',
+    fontSize: '.8em',
+    color: theme.palette.secondary.main
   }
 }));
 

@@ -10,15 +10,14 @@ import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles/LoginModalStyles';
 import { useAuth } from '../../contexts/authContext.js';
-import { useUser } from '../../contexts/userContext.js';
 import FacebookButton from './FacebookButton';
 
 function LoginModal({ open, setOpen }) {
   const classes = useStyles();
-  const { login, logout, register, fbLogin, fbLogout } = useAuth();
+  const { login, register, fbLogin } = useAuth();
 
-  const currentUser = useUser();
-  const [isLogin, setIsLogIn] = useState(true);
+  const [isLoginForm, setIsLogInForm] = useState(true);
+  const formText = isLoginForm ? 'Log In' : 'Sign Up';
   const [state, setState] = useState({
     username: '',
     password: '',
@@ -29,8 +28,15 @@ function LoginModal({ open, setOpen }) {
     setState({ ...state, [name]: event.target.value });
   };
 
-  const handleLoginClick = () => {
-    login(state.username, state.password);
+  const handleLoginClick = async () => {
+    const user = await login(state.username, state.password);
+    console.log('logged in', user);
+    if (user) setOpen(false);
+  };
+
+  const handleSignUpClick = async () => {
+    const user = await register(state.username, state.password, state.email);
+    if (user) setOpen(false);
   };
 
   const handleFacebookClick = () => {
@@ -42,7 +48,9 @@ function LoginModal({ open, setOpen }) {
     setOpen(false);
   }
 
-  console.log('currentUser', currentUser);
+  function handleSignUpToggle() {
+    setIsLogInForm(!isLoginForm);
+  }
 
   return (
     <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
@@ -51,7 +59,7 @@ function LoginModal({ open, setOpen }) {
           <LockOutlinedIcon />
         </Avatar>
         <Typography id="form-dialog-title" className={classes.title}>
-          {isLogin ? 'Log In' : 'Sign Up'}
+          {formText}
         </Typography>
         <DialogContent className={classes.form}>
           <TextField
@@ -60,6 +68,7 @@ function LoginModal({ open, setOpen }) {
             margin="dense"
             label="Username*"
             type="text"
+            autoComplete="username"
             fullWidth
           />
           <TextField
@@ -67,20 +76,35 @@ function LoginModal({ open, setOpen }) {
             margin="dense"
             label="Password*"
             type="password"
+            autoComplete="password"
             fullWidth
           />
+          {!isLoginForm && (
+            <TextField
+              onChange={handleChange('email')}
+              margin="dense"
+              label="Email"
+              type="email"
+              autoComplete="email"
+              fullWidth
+            />
+          )}
         </DialogContent>
         <DialogActions className={classes.actionButtons}>
           <Button
-            onClick={handleLoginClick}
+            onClick={isLoginForm ? handleLoginClick : handleSignUpClick}
             fullWidth
             variant="contained"
             className={classes.button}>
-            Log In
+            {formText}
           </Button>
 
           <FacebookButton handleClick={handleFacebookClick} />
         </DialogActions>
+
+        <Button onClick={handleSignUpToggle} className={classes.signUpButton}>
+          {formText === 'Log In' ? 'Sign Up' : 'Log In'}
+        </Button>
       </div>
     </Dialog>
   );

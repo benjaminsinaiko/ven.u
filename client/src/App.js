@@ -1,33 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Parse from 'parse';
 
-import { useUser } from './contexts/userContext';
+import facebookInit from './api/facebookIinit';
+import AppProviders from './contexts/AppProviders';
 import AppLanding from './AppLanding';
 
-import init from './api/facebookIinit';
-import './App.css';
-// import { getCurrentUser } from './api/parseApi';
-// Parse.initialize(process.env.REACT_APP_APP_ID, process.env.REACT_APP_JS_KEY);
-// Parse.serverURL = 'https://parseapi.back4app.com/';
+// Initialize Parse
+Parse.initialize(process.env.REACT_APP_APP_ID, process.env.REACT_APP_JS_KEY);
+Parse.serverURL = 'https://parseapi.back4app.com/';
+// Load Facebook SDK
+facebookInit();
 
 function App() {
-  const [currentUser, setCurrentUser] = useState();
-
-  const user = useUser();
-
-  // console.log('useUser:', user);
-
-  // Load Facebook SDK
-  useEffect(() => {
-    init();
-  }, []);
-
-  // useEffect(() => {
-  //   setCurrentUser(getCurrentUser());
-  //   console.log('currentUser', currentUser);
-  // }, [currentUser]);
-
-  return <AppLanding />;
+  return (
+    <AppProviders>
+      <AppLanding />
+    </AppProviders>
+  );
 }
 
 export default App;

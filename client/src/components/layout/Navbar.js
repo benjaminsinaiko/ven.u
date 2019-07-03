@@ -6,18 +6,22 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 
+import { useAuth } from '../../contexts/authContext';
+import { useUser } from '../../contexts/userContext.js';
 import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
 import LoginForm from '../login/LoginModal';
-import { useAuth } from '../../contexts/authContext';
 
 function Navbar() {
   const classes = useStyles();
 
-  const [loginOpen, setLoginOpen] = useState(true);
+  const [loginOpen, setLoginOpen] = useState(false);
   const { logout } = useAuth();
+  const currentUser = useUser();
 
-  const handleClick = () => {
+  console.log('currentUser: ', currentUser);
+
+  const handleLogin = () => {
     setLoginOpen(true);
   };
 
@@ -35,12 +39,15 @@ function Navbar() {
           <Typography variant="h6" className={classes.logo}>
             {<img src={logoName} alt="logo" />}
           </Typography>
-          <Button onClick={handleClick} color="inherit" variant="outlined">
-            Login
-          </Button>
-          <Button onClick={handleLogout} color="inherit" variant="outlined">
-            Logout
-          </Button>
+          {!currentUser.user ? (
+            <Button onClick={handleLogin} color="inherit" variant="outlined">
+              Login
+            </Button>
+          ) : (
+            <Button onClick={handleLogout} color="inherit" variant="outlined">
+              Logout
+            </Button>
+          )}
           <LoginForm open={loginOpen} setOpen={setLoginOpen} />
         </Toolbar>
       </AppBar>

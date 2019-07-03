@@ -4,8 +4,8 @@ import { useAuth } from './authContext';
 const UserContext = createContext();
 
 function UserProvider(props) {
-  const { user } = useAuth();
-  return <UserContext.Provider value={user} {...props} />;
+  const { isAdmin, user } = useAuth();
+  return <UserContext.Provider value={{ isAdmin, user }} {...props} />;
 }
 
 function useUser() {
