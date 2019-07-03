@@ -1,6 +1,20 @@
 import Parse from 'parse';
 import axios from 'axios';
 
+export function getCurrentUser() {
+  const currentUser = Parse.User.current();
+  return currentUser;
+}
+
+export function userHasRole(user, roleName) {
+  const queryRoles = new Parse.Query(Parse.Role);
+  queryRoles.equalTo('name', roleName);
+  queryRoles.equalTo('users', user);
+  return queryRoles.find().then(function(roles) {
+    return roles.length > 0;
+  });
+}
+
 export function searchParseArtists(searchString) {
   return axios
     .get(`/parse/artists/${searchString}`)
@@ -16,6 +30,15 @@ export function getVenues() {
     .get('/parse/venues')
     .then(({ data }) => {
       console.log('GET VENUES');
+      return data;
+    })
+    .catch(e => e);
+}
+
+export function getnextToEvents() {
+  return axios
+    .get('/parse/events/nextTen')
+    .then(({ data }) => {
       return data;
     })
     .catch(e => e);
@@ -38,18 +61,4 @@ export function addEvent(newEvent) {
       return data;
     })
     .catch(e => e);
-}
-
-export function getCurrentUser() {
-  const currentUser = Parse.User.current();
-  return currentUser;
-}
-
-export function userHasRole(user, roleName) {
-  const queryRoles = new Parse.Query(Parse.Role);
-  queryRoles.equalTo('name', roleName);
-  queryRoles.equalTo('users', user);
-  return queryRoles.find().then(function(roles) {
-    return roles.length > 0;
-  });
 }

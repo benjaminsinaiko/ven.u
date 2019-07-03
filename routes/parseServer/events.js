@@ -12,6 +12,9 @@ router.get('/test', (req, res) => {
 // GET events search
 router.get('/', eventsController.index);
 
+// GET events search
+router.get('/nextTen', eventsController.nextTenEvents);
+
 // GET event
 router.get('/:eventId', eventsController.searchEvent);
 

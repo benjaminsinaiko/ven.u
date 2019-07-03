@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -37,7 +38,7 @@ function Navbar() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.logo}>
-            {<img src={logoName} alt="logo" />}
+            <Link to="/">{<img src={logoName} alt="logo" />}</Link>
           </Typography>
           {!currentUser.user ? (
             <Button onClick={handleLogin} color="inherit" variant="outlined">

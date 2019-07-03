@@ -66,17 +66,19 @@ function LoginModal({ open, setOpen }) {
             autoFocus
             onChange={handleChange('username')}
             margin="dense"
-            label="Username*"
+            label="Username"
             type="text"
             autoComplete="username"
+            required
             fullWidth
           />
           <TextField
             onChange={handleChange('password')}
             margin="dense"
-            label="Password*"
+            label="Password"
             type="password"
             autoComplete="password"
+            required
             fullWidth
           />
           {!isLoginForm && (

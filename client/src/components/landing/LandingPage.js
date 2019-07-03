@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import LandingHero from './LandingHero';
 import LandingFeatures from './LandingFeatures';
+import LandingEventsGrid from './LandingEventsGrid';
 import LandingAppInfo from './LandingAppInfo';
 
 class LandingPage extends Component {
@@ -10,6 +11,7 @@ class LandingPage extends Component {
       <div>
         <LandingHero />
         <LandingFeatures />
+        <LandingEventsGrid />
         <LandingAppInfo />
       </div>
     );
