@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import useStyles from './styles/LandingEventsGridStyles';
 import sampleNextTen from '../../api/sampleNextTen';
 import { converLocalDisplay } from '../../utils/dateTime';
+import crowdImage from '../../assets/crowdImage_small.jpg';
 
 const LandingEventsGrid = () => {
   const classes = useStyles();
@@ -20,6 +21,7 @@ const LandingEventsGrid = () => {
         {sampleNextTen.map(tile => (
           <GridListTile key={tile.objectId} className={classes.tile}>
             {/* <img src={tile.venue.venuAvatar.url} alt={tile.title} /> */}
+            <img src={crowdImage} alt={tile.title} />
             <GridListTileBar title={tile.venue.venueName} titlePosition="top" />
             <GridListTileBar
               title={tile.title}

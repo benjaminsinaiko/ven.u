@@ -4,6 +4,14 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Parse from 'parse';
+import facebookInit from './api/facebookIinit';
+
+// Initialize Parse
+Parse.initialize(process.env.REACT_APP_APP_ID, process.env.REACT_APP_JS_KEY);
+Parse.serverURL = 'https://parseapi.back4app.com/';
+// Load Facebook SDK
+facebookInit();
 
 ReactDOM.render(
   <Router>
