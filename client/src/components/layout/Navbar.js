@@ -80,6 +80,11 @@ function Navbar() {
                 open={menuOpen}
                 onClose={handleMenuClose}>
                 <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                {currentUser.isAdmin && (
+                  <MenuItem onClick={handleMenuClose} component={Link} to={'/add-events'}>
+                    Add Events
+                  </MenuItem>
+                )}
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
