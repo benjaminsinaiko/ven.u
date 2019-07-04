@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    width: '50%'
   },
   textField: {
     marginLeft: theme.spacing(1),
