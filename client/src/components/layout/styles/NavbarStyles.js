@@ -4,7 +4,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'flex-center'
+    justifyContent: 'flex-center',
+    flexGrow: 1
   },
   navbar: {
     backgroundColor: '#4b7da5',

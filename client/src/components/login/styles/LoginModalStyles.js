@@ -26,9 +26,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column'
   },
-  button: {
+  loginButton: {
     backgroundColor: '#f0c04a',
-    margin: theme.spacing(1)
+    margin: theme.spacing(1),
+    width: '55%'
   },
   signUpButton: {
     display: 'flex',

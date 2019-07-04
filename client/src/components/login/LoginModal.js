@@ -14,42 +14,63 @@ import FacebookButton from './FacebookButton';
 
 function LoginModal({ open, setOpen }) {
   const classes = useStyles();
-  const { login, register, fbLogin } = useAuth();
+  const { login, signUp } = useAuth();
 
   const [isLoginForm, setIsLogInForm] = useState(true);
   const formText = isLoginForm ? 'Log In' : 'Sign Up';
   const [state, setState] = useState({
-    username: '',
+    email: '',
     password: '',
-    email: ''
+    confirmPassword: ''
+  });
+  const [errors, setErrors] = useState({
+    email: null,
+    password: null
   });
 
   const handleChange = name => event => {
     setState({ ...state, [name]: event.target.value });
+    setErrors({ email: null, password: null });
   };
 
-  const handleLoginClick = async () => {
-    const user = await login(state.username, state.password);
-    console.log('logged in', user);
-    if (user) setOpen(false);
+  const handleLogin = async e => {
+    e.preventDefault();
+    const response = await login(state.email, state.password);
+    if (response instanceof Error) {
+      console.log(response.code, response.message);
+      response.code === 201
+        ? setErrors({ ...errors, password: response.message })
+        : setErrors({ ...errors, email: response.message });
+    } else {
+      setOpen(false);
+    }
   };
 
-  const handleSignUpClick = async () => {
-    const user = await register(state.username, state.password, state.email);
-    if (user) setOpen(false);
-  };
-
-  const handleFacebookClick = () => {
-    fbLogin();
-    setOpen(false);
+  const handleSignUp = async e => {
+    e.preventDefault();
+    if (state.password !== state.confirmPassword) {
+      setErrors({ ...errors, password: 'Passwords do not match' });
+      return;
+    }
+    const response = await signUp(state.email, state.password);
+    if (response instanceof Error) {
+      console.log(response.code, response.message);
+      setErrors({ ...errors, email: response.message });
+    } else {
+      setOpen(false);
+    }
   };
 
   function handleClose() {
     setOpen(false);
+    setIsLogInForm(true);
+    setState({ email: '', password: '', confirmPassword: '' });
   }
 
   function handleSignUpToggle() {
     setIsLogInForm(!isLoginForm);
+    setState({ email: '', password: '', confirmPassword: '' });
+    setErrors({ email: null, password: null });
   }
 
   return (
@@ -61,49 +82,52 @@ function LoginModal({ open, setOpen }) {
         <Typography id="form-dialog-title" className={classes.title}>
           {formText}
         </Typography>
-        <DialogContent className={classes.form}>
-          <TextField
-            autoFocus
-            onChange={handleChange('username')}
-            margin="dense"
-            label="Username"
-            type="text"
-            autoComplete="username"
-            required
-            fullWidth
-          />
-          <TextField
-            onChange={handleChange('password')}
-            margin="dense"
-            label="Password"
-            type="password"
-            autoComplete="password"
-            required
-            fullWidth
-          />
-          {!isLoginForm && (
+        <form onSubmit={isLoginForm ? handleLogin : handleSignUp} className={classes.form}>
+          <DialogContent>
             <TextField
-              onChange={handleChange('email')}
-              margin="dense"
+              autoFocus
               label="Email"
-              type="email"
+              value={state.email}
+              type="text"
               autoComplete="email"
+              onChange={handleChange('email')}
+              helperText={errors.email}
+              required
               fullWidth
+              margin="dense"
+              error={errors.email !== null}
             />
-          )}
-        </DialogContent>
-        <DialogActions className={classes.actionButtons}>
-          <Button
-            onClick={isLoginForm ? handleLoginClick : handleSignUpClick}
-            fullWidth
-            variant="contained"
-            className={classes.button}>
-            {formText}
-          </Button>
-
-          <FacebookButton handleClick={handleFacebookClick} />
-        </DialogActions>
-
+            <TextField
+              label="Password"
+              value={state.password}
+              type="password"
+              autoComplete="password"
+              onChange={handleChange('password')}
+              required
+              fullWidth
+              margin="dense"
+            />
+            {!isLoginForm && (
+              <TextField
+                label="Confirm Password"
+                value={state.confirmPassword}
+                type="password"
+                onChange={handleChange('confirmPassword')}
+                helperText={errors.password}
+                required
+                fullWidth
+                margin="dense"
+                error={errors.password !== null}
+              />
+            )}
+          </DialogContent>
+          <DialogActions className={classes.actionButtons}>
+            <Button type="submit" variant="contained" className={classes.loginButton}>
+              {formText}
+            </Button>
+            <FacebookButton setOpen={setOpen} />
+          </DialogActions>
+        </form>
         <Button onClick={handleSignUpToggle} className={classes.signUpButton}>
           {formText === 'Log In' ? 'Sign Up' : 'Log In'}
         </Button>

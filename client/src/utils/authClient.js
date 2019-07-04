@@ -1,27 +1,23 @@
 import Parse from 'parse';
 
 async function login(username, password) {
-  const user = await Parse.User.logIn(username, password);
   try {
-    return user;
+    const user = await Parse.User.logIn(username, password);
+    if (user) return user;
   } catch (e) {
-    console.log(`Error: ${e.code} ${e.message}`);
     return e;
   }
 }
 
-async function register(username, password, email) {
-  const user = new Parse.User();
-  user.set('username', username);
-  user.set('password', password);
-  user.set('email', email);
-
-  const newUser = await user.signUp();
+async function signUp(email, password) {
   try {
-    console.log('User created', newUser);
-    return newUser;
+    const user = new Parse.User();
+    user.set('username', email);
+    user.set('password', password);
+    const newUser = await user.signUp();
+    if (newUser) return newUser;
   } catch (e) {
-    console.log(`Error: ${e.code} ${e.message}`);
+    return e;
   }
 }
 
@@ -58,4 +54,4 @@ function fbLogout() {
   console.log('User logged out successfully');
 }
 
-export { login, register, resetPassword, logout, fbLogin, fbLogout };
+export { login, signUp, resetPassword, logout, fbLogin, fbLogout };
