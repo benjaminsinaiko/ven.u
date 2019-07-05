@@ -3,8 +3,6 @@ import React, { useState, useEffect } from 'react';
 import ViewEventsForm from './ViewEventsForm';
 import { getFutureVenueEvents } from '../../../api/parseApi';
 
-import sampleEvents from '../../../api/sampleEventsSearch';
-
 const ViewEventsList = ({ selectedVenue, setEventCount }) => {
   const [events, setEvents] = useState([]);
 
@@ -22,7 +20,7 @@ const ViewEventsList = ({ selectedVenue, setEventCount }) => {
 
   return (
     <>
-      {sampleEvents.map(event => (
+      {events.map(event => (
         <ViewEventsForm key={event.objectId} event={event} />
       ))}
     </>
