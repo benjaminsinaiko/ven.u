@@ -16,7 +16,8 @@ function App() {
       <NavBar />
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <PrivateRoute exact path="/add-events" component={AddEventsPage} />
+        {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
+        <Route exact path="/add-events" component={AddEventsPage} />
         <Route path="/privacy" component={Privacy} />
       </Switch>
       <Footer />
