@@ -10,6 +10,7 @@ const useStyles = makeStyles(theme => ({
   navbar: {
     backgroundColor: '#4b7da5',
     opacity: 0.8
+    // transition: theme.
   },
   menuButton: {
     marginRight: theme.spacing(2)

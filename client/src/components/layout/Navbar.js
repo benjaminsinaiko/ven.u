@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -15,10 +16,14 @@ import { useUser } from '../../contexts/userContext.js';
 import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
 import LoginForm from '../login/LoginModal';
+import NavDrawer from './NavDrawer';
 
 function Navbar() {
   const classes = useStyles();
 
+  // NavDrawer
+  const [drawerOpen, setDrawerOpen] = useState(true);
+  // Auth
   const [loginOpen, setLoginOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const { logout } = useAuth();
@@ -27,10 +32,16 @@ function Navbar() {
 
   console.log('currentUser: ', currentUser);
 
+  const handleDrawerOpen = () => {
+    setDrawerOpen(true);
+  };
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
   const handleLogin = () => {
     setLoginOpen(true);
   };
-
   const handleLogout = () => {
     logout();
     setAnchorEl(null);
@@ -39,7 +50,6 @@ function Navbar() {
   const handleMenu = e => {
     setAnchorEl(e.currentTarget);
   };
-
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
@@ -48,7 +58,12 @@ function Navbar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Menu">
+          <IconButton
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={classes.menuButton}
+            color="inherit"
+            aria-label="Menu">
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.logo}>
@@ -88,14 +103,15 @@ function Navbar() {
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
               </Menu>
             </div>
-
-            // <Button onClick={handleLogout} color="inherit" variant="outlined">
-            //   Logout
-            // </Button>
           )}
           <LoginForm open={loginOpen} setOpen={setLoginOpen} />
         </Toolbar>
       </AppBar>
+      <NavDrawer
+        drawerOpen={drawerOpen}
+        handleDrawerOpen={handleDrawerOpen}
+        handleDrawerClose={handleDrawerClose}
+      />
     </div>
   );
 }
