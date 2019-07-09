@@ -1,5 +1,6 @@
 import Parse from 'parse';
 import axios from 'axios';
+import toSlug from '../utils/toSlug';
 
 export function getCurrentUser() {
   const currentUser = Parse.User.current();
@@ -35,13 +36,23 @@ export function getVenues() {
     .catch(e => e);
 }
 
-export function getnextToEvents() {
-  return axios
-    .get('/parse/events/nextTen')
-    .then(({ data }) => {
-      return data;
-    })
-    .catch(e => e);
+export async function getNextTenEvents() {
+  try {
+    const { data } = await axios.get('/parse/events/nextTen');
+    for (let eventData of data) {
+      const artistSlug = toSlug(eventData.artist.artistName);
+      const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
+      const artistImgs = data.images;
+      eventData.images = artistImgs;
+    }
+    return data;
+  } catch (err) {
+    return err;
+  }
+  // .then(({ data }) => {
+  //   return data;
+  // })
+  // .catch(e => e);
 }
 
 export function getFutureVenueEvents(venueId) {

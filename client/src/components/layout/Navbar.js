@@ -22,7 +22,7 @@ function Navbar() {
   const classes = useStyles();
 
   // NavDrawer
-  const [drawerOpen, setDrawerOpen] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
   // Auth
   const [loginOpen, setLoginOpen] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
