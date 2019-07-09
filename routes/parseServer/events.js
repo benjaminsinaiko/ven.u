@@ -4,11 +4,6 @@ const router = express.Router();
 
 const eventsController = require('./controllers/eventsController');
 
-// GET catalog home page.
-router.get('/test', (req, res) => {
-  res.json({ msg: 'Test route' });
-});
-
 // GET events search
 router.get('/', eventsController.index);
 

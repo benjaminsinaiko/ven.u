@@ -22,7 +22,8 @@
     "concurrently": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
-    "parse": "^2.4.0"
+    "parse": "^2.4.0",
+    "spotify-web-api-node": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
