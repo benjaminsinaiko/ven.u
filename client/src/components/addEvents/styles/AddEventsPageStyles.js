@@ -22,6 +22,14 @@ const useStyles = makeStyles(theme => ({
   upcomingEvents: {
     maxHeight: '81vh',
     overflow: 'scroll'
+  },
+  fab: {
+    width: '170px',
+    margin: theme.spacing(1),
+    backgroundColor: '#f0c04a'
+  },
+  extendedIcon: {
+    marginRight: theme.spacing(1)
   }
 }));
 
