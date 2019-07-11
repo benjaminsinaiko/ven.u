@@ -42,7 +42,7 @@ function AddEventsPage() {
       <Grid container className={classes.eventsDisplay}>
         <Grid item md={6}>
           <Typography className={classes.eventsHeader}>New Events</Typography>
-          <AddEventsForm selectedVenue={selectedVenue} />
+          <AddEventsForm selectedVenue={selectedVenue} venues={venues} />
         </Grid>
         <Grid item md={6} className={classes.upcomingEvents}>
           <Typography className={classes.eventsHeader}>Upcoming Events: {eventCount}</Typography>

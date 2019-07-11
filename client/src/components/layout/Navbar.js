@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -30,7 +29,7 @@ function Navbar() {
   const currentUser = useUser();
   const menuOpen = Boolean(anchorEl);
 
-  console.log('currentUser: ', currentUser);
+  // console.log('currentUser: ', currentUser);
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true);

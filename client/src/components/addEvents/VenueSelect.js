@@ -36,9 +36,6 @@ const VenueSelect = ({ venues, selectedVenue, setSelectedVenue }) => {
             id="outlined-venue-simple"
           />
         }>
-        <MenuItem value="">
-          <em>None</em>
-        </MenuItem>
         {venues.map(venue => (
           <MenuItem key={venue.objectId} value={venue}>
             {venue.venueName}

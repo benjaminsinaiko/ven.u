@@ -21,13 +21,13 @@ const ArtistSearch = ({ value, onChange, placeholder }) => {
     <>
       {loading && <span>Loading...</span>}
       <TextField
-        value={value || searchString}
+        value={value.artistName || searchString}
         onChange={handleChange}
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
         margin="normal"
         label={placeholder}
-        type="search"
+        // type="search"
         fullWidth
       />
       {showOptions &&

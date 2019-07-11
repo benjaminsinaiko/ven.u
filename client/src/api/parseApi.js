@@ -36,7 +36,7 @@ export function getVenues() {
     .catch(e => e);
 }
 
-export async function getNextTenEvents() {
+export async function getNextEvents() {
   try {
     const { data } = await axios.get('/parse/events/nextTen');
     for (let eventData of data) {
@@ -49,10 +49,6 @@ export async function getNextTenEvents() {
   } catch (err) {
     return err;
   }
-  // .then(({ data }) => {
-  //   return data;
-  // })
-  // .catch(e => e);
 }
 
 export function getFutureVenueEvents(venueId) {

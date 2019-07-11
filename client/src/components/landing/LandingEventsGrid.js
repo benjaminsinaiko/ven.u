@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles/LandingEventsGridStyles';
 import { converLocalDisplay } from '../../utils/dateTime';
-import { getNextTenEvents } from '../../api/parseApi';
+import { getNextEvents } from '../../api/parseApi';
 import crowdImage from '../../assets/crowdImage_small.jpg';
 
 const LandingEventsGrid = () => {
@@ -16,7 +16,7 @@ const LandingEventsGrid = () => {
 
   useEffect(() => {
     async function getEvents() {
-      const results = await getNextTenEvents();
+      const results = await getNextEvents();
       setEvents(results);
     }
     getEvents();
