@@ -9,6 +9,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
 import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 import useSearchArtists from '../../hooks/useSearchArtists.js';
 import { defaultDate, convertUtc } from '../../utils/dateTime';
@@ -24,7 +26,15 @@ const initialFormState = {
   endTime: defaultDate(6)
 };
 
-function AddEventsForm({ selectedVenue, venues, addEvent, removeEvent }) {
+function AddEventsForm({
+  selectedVenue,
+  venues,
+  addEvent,
+  removeEvent,
+  first,
+  formId,
+  removeForm
+}) {
   const classes = useStyles();
   // form state
   const [formValues, setFormValues] = useReducer(
@@ -66,6 +76,11 @@ function AddEventsForm({ selectedVenue, venues, addEvent, removeEvent }) {
   };
   const handleOnBlur = () => {
     setTimeout(() => setShowOptions(false), 200);
+  };
+
+  // remove form
+  const handleRemoveForm = () => {
+    removeForm(formId);
   };
 
   // reset form
@@ -111,6 +126,13 @@ function AddEventsForm({ selectedVenue, venues, addEvent, removeEvent }) {
   return (
     <Paper className={classes.root} elevation={10}>
       <form onSubmit={handleSubmit} className={classes.form}>
+        {!first && (
+          <div className={classes.removeForm}>
+            <IconButton onClick={handleRemoveForm} aria-label="Delete" size="small">
+              <CancelIcon fontSize="inherit" color="secondary" />
+            </IconButton>
+          </div>
+        )}
         <div className={classes.timePickers}>
           <TextField
             required

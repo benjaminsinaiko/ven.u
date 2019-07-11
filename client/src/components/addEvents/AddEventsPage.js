@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import uuidv4 from 'uuid/v4';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
 import SaveEvents from '@material-ui/icons/PlaylistAddCheck';
+import AddIcon from '@material-ui/icons/Add';
 
 import useStyles from './styles/AddEventsPageStyles';
 import VenueSelect from './VenueSelect';
@@ -17,6 +20,7 @@ function AddEventsPage() {
   const [venues, setVenues] = useLocalStorageState('venues', []);
   const [selectedVenue, setSelectedVenue] = useState('');
   const [eventCount, setEventCount] = useState(0);
+  const [forms, setForms] = useState([{ id: uuidv4() }]);
   const [newEvents, setNewEvents] = useState([]);
 
   useEffect(() => {
@@ -31,6 +35,13 @@ function AddEventsPage() {
       fetchVenues();
     }
   }, [setVenues]);
+
+  const addForm = () => {
+    setForms([...forms, { id: uuidv4() }]);
+  };
+  const removeForm = formId => {
+    setForms(forms.filter(form => form.id !== formId));
+  };
 
   const addEvent = newEvent => {
     setNewEvents([...newEvents, newEvent]);
@@ -56,17 +67,32 @@ function AddEventsPage() {
 
       <Grid container className={classes.eventsDisplay}>
         <Grid item md={6}>
-          <Typography className={classes.eventsHeader}>New Events</Typography>
-          <AddEventsForm
-            selectedVenue={selectedVenue}
-            venues={venues}
-            addEvent={addEvent}
-            removeEvent={removeEvent}
-          />
+          <Typography className={classes.eventsHeader}>
+            New Events
+            <Button size="small" aria-label="Add" onClick={addForm} className={classes.addForm}>
+              <AddIcon />
+            </Button>
+          </Typography>
+          <div className={classes.eventsColumn}>
+            {forms.map((form, i) => (
+              <AddEventsForm
+                key={form.id}
+                selectedVenue={selectedVenue}
+                venues={venues}
+                addEvent={addEvent}
+                removeEvent={removeEvent}
+                first={i === 0}
+                formId={form.id}
+                removeForm={removeForm}
+              />
+            ))}
+          </div>
         </Grid>
-        <Grid item md={6} className={classes.upcomingEvents}>
+        <Grid item md={6}>
           <Typography className={classes.eventsHeader}>Upcoming Events: {eventCount}</Typography>
-          <ViewEventsList selectedVenue={selectedVenue} setEventCount={setEventCount} />
+          <div className={classes.eventsColumn}>
+            <ViewEventsList selectedVenue={selectedVenue} setEventCount={setEventCount} />
+          </div>
         </Grid>
       </Grid>
     </Paper>

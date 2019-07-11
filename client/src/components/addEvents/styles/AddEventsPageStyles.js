@@ -6,7 +6,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     textAlign: 'center',
-    minHeight: '82vh'
+    height: '93vh'
   },
   select: {
     marginTop: theme.spacing(2)
@@ -17,10 +17,11 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(1)
   },
   eventsHeader: {
-    fontSize: '1.5rem'
+    fontSize: '1.5rem',
+    marginBottom: theme.spacing(2)
   },
-  upcomingEvents: {
-    maxHeight: '81vh',
+  eventsColumn: {
+    maxHeight: '71vh',
     overflow: 'scroll'
   },
   fab: {
@@ -30,6 +31,10 @@ const useStyles = makeStyles(theme => ({
   },
   extendedIcon: {
     marginRight: theme.spacing(1)
+  },
+  addForm: {
+    marginLeft: theme.spacing(3),
+    backgroundColor: '#8dca89'
   }
 }));
 

@@ -21,6 +21,10 @@ const useStyles = makeStyles(theme => ({
     width: '90%',
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  removeForm: {
+    display: 'flex',
+    justifyContent: 'flex-end'
   }
 }));
 
