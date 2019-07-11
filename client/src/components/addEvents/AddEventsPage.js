@@ -3,8 +3,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Fab from '@material-ui/core/Fab';
-import AddIcon from '@material-ui/icons/Add';
-import Icon from '@material-ui/core/Icon';
 import SaveEvents from '@material-ui/icons/PlaylistAddCheck';
 
 import useStyles from './styles/AddEventsPageStyles';
@@ -34,8 +32,11 @@ function AddEventsPage() {
     }
   }, [setVenues]);
 
-  const saveEvent = newEvent => {
+  const addEvent = newEvent => {
     setNewEvents([...newEvents, newEvent]);
+  };
+  const removeEvent = eventId => {
+    setNewEvents(newEvents.filter(event => event.eventID !== eventId));
   };
   console.log('saved', newEvents);
 
@@ -56,7 +57,12 @@ function AddEventsPage() {
       <Grid container className={classes.eventsDisplay}>
         <Grid item md={6}>
           <Typography className={classes.eventsHeader}>New Events</Typography>
-          <AddEventsForm selectedVenue={selectedVenue} venues={venues} save={saveEvent} />
+          <AddEventsForm
+            selectedVenue={selectedVenue}
+            venues={venues}
+            addEvent={addEvent}
+            removeEvent={removeEvent}
+          />
         </Grid>
         <Grid item md={6} className={classes.upcomingEvents}>
           <Typography className={classes.eventsHeader}>Upcoming Events: {eventCount}</Typography>

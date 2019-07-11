@@ -1,4 +1,5 @@
 import React, { useState, useReducer, useEffect } from 'react';
+import uuidv4 from 'uuid/v4';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -15,6 +16,7 @@ import useStyles from './styles/EventsFormStyles';
 import { FormControlLabel } from '@material-ui/core';
 
 const initialFormState = {
+  eventID: uuidv4(),
   title: '',
   venue: {},
   artist: {},
@@ -22,7 +24,7 @@ const initialFormState = {
   endTime: defaultDate(6)
 };
 
-function AddEventsForm({ selectedVenue, venues, save }) {
+function AddEventsForm({ selectedVenue, venues, addEvent, removeEvent }) {
   const classes = useStyles();
   // form state
   const [formValues, setFormValues] = useReducer(
@@ -77,6 +79,7 @@ function AddEventsForm({ selectedVenue, venues, save }) {
     if (e.target.checked) {
       console.log(e.target.checked);
       const newEvent = {
+        eventID: formValues.eventID,
         eventStartDateTime: convertUtc(formValues.startTime),
         eventEndDateTime: convertUtc(formValues.endTime),
         artist: formValues.artist.objectId,
@@ -84,7 +87,10 @@ function AddEventsForm({ selectedVenue, venues, save }) {
         venue: formValues.venue.objectId,
         title: formValues.title
       };
-      save(newEvent);
+      addEvent(newEvent);
+    }
+    if (!e.target.checked) {
+      removeEvent(formValues.eventID);
     }
   };
 
@@ -182,7 +188,7 @@ function AddEventsForm({ selectedVenue, venues, save }) {
               inputProps={{ 'aria-label': 'primary checkbox' }}
             />
           }
-          label="Ready to Add"
+          label={isChecked ? 'Edit Event' : 'Add Event'}
         />
         <Button onClick={handleReset} size="small" color="secondary">
           Reset
