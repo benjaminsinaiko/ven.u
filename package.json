@@ -16,7 +16,7 @@
     "https-dev": "concurrently \"npm run server\" \"HTTPS=true npm run client\""
   },
   "author": "Benjamin Sinaiko",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "dependencies": {
     "body-parser": "^1.19.0",
     "concurrently": "^4.1.1",
