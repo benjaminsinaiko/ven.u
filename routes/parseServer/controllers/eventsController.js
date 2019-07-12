@@ -1,3 +1,5 @@
+/* eslint-disable no-await-in-loop */
+/* eslint-disable no-restricted-syntax */
 const Parse = require('parse/node');
 
 /* ############### ALL EVENTS ############### */
@@ -125,29 +127,25 @@ exports.pastEventsByVenue = function (req, res) {
     .catch(err => res.json(err));
 };
 
-/* ############### CREATE EVENT ############### */
 exports.createEvent = async (req, res) => {
   const Events = Parse.Object.extend('Events');
-  // increment eventId
   const queryEvents = new Parse.Query(Events);
   queryEvents.descending('eventId');
-  queryEvents.first();
-  const events = await queryEvents.find();
-  let lastId = events[0].get('eventId');
 
-  const addedEvents = [];
+  // get most recent eventId
+  const events = await queryEvents.first();
+  let lastId = events.get('eventId');
 
-  req.body.forEach((event) => {
+  const eventsToSave = [];
+
+  // /////// LOOP STARTS
+  for (const event of req.body) {
+    lastId += 1;
     // create new event
     const newEvent = new Events();
     newEvent.set('eventId', lastId);
     newEvent.set('eventStartDateTime', new Date(event.eventStartDateTime));
     newEvent.set('eventEndDateTime', new Date(event.eventEndDateTime));
-    newEvent.set('artist', {
-      __type: 'Pointer',
-      className: 'Artists',
-      objectId: event.artist,
-    });
     newEvent.set('venue', {
       __type: 'Pointer',
       className: 'Venues',
@@ -155,15 +153,35 @@ exports.createEvent = async (req, res) => {
     });
     newEvent.set('short_title', event.title);
     newEvent.set('title', event.title);
-    newEvent.increment('eventId');
-    addedEvents.push(newEvent);
-    lastId += 1;
-  });
+
+    // check if artistId exists
+    if (event.artist === undefined) {
+      // create artist, add new objectId to pointer
+      const Artists = Parse.Object.extend('Artists');
+      const newArtist = new Artists();
+      newArtist.set('artistName', event.artistName);
+      const artist = await newArtist.save();
+      newEvent.set('artist', {
+        __type: 'Pointer',
+        className: 'Artists',
+        objectId: artist.id,
+      });
+    } else {
+      // add objectId to pointer
+      newEvent.set('artist', {
+        __type: 'Pointer',
+        className: 'Artists',
+        objectId: event.artist,
+      });
+    }
+    // add event to array
+    eventsToSave.push(newEvent);
+  }
+  // /////// LOOP ENDS
 
   try {
-    Parse.Object.saveAll(addedEvents).then((results) => {
-      res.json(results);
-    });
+    const savedEvents = await Parse.Object.saveAll(eventsToSave);
+    res.json(savedEvents);
   } catch (err) {
     res.json(err);
   }

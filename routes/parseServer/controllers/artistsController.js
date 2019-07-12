@@ -12,11 +12,9 @@ exports.artistSearch = function (req, res) {
     .find()
     .then((results) => {
       res.json(results);
-      console.log('Artists found', results);
     })
     .catch((error) => {
       res.json(error);
-      console.log('Error', error);
     });
 };
 

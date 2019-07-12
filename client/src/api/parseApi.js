@@ -60,9 +60,9 @@ export function getFutureVenueEvents(venueId) {
     .catch(e => e);
 }
 
-export function addEvents(newEvent) {
+export function addEvents(newEvents) {
   return axios
-    .post('/parse/events', newEvent)
+    .post('/parse/events', newEvents)
     .then(({ data }) => {
       console.log('added: ', data);
       return data;

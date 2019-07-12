@@ -15,8 +15,6 @@ import ViewEventsList from './viewEvents/ViewEventsList';
 import useLocalStorageState from '../../hooks/useLocalStorageState';
 import { getVenues, addEvents } from '../../api/parseApi';
 
-// const initialForm = { id: uuidv4() };
-
 function AddEventsPage() {
   const classes = useStyles();
   const [venues, setVenues] = useLocalStorageState('venues', []);
@@ -54,12 +52,13 @@ function AddEventsPage() {
   const removeEvent = eventId => {
     setNewEvents(newEvents.filter(event => event.eventId !== eventId));
   };
-  console.log('saved', newEvents);
+  console.log('ready', newEvents);
 
   // save events to db
   const saveEvents = () => {
     if (newEvents.length) {
       addEvents(newEvents).then(result => {
+        setNewEvents([]);
         setForms([{ id: uuidv4() }]);
       });
     } else {
