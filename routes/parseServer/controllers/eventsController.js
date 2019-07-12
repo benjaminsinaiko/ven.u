@@ -89,7 +89,6 @@ exports.futureEventsByVenue = function (req, res) {
   queryEvents
     .find()
     .then((events) => {
-      console.log('***Request sent for events');
       res.json(events);
     })
     .catch(err => res.json(err));
@@ -134,30 +133,37 @@ exports.createEvent = async (req, res) => {
   queryEvents.descending('eventId');
   queryEvents.first();
   const events = await queryEvents.find();
-  const lastId = events[0].get('eventId');
+  let lastId = events[0].get('eventId');
 
-  // create new event
-  const newEvent = new Events();
-  newEvent.set('eventId', lastId);
-  newEvent.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
-  newEvent.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
-  newEvent.set('artist', {
-    __type: 'Pointer',
-    className: 'Artists',
-    objectId: req.body.artist,
-  });
-  newEvent.set('venue', {
-    __type: 'Pointer',
-    className: 'Venues',
-    objectId: req.body.venue,
-  });
-  newEvent.set('short_title', req.body.title);
-  newEvent.set('title', req.body.title);
-  newEvent.increment('eventId');
+  const addedEvents = [];
 
-  const savedEvent = await newEvent.save();
+  req.body.forEach((event) => {
+    // create new event
+    const newEvent = new Events();
+    newEvent.set('eventId', lastId);
+    newEvent.set('eventStartDateTime', new Date(event.eventStartDateTime));
+    newEvent.set('eventEndDateTime', new Date(event.eventEndDateTime));
+    newEvent.set('artist', {
+      __type: 'Pointer',
+      className: 'Artists',
+      objectId: event.artist,
+    });
+    newEvent.set('venue', {
+      __type: 'Pointer',
+      className: 'Venues',
+      objectId: event.venue,
+    });
+    newEvent.set('short_title', event.title);
+    newEvent.set('title', event.title);
+    newEvent.increment('eventId');
+    addedEvents.push(newEvent);
+    lastId += 1;
+  });
+
   try {
-    res.json(savedEvent);
+    Parse.Object.saveAll(addedEvents).then((results) => {
+      res.json(results);
+    });
   } catch (err) {
     res.json(err);
   }

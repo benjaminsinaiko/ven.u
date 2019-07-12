@@ -13,7 +13,9 @@ import VenueSelect from './VenueSelect';
 import AddEventsForm from './AddEventsForm';
 import ViewEventsList from './viewEvents/ViewEventsList';
 import useLocalStorageState from '../../hooks/useLocalStorageState';
-import { getVenues } from '../../api/parseApi';
+import { getVenues, addEvents } from '../../api/parseApi';
+
+// const initialForm = { id: uuidv4() };
 
 function AddEventsPage() {
   const classes = useStyles();
@@ -23,6 +25,7 @@ function AddEventsPage() {
   const [forms, setForms] = useState([{ id: uuidv4() }]);
   const [newEvents, setNewEvents] = useState([]);
 
+  // check for localStorage venues or fectch them
   useEffect(() => {
     async function fetchVenues() {
       const fetchedVenues = await getVenues();
@@ -36,6 +39,7 @@ function AddEventsPage() {
     }
   }, [setVenues]);
 
+  // add/remove forms
   const addForm = () => {
     setForms([...forms, { id: uuidv4() }]);
   };
@@ -43,17 +47,29 @@ function AddEventsPage() {
     setForms(forms.filter(form => form.id !== formId));
   };
 
+  // add/remove events
   const addEvent = newEvent => {
     setNewEvents([...newEvents, newEvent]);
   };
   const removeEvent = eventId => {
-    setNewEvents(newEvents.filter(event => event.eventID !== eventId));
+    setNewEvents(newEvents.filter(event => event.eventId !== eventId));
   };
   console.log('saved', newEvents);
 
+  // save events to db
+  const saveEvents = () => {
+    if (newEvents.length) {
+      addEvents(newEvents).then(result => {
+        setForms([{ id: uuidv4() }]);
+      });
+    } else {
+      alert('No events to save');
+    }
+  };
+
   return (
     <Paper className={classes.root}>
-      <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+      <Fab onClick={saveEvents} variant="extended" aria-label="Delete" className={classes.fab}>
         <SaveEvents className={classes.extendedIcon} />
         Save All
       </Fab>

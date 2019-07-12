@@ -18,7 +18,6 @@ import useStyles from './styles/EventsFormStyles';
 import { FormControlLabel } from '@material-ui/core';
 
 const initialFormState = {
-  eventID: uuidv4(),
   title: '',
   venue: {},
   artist: {},
@@ -47,6 +46,11 @@ function AddEventsForm({
 
   // checkbox state
   const [isChecked, setIsChecked] = useState(false);
+
+  // set eventId
+  useEffect(() => {
+    setFormValues({ eventId: uuidv4() });
+  }, []);
 
   // set selected venue from parent selector
   useEffect(() => {
@@ -82,7 +86,6 @@ function AddEventsForm({
   const handleRemoveForm = () => {
     removeForm(formId);
   };
-
   // reset form
   const handleReset = () => {
     setFormValues(initialFormState);
@@ -92,7 +95,6 @@ function AddEventsForm({
   const handleCheck = e => {
     setIsChecked(e.target.checked);
     if (e.target.checked) {
-      console.log(e.target.checked);
       const newEvent = {
         eventID: formValues.eventID,
         eventStartDateTime: convertUtc(formValues.startTime),
@@ -109,23 +111,9 @@ function AddEventsForm({
     }
   };
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const newEvent = {
-      eventStartDateTime: convertUtc(formValues.startTime),
-      eventEndDateTime: convertUtc(formValues.endTime),
-      artist: formValues.artist.objectId,
-      artistName: formValues.artist.artistName,
-      venue: formValues.venue.objectId,
-      title: formValues.title
-    };
-    console.log('submitted', newEvent);
-    setFormValues(initialFormState);
-  };
-
   return (
     <Paper className={classes.root} elevation={10}>
-      <form onSubmit={handleSubmit} className={classes.form}>
+      <form className={classes.form}>
         {!first && (
           <div className={classes.removeForm}>
             <IconButton onClick={handleRemoveForm} aria-label="Delete" size="small">
