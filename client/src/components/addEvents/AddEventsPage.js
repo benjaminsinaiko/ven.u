@@ -52,7 +52,6 @@ function AddEventsPage() {
   const removeEvent = eventId => {
     setNewEvents(newEvents.filter(event => event.eventId !== eventId));
   };
-  console.log('ready', newEvents);
 
   // save events to db
   const saveEvents = () => {

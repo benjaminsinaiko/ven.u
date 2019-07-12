@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Input from '@material-ui/core/Input';
@@ -90,6 +91,9 @@ function AddEventsForm({
   const handleReset = () => {
     setFormValues(initialFormState);
   };
+
+  // check for venue/artist data
+  const formNotReady = formValues.venue.objectId && formValues.artist.artistName ? false : true;
 
   // handle checkbox
   const handleCheck = e => {
@@ -188,18 +192,22 @@ function AddEventsForm({
         </>
       </form>
       <div className={classes.actionButtons}>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={isChecked}
-              value="done-editing"
-              onChange={handleCheck}
-              color="primary"
-              inputProps={{ 'aria-label': 'primary checkbox' }}
-            />
-          }
-          label={isChecked ? 'Edit Event' : 'Add Event'}
-        />
+        <div>
+          {formNotReady && <FormHelperText error>Missing Venue/Artist</FormHelperText>}
+          <FormControlLabel
+            control={
+              <Checkbox
+                disabled={formNotReady}
+                checked={isChecked}
+                value="done-editing"
+                onChange={handleCheck}
+                color="primary"
+                inputProps={{ 'aria-label': 'primary checkbox' }}
+              />
+            }
+            label={isChecked ? 'Edit Event' : 'Add Event'}
+          />
+        </div>
         <Button onClick={handleReset} size="small" color="secondary">
           Reset
         </Button>
