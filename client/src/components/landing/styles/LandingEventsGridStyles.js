@@ -14,12 +14,16 @@ const useStyles = makeStyles(theme => ({
     fontSize: '2rem',
     marginBottom: '35px'
   },
+  loading: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   gridList: {
     flexWrap: 'nowrap',
     alignItems: 'center',
     width: '100%'
-    // Promote the list into it's own layer on Chrome. This cost memory but helps keeping high FPS.
-    // transform: 'translateZ(0)'
   },
   tile: {
     backgroundColor: theme.palette.background.paper
@@ -37,6 +41,10 @@ const useStyles = makeStyles(theme => ({
     height: 100,
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
+  },
+  date: {
+    color: 'white',
+    marginRight: theme.spacing(1)
   }
 }));
 

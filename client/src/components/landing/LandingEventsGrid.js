@@ -4,6 +4,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import Typography from '@material-ui/core/Typography';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './styles/LandingEventsGridStyles';
 import { converLocalDisplay } from '../../utils/dateTime';
@@ -26,7 +27,7 @@ const LandingEventsGrid = () => {
     <div className={classes.root}>
       <Typography className={classes.header}>Upcoming Shows</Typography>
       <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
-        {events.length &&
+        {events.length ? (
           events.map(tile => (
             <GridListTile key={tile.objectId} className={classes.tile}>
               {tile.images ? (
@@ -43,11 +44,18 @@ const LandingEventsGrid = () => {
                   title: classes.title
                 }}
                 actionIcon={
-                  <Typography>{converLocalDisplay(tile.eventStartDateTime.iso)}</Typography>
+                  <Typography className={classes.date}>
+                    {converLocalDisplay(tile.eventStartDateTime.iso)}
+                  </Typography>
                 }
               />
             </GridListTile>
-          ))}
+          ))
+        ) : (
+          <span className={classes.loading} style={{ width: '100%' }}>
+            <CircularProgress style={{ color: '#1e1e1e' }} />
+          </span>
+        )}
       </GridList>
     </div>
   );

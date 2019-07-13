@@ -5,24 +5,9 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#d9e2ec',
     display: 'flex',
     flexDirection: 'column',
+    alignItems: 'center',
     textAlign: 'center',
     height: '83vh'
-  },
-  select: {
-    marginTop: theme.spacing(2)
-  },
-  eventsDisplay: {
-    display: 'flex',
-    padding: theme.spacing(1),
-    margin: theme.spacing(1)
-  },
-  eventsHeader: {
-    fontSize: '1.5rem',
-    marginBottom: theme.spacing(2)
-  },
-  eventsColumn: {
-    maxHeight: '74vh',
-    overflow: 'scroll'
   },
   fab: {
     width: '170px',
@@ -33,6 +18,27 @@ const useStyles = makeStyles(theme => ({
     left: 20,
     right: 'auto',
     position: 'fixed'
+  },
+  select: {
+    marginTop: theme.spacing(2),
+    [theme.breakpoints.down('xs')]: {
+      alignSelf: 'flex-end',
+      marginRight: '30px'
+    }
+  },
+  eventsDisplay: {
+    display: 'flex',
+    maxWidth: '1000px',
+    padding: theme.spacing(1),
+    margin: theme.spacing(1)
+  },
+  eventsHeader: {
+    fontSize: '1.5rem',
+    marginBottom: theme.spacing(2)
+  },
+  eventsColumn: {
+    maxHeight: '74vh',
+    overflow: 'scroll'
   },
   extendedIcon: {
     marginRight: theme.spacing(1)

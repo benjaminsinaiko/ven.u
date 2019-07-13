@@ -28,6 +28,12 @@ const useStyles = makeStyles(theme => ({
     '& img': {
       height: '9em',
       width: 'auto'
+    },
+    [theme.breakpoints.up('md')]: {
+      '& img': {
+        height: '13em',
+        width: 'auto'
+      }
     }
   },
   heroText: {
@@ -39,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700,
     '& p': {
       margin: 0
+    },
+    [theme.breakpoints.up('md')]: {
+      fontSize: '3rem'
     },
     [theme.breakpoints.down('sm')]: {
       width: '90%',

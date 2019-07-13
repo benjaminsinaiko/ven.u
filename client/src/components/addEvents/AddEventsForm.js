@@ -56,9 +56,7 @@ function AddEventsForm({
   // set selected venue from parent selector
   useEffect(() => {
     if (selectedVenue) {
-      setFormValues(f => {
-        return { ...f, venue: selectedVenue };
-      });
+      setFormValues({ venue: selectedVenue });
     }
   }, [selectedVenue]);
 
@@ -193,7 +191,11 @@ function AddEventsForm({
       </form>
       <div className={classes.actionButtons}>
         <div>
-          {formNotReady && <FormHelperText error>Missing Venue/Artist</FormHelperText>}
+          {formNotReady && (
+            <FormHelperText className={classes.notReady} error>
+              Missing Venue/Artist
+            </FormHelperText>
+          )}
           <FormControlLabel
             control={
               <Checkbox

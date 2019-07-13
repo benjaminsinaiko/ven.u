@@ -25,6 +25,9 @@ const useStyles = makeStyles(theme => ({
   removeForm: {
     display: 'flex',
     justifyContent: 'flex-end'
+  },
+  notReady: {
+    marginTop: 0
   }
 }));
 
