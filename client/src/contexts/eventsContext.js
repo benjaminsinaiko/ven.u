@@ -26,7 +26,7 @@ export const EventsProvider = props => {
         dispatch({ type: 'LOAD_ERROR', errors: error });
       }
     }
-    fetchEvents();
+    // fetchEvents();
   }, [dispatch]);
 
   return (

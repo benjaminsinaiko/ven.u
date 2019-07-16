@@ -6,7 +6,7 @@ import NavBar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import Privacy from './components/privacy/Privacy';
 import LandingPage from './components/landing/LandingPage';
-import UpcomingEventsPage from './components/upcomingEvents/UpcomingEventsPage';
+import UpcomingEventsPage from './components/upcomingEvents';
 import AddEventsPage from './components/addEvents/AddEventsPage';
 
 import AppProviders from './contexts/AppProviders';

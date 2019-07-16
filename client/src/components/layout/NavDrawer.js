@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Drawer from '@material-ui/core/Drawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import RecentlyAdded from '@material-ui/icons/NewReleases';
-import AllShows from '@material-ui/icons/LocalPlay';
-import Venues from '@material-ui/icons/StoreMallDirectory';
+import RecentlyAddedIcon from '@material-ui/icons/NewReleases';
+import AllShowsIcon from '@material-ui/icons/LocalPlay';
+import VenuesIcons from '@material-ui/icons/StoreMallDirectory';
 import SavedShows from '@material-ui/icons/EventAvailable';
 import ShowHistory from '@material-ui/icons/FastRewind';
 import ListItem from '@material-ui/core/ListItem';
@@ -34,21 +35,21 @@ function NavDrawer({ drawerOpen, handleDrawerClose }) {
       </div>
       <Divider />
       <List>
-        <ListItem button>
+        <ListItem onClick={handleDrawerClose} component={Link} to={`/events/new`} button>
           <ListItemIcon>
-            <RecentlyAdded />
+            <RecentlyAddedIcon />
           </ListItemIcon>
           <ListItemText primary="Recently Added" />
         </ListItem>
-        <ListItem button>
+        <ListItem onClick={handleDrawerClose} component={Link} to={`/events/all`} button>
           <ListItemIcon>
-            <AllShows />
+            <AllShowsIcon />
           </ListItemIcon>
           <ListItemText primary="All Shows" />
         </ListItem>
-        <ListItem button>
+        <ListItem onClick={handleDrawerClose} component={Link} to={`/events/venues`} button>
           <ListItemIcon>
-            <Venues />
+            <VenuesIcons />
           </ListItemIcon>
           <ListItemText primary="Venues" />
         </ListItem>
