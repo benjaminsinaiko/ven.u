@@ -2,6 +2,8 @@ import Parse from 'parse';
 import axios from 'axios';
 import toSlug from '../utils/toSlug';
 
+// USERS
+
 export function getCurrentUser() {
   const currentUser = Parse.User.current();
   return currentUser;
@@ -16,24 +18,14 @@ export function userHasRole(user, roleName) {
   });
 }
 
-export function searchParseArtists(searchString) {
-  return axios
-    .get(`/parse/artists/${searchString}`)
-    .then(({ data }) => {
-      console.log('API HIT');
-      return data;
-    })
-    .catch(e => e);
-}
-
-export function getVenues() {
-  return axios
-    .get('/parse/venues')
-    .then(({ data }) => {
-      console.log('GET VENUES');
-      return data;
-    })
-    .catch(e => e);
+// EVENTS
+export async function getUpcomingEvents() {
+  try {
+    const { data } = await axios.get('/parse/events');
+    return data;
+  } catch (err) {
+    return err;
+  }
 }
 
 export async function getNextEvents() {
@@ -65,6 +57,29 @@ export function addEvents(newEvents) {
     .post('/parse/events', newEvents)
     .then(({ data }) => {
       console.log('added: ', data);
+      return data;
+    })
+    .catch(e => e);
+}
+
+// ARTISTS
+export function searchParseArtists(searchString) {
+  return axios
+    .get(`/parse/artists/${searchString}`)
+    .then(({ data }) => {
+      console.log('API HIT');
+      return data;
+    })
+    .catch(e => e);
+}
+
+// VENUES
+
+export function getVenues() {
+  return axios
+    .get('/parse/venues')
+    .then(({ data }) => {
+      console.log('GET VENUES');
       return data;
     })
     .catch(e => e);

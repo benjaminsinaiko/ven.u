@@ -1,13 +1,20 @@
 /* eslint-disable no-await-in-loop */
 /* eslint-disable no-restricted-syntax */
 const Parse = require('parse/node');
+const moment = require('moment');
 
-/* ############### ALL EVENTS ############### */
+/* ############### ALL UPCOMING EVENTS ############### */
 exports.index = function (req, res) {
+  // get start of day in utc
+  const startOfDay = moment().startOf('day');
+  const utcStart = moment.utc(startOfDay).format();
+
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
-  queryEvents.equalTo('NotPublished', true);
-  queryEvents.descending('eventStartDateTime');
+  queryEvents.notEqualTo('NotPublished', true);
+  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date(utcStart));
+  queryEvents.ascending('eventStartDateTime');
+
   queryEvents
     .find()
     .then((events) => {
@@ -127,6 +134,7 @@ exports.pastEventsByVenue = function (req, res) {
     .catch(err => res.json(err));
 };
 
+/* ############### CREATE EVENTS ############### */
 exports.createEvent = async (req, res) => {
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
