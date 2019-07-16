@@ -19,27 +19,27 @@ export function userHasRole(user, roleName) {
 }
 
 // EVENTS
-export async function getUpcomingEvents() {
+export async function getUpcomingEvents(limit, skip) {
   try {
-    const { data } = await axios.get('/parse/events');
+    // set limit and skip
+    const { data } = await axios.get(`/parse/events/${limit}/${skip}`);
     return data;
   } catch (err) {
     return err;
   }
 }
 
-export async function getNextEvents() {
+export async function addImages(events) {
   try {
-    const { data } = await axios.get('/parse/events/nextTen');
-    for (let eventData of data) {
-      const artistSlug = toSlug(eventData.artist.artistName);
+    for (let event of events) {
+      const artistSlug = toSlug(event.artist.artistName);
       const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
       const artistImgs = data.images;
-      eventData.images = artistImgs;
+      event.images = artistImgs;
     }
-    return data;
-  } catch (err) {
-    return err;
+    return events;
+  } catch (error) {
+    return error;
   }
 }
 

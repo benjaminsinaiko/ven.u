@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useReducer, useEffect } from 'react';
 
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
@@ -8,27 +8,36 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './styles/LandingEventsGridStyles';
 import { converLocalDisplay } from '../../utils/dateTime';
-import { getNextEvents } from '../../api/parseApi';
+import { getUpcomingEvents, addImages } from '../../api/parseApi';
 import crowdImage from '../../assets/crowdImage_small.jpg';
 
 const LandingEventsGrid = () => {
   const classes = useStyles();
-  const [events, setEvents] = useState([]);
+  const [eventsData, setEventsData] = useReducer((state, newState) => ({ ...state, ...newState }), {
+    loading: false,
+    events: []
+  });
 
   useEffect(() => {
     async function getEvents() {
-      const results = await getNextEvents();
-      setEvents(results);
+      setEventsData({ loading: true });
+      const results = await getUpcomingEvents(10);
+      setEventsData({ events: results });
+      const withImages = await addImages(results);
+      setEventsData({ events: withImages });
+      setEventsData({ loading: false });
     }
     getEvents();
   }, []);
+
+  console.log('***', eventsData);
 
   return (
     <div className={classes.root}>
       <Typography className={classes.header}>Upcoming Shows</Typography>
       <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
-        {events.length ? (
-          events.map(tile => (
+        {eventsData.events ? (
+          eventsData.events.map(tile => (
             <GridListTile key={tile.objectId} className={classes.tile}>
               {tile.images ? (
                 <img src={tile.images[1].url} alt={tile.title} />

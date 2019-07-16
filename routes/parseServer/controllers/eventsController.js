@@ -14,6 +14,10 @@ exports.index = function (req, res) {
   queryEvents.notEqualTo('NotPublished', true);
   queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date(utcStart));
   queryEvents.ascending('eventStartDateTime');
+  queryEvents.limit(+req.params.limit);
+  queryEvents.skip(+req.params.skip);
+  queryEvents.include('artist');
+  queryEvents.include('venue');
 
   queryEvents
     .find()

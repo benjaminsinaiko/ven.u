@@ -5,7 +5,7 @@ const router = express.Router();
 const eventsController = require('./controllers/eventsController');
 
 // GET events search
-router.get('/', eventsController.index);
+router.get('/:limit?/:skip?', eventsController.index);
 
 // GET events search
 router.get('/nextTen', eventsController.nextTenEvents);
