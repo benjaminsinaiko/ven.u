@@ -20,13 +20,13 @@ export const EventsProvider = props => {
     async function fetchEvents() {
       dispatch({ type: 'START_LOADING' });
       try {
-        const response = await getUpcomingEvents(100);
+        const response = await getUpcomingEvents(50);
         dispatch({ type: 'LOAD_EVENTS', events: response });
       } catch (error) {
         dispatch({ type: 'LOAD_ERROR', errors: error });
       }
     }
-    // fetchEvents();
+    fetchEvents();
   }, [dispatch]);
 
   return (

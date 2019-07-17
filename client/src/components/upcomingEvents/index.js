@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import { EventsContext } from '../../contexts/eventsContext';
 import AllEvents from './AllEvents';
 import RecentEvents from './RecentEvents';
 import VenueEvents from './VenueEvents';
@@ -12,7 +11,7 @@ import useStyles from './sytles/indexStyles';
 
 function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
   const classes = useStyles();
-  const eventsData = useContext(EventsContext);
+  // const eventsData = useContext(EventsContext);
 
   const [tab, setTab] = React.useState(0);
   // set tab from pathname
@@ -36,7 +35,6 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
     setTab(newValue);
   }
 
-  console.log(eventsData);
   return (
     <Router>
       <div className={classes.root}>

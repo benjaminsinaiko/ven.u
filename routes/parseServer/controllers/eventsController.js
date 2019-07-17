@@ -18,6 +18,13 @@ exports.index = function (req, res) {
   queryEvents.skip(+req.params.skip);
   queryEvents.include('artist');
   queryEvents.include('venue');
+  queryEvents.select([
+    'eventStartDateTime.iso',
+    'title',
+    'venue.venueName',
+    'venue.venuAvatar',
+    'artist.artistName',
+  ]);
 
   queryEvents
     .find()
