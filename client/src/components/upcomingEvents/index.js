@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -11,9 +11,8 @@ import useStyles from './sytles/indexStyles';
 
 function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
   const classes = useStyles();
-  // const eventsData = useContext(EventsContext);
+  const [tab, setTab] = useState(0);
 
-  const [tab, setTab] = React.useState(0);
   // set tab from pathname
   useEffect(() => {
     switch (pathname) {
@@ -31,6 +30,7 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
     }
   }, [pathname]);
 
+  // handle tab change
   function handleChange(event, newValue) {
     setTab(newValue);
   }

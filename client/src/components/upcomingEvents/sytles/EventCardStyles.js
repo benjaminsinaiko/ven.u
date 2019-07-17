@@ -1,10 +1,10 @@
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const SM_SIZE = 160;
 const XS_SIZE = 135;
 
 const useStyles = makeStyles(theme => ({
-  root: {
+  rootCard: {
     backgroundColor: 'inherit',
     width: '60%',
     maxWidth: 725,
@@ -14,6 +14,12 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('sm')]: {
       width: '100%'
     }
+  },
+  spinner: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: '77vh'
   },
   card: {
     display: 'flex',

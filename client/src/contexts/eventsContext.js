@@ -1,7 +1,7 @@
 import React, { useReducer, createContext, useEffect } from 'react';
 
 import eventsReducer from '../reducers/eventsReducer';
-import { getUpcomingEvents } from '../api/parseApi';
+import { getUpcomingEvents, addImages } from '../api/parseApi';
 
 const initialState = {
   loading: false,
@@ -22,6 +22,8 @@ export const EventsProvider = props => {
       try {
         const response = await getUpcomingEvents(50);
         dispatch({ type: 'LOAD_EVENTS', events: response });
+        const eventsWithImgs = await addImages(response);
+        dispatch({ type: 'LOAD_IMAGES', events: eventsWithImgs });
       } catch (error) {
         dispatch({ type: 'LOAD_ERROR', errors: error });
       }

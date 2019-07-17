@@ -14,15 +14,14 @@ import { converLocalDisplay } from '../../utils/dateTime';
 export default function MediaControlCard({ event }) {
   const classes = useStyles();
 
-  // console.log('event', event);
   return (
     <Card className={classes.card}>
       <Grid container>
         <Grid item xs={3}>
-          {event.images[2] ? (
+          {event.images ? (
             <img src={event.images[2].url} className={classes.image} alt="Artist" />
           ) : (
-            crowdImage
+            <img src={crowdImage} className={classes.image} alt="Crowd" />
           )}
         </Grid>
         <Grid item xs={6} className={classes.details}>

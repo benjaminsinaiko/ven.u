@@ -11,6 +11,11 @@ const eventsReducer = (state, action) => {
         loading: false,
         events: action.events
       };
+    case 'LOAD_IMAGES':
+      return {
+        ...state,
+        events: action.events
+      };
     case 'LOAD_ERROR':
       return {
         ...state,

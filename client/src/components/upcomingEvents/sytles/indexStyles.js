@@ -4,8 +4,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
-    background: 'radial-gradient(#fff2d9, #ffda8d)',
-    minHeight: '82vh'
+    background: 'radial-gradient(#ffffff, #b4c6da)',
+    height: '94vh',
+    overflow: 'scroll'
   },
   links: {
     textDecoration: 'none'
