@@ -38,7 +38,7 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
   return (
     <Router>
       <div className={classes.root}>
-        <Paper className={classes.tabs}>
+        <Paper>
           <Tabs
             value={tab}
             onChange={handleChange}
@@ -50,10 +50,11 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
             <Tab label="Venues" component={Link} to={`${path}/venues`} />
           </Tabs>
         </Paper>
-        <h1>Upcoming Events Page</h1>
-        <Route path={`${path}/new`} component={RecentEvents} />
-        <Route path={`${path}/all`} component={AllEvents} />
-        <Route path={`${path}/venues`} component={VenueEvents} />
+        <div className={classes.list}>
+          <Route path={`${path}/new`} component={RecentEvents} />
+          <Route path={`${path}/all`} component={AllEvents} />
+          <Route path={`${path}/venues`} component={VenueEvents} />
+        </div>
       </div>
     </Router>
   );
