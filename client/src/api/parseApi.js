@@ -47,6 +47,7 @@ export function getFutureVenueEvents(venueId) {
   return axios
     .get(`/parse/events/venue/${venueId}`)
     .then(({ data }) => {
+      console.log('api', data);
       return data;
     })
     .catch(e => e);

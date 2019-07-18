@@ -1,20 +1,15 @@
-const eventsReducer = (state, action) => {
+const venuesReducer = (state, action) => {
   switch (action.type) {
     case 'START_LOADING':
       return {
         ...state,
         loading: true
       };
-    case 'LOAD_EVENTS':
+    case 'LOAD_VENUES':
       return {
         ...state,
         loading: false,
-        events: action.events
-      };
-    case 'LOAD_IMAGES':
-      return {
-        ...state,
-        events: action.events
+        venues: action.venues
       };
     case 'LOAD_ERROR':
       return {
@@ -27,4 +22,4 @@ const eventsReducer = (state, action) => {
   }
 };
 
-export default eventsReducer;
+export default venuesReducer;

@@ -7,7 +7,7 @@ import useStyles from './sytles/EventCardStyles';
 
 export default function AllEvents() {
   const classes = useStyles({ background: 'radial-gradient(#ffffff, #b4c6da)' });
-  const { events, loading, errors } = useContext(EventsContext);
+  const { events, errors } = useContext(EventsContext);
 
   if (errors) console.error('errors', errors);
 

@@ -12,9 +12,8 @@ const initialState = {
 export const EventsContext = createContext();
 export const EventsDispactchContext = createContext();
 
-export const EventsProvider = props => {
+export const EventsProvider = ({ children }) => {
   const [eventsData, dispatch] = useReducer(eventsReducer, initialState);
-  const { children } = props;
 
   useEffect(() => {
     async function fetchEvents() {

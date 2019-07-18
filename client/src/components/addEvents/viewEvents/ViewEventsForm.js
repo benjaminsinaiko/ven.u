@@ -14,7 +14,7 @@ const ViewEventsForm = ({ event }) => {
         <div className={classes.timePickers}>
           <EventTextField
             placeholder="Start Time"
-            value={converLocalDisplay(event.eventStartDateTime.iso)}
+            value={converLocalDisplay(event.eventStartDateTime.iso) || null}
             readOnly={true}
           />
           <EventTextField

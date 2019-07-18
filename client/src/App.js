@@ -11,6 +11,7 @@ import AddEventsPage from './components/addEvents/AddEventsPage';
 
 import AppProviders from './contexts/AppProviders';
 import { EventsProvider } from './contexts/eventsContext';
+import { VenuesProvider } from './contexts/venuesContext';
 
 function App() {
   return (
@@ -19,10 +20,12 @@ function App() {
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <EventsProvider>
-          <Route path="/events" component={UpcomingEventsPage} />
+          <VenuesProvider>
+            <Route path="/events" component={UpcomingEventsPage} />
+            {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
+            <Route exact path="/add-events" component={AddEventsPage} />
+          </VenuesProvider>
         </EventsProvider>
-        {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
-        <Route exact path="/add-events" component={AddEventsPage} />
         <Route path="/privacy" component={Privacy} />
       </Switch>
       <Footer />

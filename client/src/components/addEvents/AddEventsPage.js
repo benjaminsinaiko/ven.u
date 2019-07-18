@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import uuidv4 from 'uuid/v4';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -8,34 +8,20 @@ import Fab from '@material-ui/core/Fab';
 import SaveEvents from '@material-ui/icons/PlaylistAddCheck';
 import AddIcon from '@material-ui/icons/Add';
 
+import { VenuesContext } from '../../contexts/venuesContext';
 import useStyles from './styles/AddEventsPageStyles';
 import VenueSelect from './VenueSelect';
 import AddEventsForm from './AddEventsForm';
 import ViewEventsList from './viewEvents/ViewEventsList';
-import useLocalStorageState from '../../hooks/useLocalStorageState';
-import { getVenues, addEvents } from '../../api/parseApi';
+import { addEvents } from '../../api/parseApi';
 
 function AddEventsPage() {
   const classes = useStyles();
-  const [venues, setVenues] = useLocalStorageState('venues', []);
+  const { venues, errors } = useContext(VenuesContext);
   const [selectedVenue, setSelectedVenue] = useState('');
   const [eventCount, setEventCount] = useState(0);
   const [forms, setForms] = useState([{ id: uuidv4() }]);
   const [newEvents, setNewEvents] = useState([]);
-
-  // check for localStorage venues or fectch them
-  useEffect(() => {
-    async function fetchVenues() {
-      const fetchedVenues = await getVenues();
-      await setVenues(fetchedVenues);
-    }
-    const cachedVenues = window.localStorage.getItem('venues');
-    if (cachedVenues !== '[]') {
-      setVenues(JSON.parse(cachedVenues));
-    } else {
-      fetchVenues();
-    }
-  }, [setVenues]);
 
   // add/remove forms
   const addForm = () => {
@@ -64,6 +50,8 @@ function AddEventsPage() {
       alert('No events to save');
     }
   };
+
+  if (errors) console.error(errors);
 
   return (
     <Paper className={classes.root}>

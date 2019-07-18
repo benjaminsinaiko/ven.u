@@ -3,12 +3,12 @@
 const Parse = require('parse/node');
 const moment = require('moment');
 
+// get start of day in utc
+const startOfDay = moment().startOf('day');
+const utcStart = moment.utc(startOfDay).format();
+
 /* ############### ALL UPCOMING EVENTS ############### */
 exports.index = function (req, res) {
-  // get start of day in utc
-  const startOfDay = moment().startOf('day');
-  const utcStart = moment.utc(startOfDay).format();
-
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
   queryEvents.notEqualTo('NotPublished', true);
@@ -34,31 +34,6 @@ exports.index = function (req, res) {
     .catch(err => res.json(err));
 };
 
-/* ############### GET NEXT 10 EVENTS ############### */
-exports.nextTenEvents = function (req, res) {
-  const Events = Parse.Object.extend('Events');
-  const queryEvents = new Parse.Query(Events);
-
-  queryEvents.ascending('eventStartDateTime');
-  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
-  queryEvents.limit(10);
-  queryEvents.include('artist');
-  queryEvents.include('venue');
-  queryEvents.select([
-    'eventStartDateTime.iso',
-    'title',
-    'venue.venueName',
-    'venue.venuAvatar',
-    'artist.artistName',
-  ]);
-  queryEvents
-    .find()
-    .then((events) => {
-      res.json(events);
-    })
-    .catch(err => res.json(err));
-};
-
 /* ############### GET EVENT ############### */
 exports.searchEvent = function (req, res) {
   const Events = Parse.Object.extend('Events');
@@ -68,8 +43,8 @@ exports.searchEvent = function (req, res) {
   queryEvents.include('artist');
   queryEvents.include('venue');
   queryEvents.select([
-    'eventStartDateTime.iso',
-    'eventEndDateTime.iso',
+    'eventStartDateTime',
+    'eventEndDateTime',
     'title',
     'venue.venueName',
     'artist.artistName',
@@ -97,13 +72,13 @@ exports.futureEventsByVenue = function (req, res) {
   queryEvents.include('artist');
   queryEvents.include('venue');
   queryEvents.select([
-    'eventStartDateTime.iso',
-    'eventEndDateTime.iso',
+    'eventStartDateTime',
+    'eventEndDateTime',
     'title',
     'venue.venueName',
     'artist.artistName',
   ]);
-  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date('2019-01-01T05:23:19.559Z'));
+  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date(utcStart));
   queryEvents.ascending('eventStartDateTime');
 
   queryEvents
@@ -128,8 +103,8 @@ exports.pastEventsByVenue = function (req, res) {
   queryEvents.include('artist');
   queryEvents.include('venue');
   queryEvents.select([
-    'eventStartDateTime.iso',
-    'eventEndDateTime.iso',
+    'eventStartDateTime',
+    'eventEndDateTime',
     'title',
     'venue.venueName',
     'artist.artistName',
