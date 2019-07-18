@@ -7,7 +7,7 @@ import EventIcon from '@material-ui/icons/CalendarToday';
 // import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import IconButton from '@material-ui/core/IconButton';
 
-import useStyles from './sytles/EventCardStyles';
+import useStyles from './sytles/CardStyles';
 import crowdImage from '../../assets/crowdImage_small.jpg';
 import { converLocalDisplay } from '../../utils/dateTime';
 
@@ -15,11 +15,11 @@ export default function MediaControlCard({ event }) {
   const classes = useStyles();
 
   return (
-    <Card className={classes.card}>
+    <Card className={classes.eventCard}>
       <Grid container>
         <Grid item xs={3}>
           {event.images ? (
-            <img src={event.images[2].url} className={classes.image} alt="Artist" />
+            <img src={event.images[2].url} className={classes.eventImage} alt="Artist" />
           ) : (
             <img src={crowdImage} className={classes.image} alt="Crowd" />
           )}

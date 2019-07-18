@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     height: '77vh'
   },
-  card: {
+  eventCard: {
     display: 'flex',
     height: SM_SIZE,
     margin: theme.spacing(2),
@@ -29,7 +29,12 @@ const useStyles = makeStyles(theme => ({
       height: XS_SIZE
     }
   },
-  image: {
+  venueCard: {
+    margin: theme.spacing(2),
+    maxWidth: 300,
+    height: 340
+  },
+  eventImage: {
     objectFit: 'cover',
     width: SM_SIZE,
     height: SM_SIZE,
@@ -37,6 +42,9 @@ const useStyles = makeStyles(theme => ({
       width: XS_SIZE,
       height: XS_SIZE
     }
+  },
+  venueImage: {
+    height: 140
   },
   details: {
     display: 'flex',

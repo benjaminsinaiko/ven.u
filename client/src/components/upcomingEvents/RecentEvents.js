@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { EventsContext } from '../../contexts/eventsContext';
 import { convertLocal } from '../../utils/dateTime';
 import EventCard from './EventCard';
-import useStyles from './sytles/EventCardStyles';
+import useStyles from './sytles/CardStyles';
 
 export default function RecentEvents() {
   const classes = useStyles();

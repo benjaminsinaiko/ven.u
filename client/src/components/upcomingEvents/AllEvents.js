@@ -3,7 +3,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { EventsContext } from '../../contexts/eventsContext';
 import EventCard from './EventCard';
-import useStyles from './sytles/EventCardStyles';
+import useStyles from './sytles/CardStyles';
 
 export default function AllEvents() {
   const classes = useStyles({ background: 'radial-gradient(#ffffff, #b4c6da)' });
