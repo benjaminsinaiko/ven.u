@@ -29,11 +29,6 @@ const useStyles = makeStyles(theme => ({
       height: XS_SIZE
     }
   },
-  venueCard: {
-    margin: theme.spacing(2),
-    maxWidth: 300,
-    height: 340
-  },
   eventImage: {
     objectFit: 'cover',
     width: SM_SIZE,
@@ -42,9 +37,6 @@ const useStyles = makeStyles(theme => ({
       width: XS_SIZE,
       height: XS_SIZE
     }
-  },
-  venueImage: {
-    height: 140
   },
   details: {
     display: 'flex',
@@ -68,6 +60,34 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  venueCard: {
+    margin: theme.spacing(2),
+    width: 300,
+    height: 340,
+    '& div': {
+      backgroundSize: 'auto'
+    },
+    '&:hover div': {
+      backgroundSize: 'cover'
+    }
+  },
+  actionArea: {
+    height: '100%'
+  },
+  venueImage: {
+    height: 140
+  },
+  venueInfo: {
+    height: 128
+  },
+  upcomingEvents: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 40,
+    color: '#c9700a',
+    fontSize: 20
   }
 }));
 

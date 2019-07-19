@@ -21,7 +21,7 @@ export default function MediaControlCard({ event }) {
           {event.images ? (
             <img src={event.images[2].url} className={classes.eventImage} alt="Artist" />
           ) : (
-            <img src={crowdImage} className={classes.image} alt="Crowd" />
+            <img src={crowdImage} className={classes.eventImage} alt="Crowd" />
           )}
         </Grid>
         <Grid item xs={6} className={classes.details}>

@@ -47,7 +47,17 @@ export function getFutureVenueEvents(venueId) {
   return axios
     .get(`/parse/events/venue/${venueId}`)
     .then(({ data }) => {
-      console.log('api', data);
+      console.log('Hit Parse', data);
+      return data;
+    })
+    .catch(e => e);
+}
+
+export function getAllVenueEvents(venueIds) {
+  return axios
+    .post(`/parse/events/venue/`, venueIds)
+    .then(({ data }) => {
+      console.log('Hit Parse', data);
       return data;
     })
     .catch(e => e);

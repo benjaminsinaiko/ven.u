@@ -11,6 +11,12 @@ const venuesReducer = (state, action) => {
         loading: false,
         venues: action.venues
       };
+    case 'LOAD_VENUES_EVENTS':
+      return {
+        ...state,
+        loading: false,
+        venuesEvents: action.venuesEvents
+      };
     case 'LOAD_ERROR':
       return {
         ...state,

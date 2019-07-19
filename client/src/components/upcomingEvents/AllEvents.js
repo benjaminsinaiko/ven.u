@@ -13,7 +13,7 @@ export default function AllEvents() {
 
   return (
     <div className={classes.rootCard}>
-      {!events ? (
+      {!events || !events.length ? (
         <div className={classes.spinner}>
           <CircularProgress />
         </div>
