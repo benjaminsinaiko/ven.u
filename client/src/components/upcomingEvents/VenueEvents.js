@@ -9,14 +9,11 @@ function VenueEvents() {
   const classes = useStyles();
   const { venues, venuesEvents, loading } = useContext(VenuesContext);
 
-  console.log(loading);
-  console.log('ve', venuesEvents);
-
   return (
     <div className={classes.rootCard}>
       <Grid container className={classes.venuesGrid}>
         {!loading
-          ? venues.map(venue => (
+          ? (venuesEvents ? venuesEvents : venues).map(venue => (
               <Grid item sm={6} xs={12} key={venue.objectId}>
                 <VenueCard venue={venue} />
               </Grid>

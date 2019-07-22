@@ -1,7 +1,8 @@
 import React, { createContext, useEffect } from 'react';
 
 import venuesReducer from '../reducers/venuesReducer';
-import useLocalStorageReducer from '../hooks/useLocalStorageReducer';
+// import useLocalStorageReducer from '../hooks/useLocalStorageReducer';
+import useSessionStorageReducer from '../hooks/useSessionStorageReducer';
 import { getVenues, getFutureVenueEvents } from '../api/parseApi';
 
 const initialState = {
@@ -15,7 +16,7 @@ export const VenuesContext = createContext();
 export const VenuesDispatchContext = createContext();
 
 export const VenuesProvider = ({ children }) => {
-  const [venuesData, dispatch] = useLocalStorageReducer('venues', initialState, venuesReducer);
+  const [venuesData, dispatch] = useSessionStorageReducer('venues', initialState, venuesReducer);
 
   useEffect(() => {
     async function fetchVenues() {
@@ -27,7 +28,7 @@ export const VenuesProvider = ({ children }) => {
         dispatch({ type: 'LOAD_ERRORS', errors: error });
       }
     }
-    const cachedVenues = JSON.parse(window.localStorage.getItem('venues'));
+    const cachedVenues = JSON.parse(window.sessionStorage.getItem('venues'));
     if (cachedVenues.venues === null) {
       fetchVenues();
     } else {
@@ -48,9 +49,14 @@ export const VenuesProvider = ({ children }) => {
         dispatch({ type: 'LOAD_ERRORS', errors: error });
       }
     }
-    if (venuesData.venues) fetchEvents();
+    const cachedVenues = JSON.parse(window.sessionStorage.getItem('venues'));
+    if (cachedVenues.venuesEvents === null) {
+      fetchEvents();
+    } else {
+      dispatch({ type: 'LOAD_VENUES_EVENTS', venuesEvents: cachedVenues.venuesEvents });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [venuesData.venues]);
 
   return (
     <VenuesContext.Provider value={venuesData}>
