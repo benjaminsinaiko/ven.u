@@ -29,8 +29,6 @@ function Navbar() {
   const currentUser = useUser();
   const menuOpen = Boolean(anchorEl);
 
-  // console.log('currentUser: ', currentUser);
-
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
   };
@@ -110,6 +108,7 @@ function Navbar() {
         drawerOpen={drawerOpen}
         handleDrawerOpen={handleDrawerOpen}
         handleDrawerClose={handleDrawerClose}
+        user={currentUser}
       />
     </div>
   );

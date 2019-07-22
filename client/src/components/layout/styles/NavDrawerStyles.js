@@ -15,6 +15,13 @@ const useStyles = makeStyles(theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end'
+  },
+  noUserMsg: {
+    color: 'red',
+    fontStyle: 'italic'
+  },
+  noUserIcon: {
+    color: 'red'
   }
 }));
 
