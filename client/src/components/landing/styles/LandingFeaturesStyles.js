@@ -2,12 +2,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3),
+    // padding: theme.spacing(3),
+    height: 400,
     textAlign: 'center'
   },
   featuresTitle: {
     fontSize: '1.4rem',
     fontWeight: 500,
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(6),
     padding: theme.spacing(2)
   },
   grid: {

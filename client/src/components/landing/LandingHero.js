@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 
 import useStyles from './styles/LandingHeroStyles';
@@ -22,7 +23,9 @@ const LandingHero = props => {
             get more from your shows.
           </p>
         </div>
-        <Button className={classes.herobutton}>Find Shows</Button>
+        <Button component={Link} to="/events/all" className={classes.herobutton} to="/events/all">
+          Find Shows
+        </Button>
       </div>
     </div>
   );
