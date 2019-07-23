@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +13,7 @@ import crowdImage from '../../assets/crowdImage_small.jpg';
 import { converLocalDisplay } from '../../utils/dateTime';
 import useFetchImage from '../../hooks/useFetchImage';
 
-function EventCard({ event }) {
+export default function ListEventCard({ event }) {
   const classes = useStyles();
   const [artistImage, loading] = useFetchImage(event);
 
@@ -51,5 +51,3 @@ function EventCard({ event }) {
     </Card>
   );
 }
-
-export default memo(EventCard);

@@ -4,9 +4,9 @@ import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 
-import AllEvents from './AllEvents';
-import RecentEvents from './RecentEvents';
-import VenueEvents from './VenueEvents';
+import ListAllEvents from './ListAllEvents';
+import ListRecentEvents from './ListRecentEvents';
+import ListVenueEvents from './ListVenueEvents';
 import useStyles from './sytles/indexStyles';
 
 function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
@@ -51,9 +51,9 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
           </Tabs>
         </Paper>
         <div className={classes.list}>
-          <Route path={`${path}/new`} component={RecentEvents} />
-          <Route path={`${path}/all`} component={AllEvents} />
-          <Route path={`${path}/venues`} component={VenueEvents} />
+          <Route path={`${path}/new`} component={ListRecentEvents} />
+          <Route path={`${path}/all`} component={ListAllEvents} />
+          <Route path={`${path}/venues`} component={ListVenueEvents} />
         </div>
       </div>
     </Router>

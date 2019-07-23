@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext, memo } from 'react';
 import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './sytles/CardStyles';
 import { EventsContext } from '../../contexts/eventsContext';
 import { convertLocal } from '../../utils/dateTime';
-import EventCard from './EventCard';
+import EventCard from './ListEventCard';
 
-export default function RecentEvents() {
+function ListRecentEvents() {
   const classes = useStyles();
   const eventsData = useContext(EventsContext);
   const [recent, setRecent] = useState([]);
@@ -40,3 +40,5 @@ export default function RecentEvents() {
     </div>
   );
 }
+
+export default memo(ListRecentEvents);

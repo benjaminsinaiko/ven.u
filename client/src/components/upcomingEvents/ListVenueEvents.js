@@ -2,10 +2,10 @@ import React, { useContext, memo } from 'react';
 import Grid from '@material-ui/core/Grid';
 
 import { VenuesContext } from '../../contexts/venuesContext';
-import VenueCard from './VenueCard';
+import VenueCard from './ListVenueCard';
 import useStyles from './sytles/CardStyles';
 
-function VenueEvents() {
+function ListVenueEvents() {
   const classes = useStyles();
   const { venues, venuesEvents, loading } = useContext(VenuesContext);
 
@@ -24,4 +24,4 @@ function VenueEvents() {
   );
 }
 
-export default memo(VenueEvents);
+export default memo(ListVenueEvents);

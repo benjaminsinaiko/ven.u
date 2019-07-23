@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, memo } from 'react';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import { EventsContext } from '../../contexts/eventsContext';
 import { EventsDispatchContext } from '../../contexts/eventsContext';
 import { getUpcomingEvents } from '../../api/parseApi';
-import EventCard from './EventCard';
+import EventCard from './ListEventCard';
 import useStyles from './sytles/CardStyles';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { Typography } from '@material-ui/core';
 
-export default function AllEvents() {
-  const classes = useStyles({ background: 'radial-gradient(#ffffff, #b4c6da)' });
+function ListAllEvents() {
+  const classes = useStyles();
   const { events, skip } = useContext(EventsContext);
   const dispatch = useContext(EventsDispatchContext);
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreEvents);
@@ -21,7 +21,6 @@ export default function AllEvents() {
       if (moreToFetch) {
         const fetchMore = await getUpcomingEvents(25, skip);
         setIsFetching(false);
-        console.log('fetchMore', fetchMore);
         if (fetchMore.length) {
           dispatch({ type: 'LOAD_MORE_EVENTS', moreEvents: fetchMore });
         } else {
@@ -44,3 +43,5 @@ export default function AllEvents() {
     </div>
   );
 }
+
+export default memo(ListAllEvents);

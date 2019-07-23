@@ -8,9 +8,8 @@ import Typography from '@material-ui/core/Typography';
 import testVenueImage from '../../assets/testVenueImage.jpg';
 import useStyles from './sytles/CardStyles';
 
-export default function MediaCard({ venue }) {
+export default function ListVenueCard({ venue }) {
   const classes = useStyles();
-  // console.log('venue', venue);
 
   return (
     <Card className={classes.venueCard} elevation={8}>
