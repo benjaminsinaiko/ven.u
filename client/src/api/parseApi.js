@@ -29,6 +29,22 @@ export async function getUpcomingEvents(limit, skip) {
   }
 }
 
+export async function addImage(event) {
+  try {
+    console.log('event', event);
+    const artistSlug = toSlug(event.artist.artistName);
+
+    const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
+    const artistImgs = data.images[2] || data.images[0];
+    console.log('4----', artistImgs);
+
+    console.log('5----', artistImgs.url);
+    return artistImgs;
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function addImages(events) {
   try {
     for (let event of events) {
