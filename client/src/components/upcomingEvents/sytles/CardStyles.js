@@ -68,6 +68,13 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center'
   },
+  allEventsShown: {
+    textAlign: 'center',
+    fontSize: '1.4rem',
+    fontStyle: 'italic',
+    color: '#f6ad69',
+    fontWeight: '500'
+  },
   venueCard: {
     margin: `${theme.spacing(2)}px auto`,
     width: 300,

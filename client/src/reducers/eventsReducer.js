@@ -9,12 +9,14 @@ const eventsReducer = (state, action) => {
       return {
         ...state,
         loading: false,
-        events: action.events
+        events: action.events,
+        skip: state.skip + 25
       };
-    case 'LOAD_IMAGES':
+    case 'LOAD_MORE_EVENTS':
       return {
         ...state,
-        events: action.events
+        events: [...state.events, ...action.moreEvents],
+        skip: state.skip + 25
       };
     case 'LOAD_ERROR':
       return {

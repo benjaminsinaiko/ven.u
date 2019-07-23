@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     background: 'radial-gradient(#ffffff, #b4c6da)',
-    height: '94vh',
+    minHeight: '94vh',
     overflow: 'scroll'
   },
   links: {

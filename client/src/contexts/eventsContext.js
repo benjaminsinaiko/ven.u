@@ -6,11 +6,12 @@ import { getUpcomingEvents } from '../api/parseApi';
 const initialState = {
   loading: false,
   events: null,
+  skip: 0,
   errors: null
 };
 
 export const EventsContext = createContext();
-export const EventsDispactchContext = createContext();
+export const EventsDispatchContext = createContext();
 
 export const EventsProvider = ({ children }) => {
   const [eventsData, dispatch] = useReducer(eventsReducer, initialState);
@@ -19,7 +20,7 @@ export const EventsProvider = ({ children }) => {
     async function fetchEvents() {
       dispatch({ type: 'START_LOADING' });
       try {
-        const response = await getUpcomingEvents(50);
+        const response = await getUpcomingEvents(25);
         dispatch({ type: 'LOAD_EVENTS', events: response });
       } catch (error) {
         dispatch({ type: 'LOAD_ERROR', errors: error });
@@ -30,7 +31,7 @@ export const EventsProvider = ({ children }) => {
 
   return (
     <EventsContext.Provider value={eventsData}>
-      <EventsDispactchContext.Provider value={dispatch}>{children}</EventsDispactchContext.Provider>
+      <EventsDispatchContext.Provider value={dispatch}>{children}</EventsDispatchContext.Provider>
     </EventsContext.Provider>
   );
 };
