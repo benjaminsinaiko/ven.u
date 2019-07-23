@@ -11,10 +11,10 @@ function VenueEvents() {
 
   return (
     <div className={classes.rootCard}>
-      <Grid container className={classes.venuesGrid}>
+      <Grid container>
         {!loading
           ? (venuesEvents ? venuesEvents : venues).map(venue => (
-              <Grid item sm={6} xs={12} key={venue.objectId}>
+              <Grid item xs={12} sm={6} key={venue.objectId}>
                 <VenueCard venue={venue} />
               </Grid>
             ))

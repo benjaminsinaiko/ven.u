@@ -15,11 +15,7 @@ export default function MediaCard({ venue }) {
   return (
     <Card className={classes.venueCard} elevation={8}>
       <CardActionArea className={classes.actionArea}>
-        <CardMedia
-          className={classes.venueImage}
-          image={testVenueImage}
-          title="Contemplative Reptile"
-        />
+        <CardMedia className={classes.venueImage} image={testVenueImage} title="Venue logo" />
         <CardContent className={classes.venueInfo}>
           <Typography gutterBottom variant="h5" component="h2">
             {venue.venueName}

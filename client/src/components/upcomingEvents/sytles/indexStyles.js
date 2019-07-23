@@ -14,7 +14,8 @@ const useStyles = makeStyles(theme => ({
   list: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }));
 

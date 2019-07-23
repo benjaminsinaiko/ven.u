@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const SM_SIZE = 160;
-const XS_SIZE = 135;
+const XS_SIZE = 90;
 
 const useStyles = makeStyles(theme => ({
   rootCard: {
@@ -43,12 +43,19 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     [theme.breakpoints.down('xs')]: {
       '& h5': {
-        fontSize: 18
+        fontSize: 14
+      },
+      '& h6': {
+        fontSize: 10
       }
     }
   },
   content: {
-    flex: '1 0 auto'
+    flex: '1 0 auto',
+    [theme.breakpoints.down('xs')]: {
+      padding: theme.spacing(1, 2),
+      maxHeight: 55
+    }
   },
   dateTime: {
     display: 'flex',
@@ -62,7 +69,7 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center'
   },
   venueCard: {
-    margin: theme.spacing(2),
+    margin: `${theme.spacing(2)}px auto`,
     width: 300,
     height: 340,
     '& div': {

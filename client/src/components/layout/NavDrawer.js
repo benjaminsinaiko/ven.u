@@ -20,8 +20,6 @@ import useStyles from './styles/NavDrawerStyles';
 function NavDrawer({ drawerOpen, handleDrawerClose, user }) {
   const classes = useStyles();
 
-  console.log('user', user);
-
   return (
     <Drawer className={classes.drawer} open={drawerOpen} anchor="left" onClose={handleDrawerClose}>
       <div

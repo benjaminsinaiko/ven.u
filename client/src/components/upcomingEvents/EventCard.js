@@ -24,7 +24,7 @@ export default function MediaControlCard({ event }) {
             <img src={crowdImage} className={classes.eventImage} alt="Crowd" />
           )}
         </Grid>
-        <Grid item xs={6} className={classes.details}>
+        <Grid item xs={7} sm={6} className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component="h5" variant="h5">
               {event.title}
@@ -39,7 +39,7 @@ export default function MediaControlCard({ event }) {
             </Typography>
           </div>
         </Grid>
-        <Grid item xs={3} className={classes.calAction}>
+        <Grid item xs={2} sm={3} className={classes.calAction}>
           <IconButton>
             <EventIcon />
           </IconButton>
