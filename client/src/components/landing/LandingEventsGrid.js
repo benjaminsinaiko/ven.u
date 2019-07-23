@@ -21,7 +21,6 @@ const LandingEventsGrid = () => {
   });
 
   const theme = useTheme();
-  const smGrid = useMediaQuery(theme.breakpoints.up('sm'));
   const xsGrid = useMediaQuery(theme.breakpoints.down('xs'));
 
   useEffect(() => {
@@ -35,8 +34,6 @@ const LandingEventsGrid = () => {
     }
     getEvents();
   }, []);
-
-  console.log('***', eventsData);
 
   const columns = xsGrid ? 1.5 : 2.5;
 
