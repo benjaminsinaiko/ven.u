@@ -1,5 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -18,6 +20,10 @@ const LandingEventsGrid = () => {
     events: []
   });
 
+  const theme = useTheme();
+  const smGrid = useMediaQuery(theme.breakpoints.up('sm'));
+  const xsGrid = useMediaQuery(theme.breakpoints.down('xs'));
+
   useEffect(() => {
     async function getEvents() {
       setEventsData({ loading: true });
@@ -32,10 +38,12 @@ const LandingEventsGrid = () => {
 
   console.log('***', eventsData);
 
+  const columns = xsGrid ? 1.5 : 2.5;
+
   return (
     <div className={classes.root}>
       <Typography className={classes.header}>Upcoming Shows</Typography>
-      <GridList className={classes.gridList} cols={2.5} cellHeight={300}>
+      <GridList className={classes.gridList} cols={columns} cellHeight={300}>
         {eventsData.events ? (
           eventsData.events.map(tile => (
             <GridListTile key={tile.objectId} className={classes.tile}>
@@ -44,19 +52,15 @@ const LandingEventsGrid = () => {
               ) : (
                 <img src={crowdImage} alt={tile.title} />
               )}
-
               <GridListTileBar title={tile.venue.venueName} titlePosition="top" />
               <GridListTileBar
                 title={tile.title}
+                subtitle={converLocalDisplay(tile.eventStartDateTime.iso)}
                 classes={{
                   root: classes.titleBar,
-                  title: classes.title
+                  title: classes.title,
+                  subtitle: classes.subtitle
                 }}
-                actionIcon={
-                  <Typography className={classes.date}>
-                    {converLocalDisplay(tile.eventStartDateTime.iso)}
-                  </Typography>
-                }
               />
             </GridListTile>
           ))

@@ -16,7 +16,7 @@ function LandingFeatures() {
         You love the music. You've seen the show. Look back and get more.
       </Typography>
       <Grid container spacing={3} className={classes.grid}>
-        <Grid item xs={6} sm={3} className={classes.gridItem}>
+        <Grid item xs={12} sm={3} className={classes.gridItem}>
           <Avatar className={classes.avatar}>
             <TicketIcon />
           </Avatar>
@@ -25,7 +25,7 @@ function LandingFeatures() {
             Your favorite artists or one's that will be, find them all with Ven.u
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={3} className={classes.gridItem}>
+        <Grid item xs={12} sm={3} className={classes.gridItem}>
           <Avatar className={classes.avatar}>
             <PlaceIcon />
           </Avatar>
@@ -34,7 +34,7 @@ function LandingFeatures() {
             Learn more about your local venues. Capacity, ages, cash or credit, and descriptions
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={3} className={classes.gridItem}>
+        <Grid item xs={12} sm={3} className={classes.gridItem}>
           <Avatar className={classes.avatar}>
             <EventIcon />
           </Avatar>
@@ -43,7 +43,7 @@ function LandingFeatures() {
             Whether you bought tickets or are thinking about going, don't forget the date!
           </Typography>
         </Grid>
-        <Grid item xs={6} sm={3} className={classes.gridItem}>
+        <Grid item xs={12} sm={3} className={classes.gridItem}>
           <Avatar className={classes.avatar}>
             <RewindIcon />
           </Avatar>

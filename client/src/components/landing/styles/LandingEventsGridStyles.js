@@ -23,7 +23,9 @@ const useStyles = makeStyles(theme => ({
   gridList: {
     flexWrap: 'nowrap',
     alignItems: 'center',
-    width: '100%'
+    '& li': {
+      width: '40%'
+    }
   },
   tile: {
     backgroundColor: theme.palette.background.paper
@@ -33,19 +35,31 @@ const useStyles = makeStyles(theme => ({
     alignSelf: 'center',
     justifySelf: 'center'
   },
-  title: {
-    color: 'white',
-    fontSize: '1.4rem'
-  },
   titleBar: {
     height: 100,
     background:
       'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)'
   },
-  date: {
+  title: {
     color: 'white',
-    marginRight: theme.spacing(1)
+    fontSize: '1.4rem',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1rem'
+    }
+  },
+  subtitle: {
+    fontSize: '1rem',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '0.8rem'
+    }
   }
+  // date: {
+  //   color: 'white',
+  //   marginRight: theme.spacing(1),
+  //   [theme.breakpoints.down('xs')]: {
+  //     fontSize: '0.5rem'
+  //   }
+  // }
 }));
 
 export default useStyles;

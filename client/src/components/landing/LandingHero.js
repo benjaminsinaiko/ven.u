@@ -23,7 +23,7 @@ const LandingHero = props => {
             get more from your shows.
           </p>
         </div>
-        <Button component={Link} to="/events/all" className={classes.herobutton} to="/events/all">
+        <Button component={Link} to="/events/all" className={classes.herobutton}>
           Find Shows
         </Button>
       </div>
