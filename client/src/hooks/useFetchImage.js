@@ -9,10 +9,14 @@ export default function useFetchImage(event) {
   useEffect(() => {
     async function fetchImage() {
       setLoading(true);
-      const artistSlug = toSlug(event.artist.artistName);
-      const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-      const artistImg = data.images ? data.images[2].url : null;
-      setFetchImage(artistImg);
+      try {
+        const artistSlug = toSlug(event.artist.artistName);
+        const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
+        const artistImg = data.images ? data.images[2].url : null;
+        setFetchImage(artistImg);
+      } catch (error) {
+        return error;
+      }
       setLoading(false);
     }
     fetchImage();

@@ -7,6 +7,7 @@ import Footer from './components/layout/Footer';
 import Privacy from './components/privacy/Privacy';
 import LandingPage from './components/landing/LandingPage';
 import UpcomingEventsPage from './components/upcomingEvents';
+import EventPage from './components/upcomingEvents/EventPage';
 import AddEventsPage from './components/addEvents/AddEventsPage';
 
 import AppProviders from './contexts/AppProviders';
@@ -22,6 +23,7 @@ function App() {
         <EventsProvider>
           <VenuesProvider>
             <Route path="/events" component={UpcomingEventsPage} />
+            <Route path="/event/:eventId" component={EventPage} />
             {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
             <Route exact path="/add-events" component={AddEventsPage} />
           </VenuesProvider>

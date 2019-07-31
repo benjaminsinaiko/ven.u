@@ -15,10 +15,13 @@ import crowdImage from '../../assets/crowdImage_small.jpg';
 
 const LandingEventsGrid = () => {
   const classes = useStyles();
-  const [eventsData, setEventsData] = useReducer((state, newState) => ({ ...state, ...newState }), {
-    loading: false,
-    events: []
-  });
+  const [{ loading, events }, setEventsData] = useReducer(
+    (state, newState) => ({ ...state, ...newState }),
+    {
+      loading: true,
+      events: []
+    }
+  );
 
   const theme = useTheme();
   const xsGrid = useMediaQuery(theme.breakpoints.down('xs'));
@@ -35,14 +38,17 @@ const LandingEventsGrid = () => {
     getEvents();
   }, []);
 
+  console.log('loading ', loading);
+  console.log('events ', events);
+
   const columns = xsGrid ? 1.5 : 2.5;
 
   return (
     <div className={classes.root}>
       <Typography className={classes.header}>Upcoming Shows</Typography>
       <GridList className={classes.gridList} cols={columns} cellHeight={300}>
-        {eventsData.events ? (
-          eventsData.events.map(tile => (
+        {!loading ? (
+          events.map(tile => (
             <GridListTile key={tile.objectId} className={classes.tile}>
               {tile.images ? (
                 <img src={tile.images[1].url} alt={tile.title} />
