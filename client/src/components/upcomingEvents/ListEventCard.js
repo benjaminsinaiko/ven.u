@@ -19,7 +19,7 @@ export default function ListEventCard({ event }) {
   const [artistImage, loading] = useFetchImage(event);
 
   return (
-    <Link to={`/event/${event.objectId}`}>
+    <Link to={`/event/${event.objectId}`} style={{ textDecoration: 'none' }}>
       <Card className={classes.eventCard}>
         <Grid container>
           <Grid item xs={3}>

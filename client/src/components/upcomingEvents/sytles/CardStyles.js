@@ -27,6 +27,9 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(2),
     [theme.breakpoints.down('xs')]: {
       height: XS_SIZE
+    },
+    '&:hover': {
+      boxShadow: '0 10px 6px -6px #777'
     }
   },
   eventImage: {
@@ -52,6 +55,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flex: '1 0 auto',
+    textDecortion: 'none',
     [theme.breakpoints.down('xs')]: {
       padding: theme.spacing(1, 2),
       maxHeight: 55

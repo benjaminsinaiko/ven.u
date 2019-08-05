@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Route, Link } from 'react-router-dom';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
@@ -36,27 +36,25 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
   }
 
   return (
-    <Router>
-      <div className={classes.root}>
-        <Paper>
-          <Tabs
-            value={tab}
-            onChange={handleChange}
-            indicatorColor="primary"
-            textColor="primary"
-            centered>
-            <Tab label="Recently Added" component={Link} to={`${path}/new`} />
-            <Tab label="All Shows" component={Link} to={`${path}/all`} />
-            <Tab label="Venues" component={Link} to={`${path}/venues`} />
-          </Tabs>
-        </Paper>
-        <div className={classes.list}>
-          <Route path={`${path}/new`} component={ListRecentEvents} />
-          <Route path={`${path}/all`} component={ListAllEvents} />
-          <Route path={`${path}/venues`} component={ListVenueEvents} />
-        </div>
+    <div className={classes.root}>
+      <Paper>
+        <Tabs
+          value={tab}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          centered>
+          <Tab label="Recently Added" component={Link} to={`${path}/new`} />
+          <Tab label="All Shows" component={Link} to={`${path}/all`} />
+          <Tab label="Venues" component={Link} to={`${path}/venues`} />
+        </Tabs>
+      </Paper>
+      <div className={classes.list}>
+        <Route path={`${path}/new`} component={ListRecentEvents} />
+        <Route path={`${path}/all`} component={ListAllEvents} />
+        <Route path={`${path}/venues`} component={ListVenueEvents} />
       </div>
-    </Router>
+    </div>
   );
 }
 
