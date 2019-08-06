@@ -12,7 +12,7 @@ export default function useFetchImage(event) {
       try {
         const artistSlug = toSlug(event.artist.artistName);
         const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-        const artistImg = data.images ? data.images[2].url : null;
+        const artistImg = data.images ? data.images : null;
         setFetchImage(artistImg);
       } catch (error) {
         return error;

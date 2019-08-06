@@ -7,7 +7,7 @@ import Tab from '@material-ui/core/Tab';
 import ListAllEvents from './ListAllEvents';
 import ListRecentEvents from './ListRecentEvents';
 import ListVenueEvents from './ListVenueEvents';
-import useStyles from './sytles/indexStyles';
+import useStyles from './styles/indexStyles';
 
 function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
   const classes = useStyles();

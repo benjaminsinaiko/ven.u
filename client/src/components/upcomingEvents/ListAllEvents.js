@@ -5,7 +5,7 @@ import { EventsContext } from '../../contexts/eventsContext';
 import { EventsDispatchContext } from '../../contexts/eventsContext';
 import { getUpcomingEvents } from '../../api/parseApi';
 import EventCard from './ListEventCard';
-import useStyles from './sytles/CardStyles';
+import useStyles from './styles/CardStyles';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import { Typography } from '@material-ui/core';
 

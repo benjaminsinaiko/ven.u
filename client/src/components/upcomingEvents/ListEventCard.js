@@ -9,7 +9,7 @@ import EventIcon from '@material-ui/icons/CalendarToday';
 // import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import IconButton from '@material-ui/core/IconButton';
 
-import useStyles from './sytles/CardStyles';
+import useStyles from './styles/CardStyles';
 import crowdImage from '../../assets/crowdImage_small.jpg';
 import { converLocalDisplay } from '../../utils/dateTime';
 import useFetchImage from '../../hooks/useFetchImage';
@@ -24,7 +24,7 @@ export default function ListEventCard({ event }) {
         <Grid container>
           <Grid item xs={3}>
             {!loading && artistImage ? (
-              <img src={artistImage} className={classes.eventImage} alt="Artist" />
+              <img src={artistImage[2].url} className={classes.eventImage} alt="Artist" />
             ) : (
               <img src={crowdImage} className={classes.eventImage} alt="Crowd" />
             )}

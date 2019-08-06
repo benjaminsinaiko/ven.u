@@ -6,7 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 import testVenueImage from '../../assets/testVenueImage.jpg';
-import useStyles from './sytles/CardStyles';
+import useStyles from './styles/CardStyles';
 
 export default function ListVenueCard({ venue }) {
   const classes = useStyles();

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, memo } from 'react';
 import moment from 'moment';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-import useStyles from './sytles/CardStyles';
+import useStyles from './styles/CardStyles';
 import { EventsContext } from '../../contexts/eventsContext';
 import { convertLocal } from '../../utils/dateTime';
 import EventCard from './ListEventCard';

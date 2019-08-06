@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 
 import { VenuesContext } from '../../contexts/venuesContext';
 import VenueCard from './ListVenueCard';
-import useStyles from './sytles/CardStyles';
+import useStyles from './styles/CardStyles';
 
 function ListVenueEvents() {
   const classes = useStyles();
