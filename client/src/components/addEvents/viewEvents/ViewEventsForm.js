@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 
 import EventTextField from './EventTextField';
 import useStyles from '../styles/EventsFormStyles';
-import { converLocalDisplay } from '../../../utils/dateTime';
+import { convertLocalDisplay } from '../../../utils/dateTime';
 
 const ViewEventsForm = ({ event }) => {
   const classes = useStyles();
@@ -14,12 +14,12 @@ const ViewEventsForm = ({ event }) => {
         <div className={classes.timePickers}>
           <EventTextField
             placeholder="Start Time"
-            value={converLocalDisplay(event.eventStartDateTime.iso) || null}
+            value={convertLocalDisplay(event.eventStartDateTime.iso) || null}
             readOnly={true}
           />
           <EventTextField
             placeholder="End Time"
-            value={converLocalDisplay(event.eventEndDateTime.iso)}
+            value={convertLocalDisplay(event.eventEndDateTime.iso)}
             readOnly={true}
           />
         </div>

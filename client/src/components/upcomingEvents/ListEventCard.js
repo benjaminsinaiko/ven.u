@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 import useStyles from './styles/CardStyles';
 import crowdImage from '../../assets/crowdImage_small.jpg';
-import { converLocalDisplay } from '../../utils/dateTime';
+import { convertLocalDisplay } from '../../utils/dateTime';
 import useFetchImage from '../../hooks/useFetchImage';
 
 export default function ListEventCard({ event }) {
@@ -40,7 +40,7 @@ export default function ListEventCard({ event }) {
             </CardContent>
             <div className={classes.dateTime}>
               <Typography variant="subtitle1" color="textSecondary">
-                {converLocalDisplay(event.eventStartDateTime.iso)}
+                {convertLocalDisplay(event.eventStartDateTime.iso)}
               </Typography>
             </div>
           </Grid>

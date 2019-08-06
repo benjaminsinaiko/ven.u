@@ -3,7 +3,6 @@ import React, { useState, useContext, useEffect } from 'react';
 import useStyles from './styles/EventStyles';
 import { EventsContext } from '../../contexts/eventsContext';
 import EventHeader from './EventHeader';
-import Details from './EventDetails';
 import EventDetails from './EventDetails';
 
 export default function EventPage({ match: { params } }) {
@@ -19,18 +18,15 @@ export default function EventPage({ match: { params } }) {
     if (eventsData.events) getEvent();
   }, [eventsData, params.eventId]);
 
-  console.log('event found', event);
-
   return (
     <div className={classes.root}>
       {event && (
-        <>
+        <div className={classes.eventContent}>
           <EventHeader event={event} />
           <div className={classes.details}>
-            <EventDetails />
-            <EventDetails />
+            <EventDetails event={event} />
           </div>
-        </>
+        </div>
       )}
     </div>
   );

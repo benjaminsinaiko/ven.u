@@ -23,6 +23,8 @@ exports.index = function (req, res) {
     'title',
     'venue.venueName',
     'venue.venuAvatar',
+    'venue.Address',
+    'venue.venueCity',
     'artist.artistName',
   ]);
 

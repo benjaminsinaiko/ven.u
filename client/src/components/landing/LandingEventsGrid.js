@@ -9,7 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './styles/LandingEventsGridStyles';
-import { converLocalDisplay } from '../../utils/dateTime';
+import { convertLocalDisplay } from '../../utils/dateTime';
 import { getUpcomingEvents, addImages } from '../../api/parseApi';
 import crowdImage from '../../assets/crowdImage_small.jpg';
 
@@ -58,7 +58,7 @@ const LandingEventsGrid = () => {
               <GridListTileBar title={tile.venue.venueName} titlePosition="top" />
               <GridListTileBar
                 title={tile.title}
-                subtitle={converLocalDisplay(tile.eventStartDateTime.iso)}
+                subtitle={convertLocalDisplay(tile.eventStartDateTime.iso)}
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,

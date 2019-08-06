@@ -22,11 +22,32 @@ export function convertLocal(utcDateTime) {
     .format('YYYY-MM-DDTHH:mm');
 }
 
-export function converLocalDisplay(utcDateTime) {
+export function convertLocalDisplay(utcDateTime) {
   return moment
     .utc(utcDateTime)
     .local()
     .format('MMM Do YYYY, h:mm a');
+}
+
+export function dayOfWeek(utcDateTime) {
+  return moment
+    .utc(utcDateTime)
+    .local()
+    .format('dddd');
+}
+
+export function dateAndYear(utcDateTime) {
+  return moment
+    .utc(utcDateTime)
+    .local()
+    .format('MMM Do YYYY');
+}
+
+export function time(utcDateTime) {
+  return moment
+    .utc(utcDateTime)
+    .local()
+    .format('h:mm a');
 }
 
 // 2019-06-21T05:23:19.559Z
