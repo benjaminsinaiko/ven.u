@@ -4,6 +4,7 @@ import useStyles from './styles/EventStyles';
 import { EventsContext } from '../../contexts/eventsContext';
 import EventHeader from './EventHeader';
 import EventDetails from './EventDetails';
+import EventBio from './EventBio';
 
 export default function EventPage({ match: { params } }) {
   const classes = useStyles();
@@ -26,6 +27,7 @@ export default function EventPage({ match: { params } }) {
           <div className={classes.details}>
             <EventDetails event={event} />
           </div>
+          <EventBio artist={event.artist.artistName} />
         </div>
       )}
     </div>

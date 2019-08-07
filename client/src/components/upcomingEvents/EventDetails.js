@@ -10,7 +10,6 @@ import { dayOfWeek, dateAndYear, time } from '../../utils/dateTime';
 
 export default function EventDetails({ event }) {
   const classes = useStyles();
-  console.log('event', event);
 
   return (
     <>

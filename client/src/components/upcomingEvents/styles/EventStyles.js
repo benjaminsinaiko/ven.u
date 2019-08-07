@@ -45,6 +45,14 @@ const useStyles = makeStyles(theme => ({
     margin: 10,
     fontSize: '2rem',
     color: '#eb9335'
+  },
+  bioPanel: {
+    width: '100%',
+    marginBottom: '10px'
+  },
+  bioHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    fontWeight: theme.typography.fontWeightMedium
   }
 }));
 
