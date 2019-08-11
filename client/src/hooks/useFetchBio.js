@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 import { getBio } from '../api/lastfmApi';
 
 function useFetchBio(artistName) {
-  const [bio, setBio] = useState('');
+  const [bio, setBio] = useState();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchBio() {
       const bio = await getBio(artistName);
-      setBio(bio);
+      bio ? setBio(bio) : setBio(null);
       setLoading(false);
     }
     fetchBio();

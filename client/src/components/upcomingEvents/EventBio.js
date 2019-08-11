@@ -13,7 +13,7 @@ export default function EventBio({ artist }) {
   const classes = useStyles();
   const [bio, loading] = useFetchBio(artist);
 
-  return !loading ? (
+  return !loading && bio ? (
     <div className={classes.bioPanel}>
       <ExpansionPanel>
         <ExpansionPanelSummary

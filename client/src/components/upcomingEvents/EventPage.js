@@ -12,6 +12,10 @@ export default function EventPage({ match: { params } }) {
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
     function getEvent() {
       const event = eventsData.events.find(({ objectId }) => objectId === params.eventId);
       setEvent(event);

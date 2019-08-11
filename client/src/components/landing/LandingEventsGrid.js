@@ -1,4 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -38,27 +39,28 @@ const LandingEventsGrid = () => {
     getEvents();
   }, []);
 
-  console.log('loading ', loading);
-  console.log('events ', events);
-
   const columns = xsGrid ? 1.5 : 2.5;
 
   return (
     <div className={classes.root}>
       <Typography className={classes.header}>Upcoming Shows</Typography>
-      <GridList className={classes.gridList} cols={columns} cellHeight={300}>
-        {!loading ? (
-          events.map(tile => (
-            <GridListTile key={tile.objectId} className={classes.tile}>
-              {tile.images ? (
-                <img src={tile.images[1].url} alt={tile.title} />
+      {!loading && events.length ? (
+        <GridList className={classes.gridList} cols={columns} cellHeight={300}>
+          {events.map(event => (
+            <GridListTile
+              component={Link}
+              key={event.objectId}
+              className={classes.event}
+              to={`/event/${event.objectId}`}>
+              {event.images ? (
+                <img src={event.images[1].url} alt={event.title} />
               ) : (
-                <img src={crowdImage} alt={tile.title} />
+                <img src={crowdImage} alt={event.title} />
               )}
-              <GridListTileBar title={tile.venue.venueName} titlePosition="top" />
+              <GridListTileBar title={event.venue.venueName} titlePosition="top" />
               <GridListTileBar
-                title={tile.title}
-                subtitle={convertLocalDisplay(tile.eventStartDateTime.iso)}
+                title={event.title}
+                subtitle={convertLocalDisplay(event.eventStartDateTime.iso)}
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,
@@ -66,13 +68,13 @@ const LandingEventsGrid = () => {
                 }}
               />
             </GridListTile>
-          ))
-        ) : (
-          <span className={classes.loading} style={{ width: '100%' }}>
-            <CircularProgress style={{ color: '#1e1e1e' }} />
-          </span>
-        )}
-      </GridList>
+          ))}
+        </GridList>
+      ) : (
+        <span className={classes.loading} style={{ width: '100%' }}>
+          <CircularProgress style={{ color: '#1e1e1e' }} />
+        </span>
+      )}
     </div>
   );
 };

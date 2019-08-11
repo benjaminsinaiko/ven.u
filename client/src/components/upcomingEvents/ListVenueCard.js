@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
@@ -13,7 +14,10 @@ export default function ListVenueCard({ venue }) {
 
   return (
     <Card className={classes.venueCard} elevation={8}>
-      <CardActionArea className={classes.actionArea}>
+      <CardActionArea
+        className={classes.actionArea}
+        component={Link}
+        to={`/venue/${venue.objectId}`}>
         <CardMedia className={classes.venueImage} image={testVenueImage} title="Venue logo" />
         <CardContent className={classes.venueInfo}>
           <Typography gutterBottom variant="h5" component="h2">
