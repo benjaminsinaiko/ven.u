@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useEffect, useState, useContext, Fragment } from 'react';
 
 import useStyles from './styles/VenueStyles';
 import { VenuesContext } from '../../contexts/venuesContext';
 import VenueHeader from './VenueHeader';
+import VenueDescription from './VenueDescription';
 
 export default function VenuePage({ match: { params } }) {
   const classes = useStyles();
@@ -17,5 +18,14 @@ export default function VenuePage({ match: { params } }) {
     if (venuesData.venues) getVenue();
   }, [venuesData, params.venueId]);
 
-  return <div className={classes.root}>{venue ? <VenueHeader venue={venue} /> : null}</div>;
+  return (
+    <div className={classes.root}>
+      {venue ? (
+        <Fragment>
+          <VenueHeader venue={venue} />
+          <VenueDescription venue={venue} />
+        </Fragment>
+      ) : null}
+    </div>
+  );
 }

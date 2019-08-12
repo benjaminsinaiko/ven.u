@@ -57,6 +57,12 @@ const useStyles = makeStyles(theme => ({
       color: 'inherit'
       // textDecoration: 'none'
     }
+  },
+  venueDescription: {
+    width: '60%',
+    margin: 10,
+    padding: 10,
+    fontStyle: 'italic'
   }
 }));
 
