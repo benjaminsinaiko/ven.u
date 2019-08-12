@@ -63,6 +63,14 @@ const useStyles = makeStyles(theme => ({
     margin: 10,
     padding: 10,
     fontStyle: 'italic'
+  },
+  eventsList: {
+    display: 'flex',
+    flexDirection: 'column',
+    width: '75%'
+  },
+  eventCard: {
+    width: '100%'
   }
 }));
 

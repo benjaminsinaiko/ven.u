@@ -17,7 +17,7 @@ import venueImage from '../../assets/testVenueImage.jpg';
 
 export default function VenueHeader({ venue }) {
   const classes = useStyles();
-  console.log('venue', venue);
+
   return (
     <Paper className={classes.headerPaper}>
       <Grid container>

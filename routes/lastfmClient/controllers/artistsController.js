@@ -6,17 +6,14 @@ const baseUrl = 'http://ws.audioscrobbler.com/2.0/';
 /* ############### GET ARTIST BIO ############### */
 exports.artistSearch = async function (req, res) {
   const searchMethod = '?method=artist.getinfo&format=json&autocorrect=1';
-  console.log(req.params.artistSlug);
   try {
     const { data } = await axios.get(
       `${baseUrl}${searchMethod}&api_key=${apiKey}&artist=${req.params.artistSlug}`,
     );
-    console.log('data', data);
     if (data.error) {
       res.send(null);
     } else {
       const bioContent = data.artist.bio.content;
-      console.log('**', bioContent);
       const cleanBio = bioContent
         .split('<a')[0]
         .replace(/[\"\"]+/g, "'")

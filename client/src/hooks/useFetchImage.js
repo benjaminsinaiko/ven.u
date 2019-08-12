@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import toSlug from '../utils/toSlug';
+import crowdImage from '../assets/crowdImage_small.jpg';
 
 export default function useFetchImage(event) {
   const [fetchImage, setFetchImage] = useState(null);
@@ -12,7 +13,7 @@ export default function useFetchImage(event) {
       try {
         const artistSlug = toSlug(event.artist.artistName);
         const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-        const artistImg = data.images ? data.images : null;
+        const artistImg = data.images ? data.images : crowdImage;
         setFetchImage(artistImg);
       } catch (error) {
         return error;
