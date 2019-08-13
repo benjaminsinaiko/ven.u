@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 
 import useStyles from './styles/EventStyles';
 import { EventsContext } from '../../contexts/eventsContext';
+import { searchEvent } from '../../api/parseApi';
 import EventHeader from './EventHeader';
 import EventDetails from './EventDetails';
 import EventBio from './EventBio';
@@ -16,9 +17,14 @@ export default function EventPage({ match: { params } }) {
   }, []);
 
   useEffect(() => {
-    function getEvent() {
+    async function getEvent() {
       const event = eventsData.events.find(({ objectId }) => objectId === params.eventId);
-      setEvent(event);
+      if (event) {
+        setEvent(event);
+      } else {
+        const event = await searchEvent(params.eventId);
+        setEvent(...event);
+      }
     }
     if (eventsData.events) getEvent();
   }, [eventsData, params.eventId]);

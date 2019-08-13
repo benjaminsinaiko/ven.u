@@ -29,6 +29,15 @@ export async function getUpcomingEvents(limit, skip) {
   }
 }
 
+export async function searchEvent(objectId) {
+  try {
+    const { data } = await axios.get(`/parse/events/event/${objectId}`);
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+
 export async function addImage(event) {
   try {
     const artistSlug = toSlug(event.artist.artistName);

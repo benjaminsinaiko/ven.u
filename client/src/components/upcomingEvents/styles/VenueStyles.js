@@ -69,6 +69,9 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     width: '75%'
   },
+  eventsHeader: {
+    textAlign: 'center'
+  },
   eventCard: {
     width: '100%'
   }

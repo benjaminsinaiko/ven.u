@@ -8,7 +8,7 @@ export default function VenueEventsList({ venue }) {
 
   return (
     <div className={classes.eventsList}>
-      <h1>Event List</h1>
+      <h1 className={classes.eventsHeader}>Upcoming Events</h1>
       {venue.events.map(event => (
         <ListEventCard key={event.objectId} event={event} className={classes.eventCard} />
       ))}
