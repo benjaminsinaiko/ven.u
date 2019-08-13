@@ -13,12 +13,14 @@ exports.artistSearch = async function (req, res) {
     if (data.error) {
       res.send(null);
     } else {
+      const bioSummary = data.artist.bio.summary;
+      const cleanSummary = bioSummary.split('<a')[0];
       const bioContent = data.artist.bio.content;
       const cleanBio = bioContent
         .split('<a')[0]
         .replace(/[\"\"]+/g, "'")
         .split(/\n\n/g);
-      res.send(cleanBio);
+      res.send([cleanSummary, cleanBio]);
     }
   } catch (err) {
     res.json(err);
