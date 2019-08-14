@@ -6,6 +6,7 @@ import { searchEvent } from '../../api/parseApi';
 import EventHeader from './EventHeader';
 import EventDetails from './EventDetails';
 import EventBio from './EventBio';
+import EventSongs from './EventSongs';
 
 export default function EventPage({ match: { params } }) {
   const classes = useStyles();
@@ -18,12 +19,12 @@ export default function EventPage({ match: { params } }) {
 
   useEffect(() => {
     async function getEvent() {
-      const event = eventsData.events.find(({ objectId }) => objectId === params.eventId);
-      if (event) {
-        setEvent(event);
+      const eventData = eventsData.events.find(({ objectId }) => objectId === params.eventId);
+      if (eventData) {
+        setEvent(eventData);
       } else {
-        const event = await searchEvent(params.eventId);
-        setEvent(...event);
+        const newEventData = await searchEvent(params.eventId);
+        setEvent(...newEventData);
       }
     }
     if (eventsData.events) getEvent();
@@ -32,13 +33,16 @@ export default function EventPage({ match: { params } }) {
   return (
     <div className={classes.root}>
       {event && (
-        <div className={classes.eventContent}>
+        <>
           <EventHeader event={event} />
           <div className={classes.details}>
             <EventDetails event={event} />
           </div>
-          <EventBio artist={event.artist.artistName} />
-        </div>
+          <div className={classes.artistInfo}>
+            <EventSongs artist={event.artist.artistName} />
+            <EventBio artist={event.artist.artistName} />
+          </div>
+        </>
       )}
     </div>
   );

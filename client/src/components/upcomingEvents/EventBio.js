@@ -23,12 +23,13 @@ export default function EventBio({ artist }) {
         <ExpansionPanelSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel1a-content"
-          id="panel1a-header">
+          id="panel1a-header"
+        >
           <Typography hidden={open}>{bio[0]}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{ display: 'flex', flexDirection: 'column' }}>
-          {bio[1] &&
-            bio[1].map((paragraph, i) => (
+          {bio[1]
+            && bio[1].map((paragraph, i) => (
               <React.Fragment key={i}>
                 <Typography>{paragraph}</Typography>
                 <br />

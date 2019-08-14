@@ -7,7 +7,7 @@ const initialState = {
   loading: false,
   events: null,
   skip: 0,
-  errors: null
+  errors: null,
 };
 
 export const EventsContext = createContext();

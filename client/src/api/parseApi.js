@@ -13,9 +13,7 @@ export function userHasRole(user, roleName) {
   const queryRoles = new Parse.Query(Parse.Role);
   queryRoles.equalTo('name', roleName);
   queryRoles.equalTo('users', user);
-  return queryRoles.find().then(function(roles) {
-    return roles.length > 0;
-  });
+  return queryRoles.find().then(roles => roles.length > 0);
 }
 
 // EVENTS
@@ -51,7 +49,7 @@ export async function addImage(event) {
 
 export async function addImages(events) {
   try {
-    for (let event of events) {
+    for (const event of events) {
       const artistSlug = toSlug(event.artist.artistName);
       const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
       const artistImgs = data.images;
@@ -75,7 +73,7 @@ export function getFutureVenueEvents(venueId) {
 
 export function getAllVenueEvents(venueIds) {
   return axios
-    .post(`/parse/events/venue/`, venueIds)
+    .post('/parse/events/venue/', venueIds)
     .then(({ data }) => {
       console.log('Hit Parse', data);
       return data;

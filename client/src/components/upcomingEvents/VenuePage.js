@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useContext, Fragment } from 'react';
+import React, {
+  useEffect, useState, useContext,
+} from 'react';
 
 import useStyles from './styles/VenueStyles';
 import { VenuesContext } from '../../contexts/venuesContext';
@@ -17,8 +19,8 @@ export default function VenuePage({ match: { params } }) {
 
   useEffect(() => {
     function getVenue() {
-      const venue = venuesData.venuesEvents.find(({ objectId }) => objectId === params.venueId);
-      setVenue(venue);
+      const venueData = venuesData.venuesEvents.find(({ objectId }) => objectId === params.venueId);
+      setVenue(venueData);
     }
     if (venuesData.venues) getVenue();
   }, [venuesData, params.venueId]);
@@ -26,11 +28,11 @@ export default function VenuePage({ match: { params } }) {
   return (
     <div className={classes.root}>
       {venue ? (
-        <Fragment>
+        <>
           <VenueHeader venue={venue} />
           <VenueDescription venue={venue} />
           <VenueEventsList venue={venue} />
-        </Fragment>
+        </>
       ) : null}
     </div>
   );

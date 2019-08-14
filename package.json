@@ -28,11 +28,12 @@
     "spotify-web-api-node": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^5.16.0",
+    "eslint": "^6.1.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
+    "prettier-eslint": "^9.0.0",
     "nodemon": "^1.19.1"
   }
 }
