@@ -64,12 +64,46 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    // maxHeight: 400,
-    // overflow: 'scroll',
   },
   songList: {
     maxHeight: 400,
     overflow: 'scroll',
+  },
+  selectedSong: {
+    backgroundColor: '#d9e2ec',
+  },
+  albumContainer: {
+    position: 'relative',
+    width: 64,
+    height: 64,
+    '&:hover overlay': {
+      opacity: 1,
+    },
+  },
+  playOverlay: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '100%',
+    width: '100%',
+    opacity: '0.8',
+    transition: '0.3s ease',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      opacity: 1,
+      backgroundColor: '#ffe6b3',
+    },
+  },
+  playIcon: {
+    color: '#fff',
+  },
+  songText: {
+    marginLeft: 10,
   },
 }));
 
