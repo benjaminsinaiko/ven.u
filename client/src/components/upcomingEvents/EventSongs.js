@@ -12,11 +12,12 @@ export default function EventsSongs({ artist }) {
   useEffect(() => {
     async function getSongs() {
       const tracks = await getTopSongs(artist);
-      setSongs(tracks);
+      if (tracks.length) {
+        setSongs(tracks);
+      }
     }
     getSongs();
   }, [artist]);
-  // console.log('songs', songs);
 
   return (
     <Paper className={classes.player}>

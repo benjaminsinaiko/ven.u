@@ -5,7 +5,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    background: 'radial-gradient(#ffffff, #1a5479)',
     minHeight: '94vh',
   },
   header: {
@@ -13,6 +12,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: 10,
     height: 400,
     width: '50%',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      marginTop: 0,
+    },
   },
   cardMedia: {
     width: '100%',
@@ -25,13 +28,16 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '1.2rem',
     paddingRight: '1.2rem',
     color: '#fff',
-    backgroundColor: 'rgba(0,0,0, 0.4)',
+    background: 'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.80) 100%)',
   },
   details: {
     display: 'flex',
     justifyContent: 'space-between',
     width: '65%',
     margin: '10px auto',
+    [theme.breakpoints.down('xs')]: {
+      width: '95%',
+    },
   },
   detailCard: {
     width: '30%',
@@ -48,15 +54,25 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
     width: '90%',
     marginBottom: '10px',
+    [theme.breakpoints.down('xs')]: {
+      flexDirection: 'column-reverse',
+      width: '95%',
+      alignItems: 'center',
+      margin: theme.spacing(2),
+    },
   },
   bioPanel: {
     width: '60%',
+    padding: theme.spacing(3),
     maxHeight: 496,
     overflow: 'scroll',
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+      padding: theme.spacing(2),
+    },
   },
-  bioHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightMedium,
+  bioSource: {
+    fontSize: '0.8em',
   },
   player: {
     width: '33%',
@@ -64,6 +80,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      marginTop: theme.spacing(2),
+    },
   },
   songList: {
     maxHeight: 400,

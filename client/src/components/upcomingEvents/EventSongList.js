@@ -23,14 +23,14 @@ export default function EventSongList({ songs }) {
     }
   };
 
-  const handleCPause = () => {
+  const handlePause = () => {
     setSelectedSong(null);
     audio.pause();
     audio.setAttribute('src', '');
   };
 
   useEffect(() => () => {
-    handleCPause();
+    handlePause();
   }, []);
 
   return (
@@ -44,7 +44,7 @@ export default function EventSongList({ songs }) {
                 <div className={classes.playOverlay}>
                   <div className={classes.playIcon}>
                     {song.id === selectedSong ? (
-                      <PauseIcon fontSize="large" onClick={handleCPause} />
+                      <PauseIcon fontSize="large" onClick={handlePause} />
                     ) : (
                       <PlayIcon fontSize="large" onClick={handlePlay(song)} />
                     )}
