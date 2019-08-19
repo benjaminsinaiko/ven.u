@@ -6,36 +6,50 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
     background: 'radial-gradient(#ffffff, #ffe3cc)',
-    minHeight: '94vh'
+    minHeight: '94vh',
   },
   headerPaper: {
     width: '80%',
     height: 300,
     display: 'flex',
-    marginTop: 10
+    marginTop: 10,
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      height: 'auto',
+      marginTop: 0,
+    },
+  },
+  headerContainer: {
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+      height: 'auto',
+    },
   },
   headerImage: {
     display: 'flex',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerDetails: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    padding: 10
+    padding: 10,
   },
   detailsHeader: {
     display: 'flex',
     flexDirection: 'column',
-    alignContent: 'center'
+    alignContent: 'center',
   },
   venueName: {
-    fontSize: '1.8rem'
+    fontSize: '1.8rem',
   },
   venueAddress: {
-    fontSize: '0.8rem'
+    fontSize: '0.8rem',
   },
   detailsBody: {
     display: 'flex',
@@ -46,35 +60,40 @@ const useStyles = makeStyles(theme => ({
       width: '1.1em',
       height: '1.1em',
       color: '#db7f0f',
-      marginRight: '0.5rem'
+      marginRight: '0.5rem',
     },
     '& p': {
       display: 'flex',
       alignItems: 'center',
-      margin: '0.5rem'
+      margin: '0.5rem',
     },
     '& a': {
-      color: 'inherit'
-      // textDecoration: 'none'
-    }
+      color: 'inherit',
+    },
   },
   venueDescription: {
     width: '60%',
     margin: 10,
     padding: 10,
-    fontStyle: 'italic'
+    fontStyle: 'italic',
+    [theme.breakpoints.down('xs')]: {
+      width: '90%',
+    },
   },
   eventsList: {
     display: 'flex',
     flexDirection: 'column',
-    width: '75%'
+    width: '75%',
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
   },
   eventsHeader: {
-    textAlign: 'center'
+    textAlign: 'center',
   },
   eventCard: {
-    width: '100%'
-  }
+    width: '100%',
+  },
 }));
 
 export default useStyles;

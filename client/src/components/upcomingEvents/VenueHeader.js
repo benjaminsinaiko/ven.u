@@ -20,7 +20,7 @@ export default function VenueHeader({ venue }) {
 
   return (
     <Paper className={classes.headerPaper}>
-      <Grid container>
+      <Grid container className={classes.headerContainer}>
         <Grid item sm={5} className={classes.headerImage}>
           <img src={venueImage} alt="venue logo" />
         </Grid>
