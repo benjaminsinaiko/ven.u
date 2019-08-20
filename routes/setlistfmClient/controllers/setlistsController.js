@@ -5,11 +5,11 @@ const config = { headers: { 'x-api-key': apiKey } };
 const baseUrl = 'https://api.setlist.fm/rest/1.0/';
 
 /* ############### GET ARTISTS ############### */
-exports.artistSearch = async function (req, res) {
+exports.artistSetlists = async function (req, res) {
   try {
-    const { data } = await axios.get(`${baseUrl}search/artists?artistName=${req.params.artistSlug}&p=1&sort=relevance`, config);
-    const artistList = data.artist.splice(0, 5);
-    res.json(artistList);
+    const { data } = await axios.get(`${baseUrl}artist/${req.params.artistId}/setlists`, config);
+    const setlists = data.setlist;
+    res.json(setlists);
   } catch (err) {
     res.json(err);
   }
