@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
   cardMedia: {
     width: '100%',
+    position: 'relative',
     backgroundPosition: 'top',
     alignItems: 'flex-end',
   },
@@ -29,6 +30,16 @@ const useStyles = makeStyles(theme => ({
     paddingRight: '1.2rem',
     color: '#fff',
     background: 'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.80) 100%)',
+  },
+  setlistsButton: {
+    position: 'absolute',
+    color: '#fff',
+    right: 10,
+    bottom: 10,
+    '& button': {
+      color: '#fff',
+      backgroundColor: 'rgba(246,173,105,0.5)',
+    },
   },
   details: {
     display: 'flex',
