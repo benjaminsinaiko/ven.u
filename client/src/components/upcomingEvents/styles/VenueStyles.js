@@ -84,6 +84,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     width: '75%',
+    // alignItems: 'center',
     [theme.breakpoints.down('xs')]: {
       width: '100%',
     },
@@ -93,6 +94,15 @@ const useStyles = makeStyles(theme => ({
   },
   eventCard: {
     width: '100%',
+  },
+  noEvents: {
+    width: '60%',
+    height: 80,
+    margin: theme.spacing(2),
+    textAlign: 'center',
+    alignSelf: 'center',
+    fontStyle: 'italic',
+    fontSize: 18,
   },
 }));
 
