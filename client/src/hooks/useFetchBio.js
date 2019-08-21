@@ -9,7 +9,13 @@ function useFetchBio(artistName) {
   useEffect(() => {
     async function fetchBio() {
       const bio = await getBio(artistName);
-      bio ? setBio(bio) : setBio(null);
+      if (!bio) {
+        setBio(null);
+      } else if (bio[0] === '') {
+        setBio(null);
+      } else {
+        setBio(bio);
+      }
       setLoading(false);
     }
     fetchBio();
