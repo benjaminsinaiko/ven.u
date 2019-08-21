@@ -43,6 +43,10 @@ export function dateAndYear(utcDateTime) {
     .format('MMM Do YYYY');
 }
 
+export function setlistDate(date) {
+  return moment(date, 'DD-MM-YYYY').format('MMM Do, YYYY');
+}
+
 export function time(utcDateTime) {
   return moment
     .utc(utcDateTime)

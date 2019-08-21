@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import PlayIcon from '@material-ui/icons/PlayArrow';
@@ -23,15 +23,15 @@ export default function EventSongList({ songs }) {
     }
   };
 
-  const handlePause = () => {
+  const handlePause = useCallback(() => {
     setSelectedSong(null);
     audio.pause();
     audio.setAttribute('src', '');
-  };
+  }, [audio]);
 
   useEffect(() => () => {
     handlePause();
-  }, []);
+  }, [handlePause]);
 
   return (
     <div>
