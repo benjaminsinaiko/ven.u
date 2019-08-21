@@ -2,7 +2,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: '#d4dce0'
+    backgroundColor: '#d4dce0',
+    minHeight: '83vh'
   },
   header: {
     paddingTop: theme.spacing(3),
@@ -16,6 +17,16 @@ const useStyles = makeStyles(theme => ({
   setlists: {
     margin: 'auto',
     maxWidth: 700
+  },
+  noSetlists: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 'auto',
+    maxWidth: 700,
+    height: 250,
+    padding: theme.spacing(3)
   },
   attribution: {
     display: 'flex',

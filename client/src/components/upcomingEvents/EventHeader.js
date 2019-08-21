@@ -15,7 +15,7 @@ export default function EventHeader({ event }) {
   const [image, loading] = useFetchImage(event);
   const [open, setOpen] = useState(false);
   const [artistsList, setArtistsList] = useState([]);
-  const [artistName] = event.artist;
+  const artistName = event.artist.artistName;
 
   useEffect(() => {
     async function getArtists() {
@@ -33,7 +33,6 @@ export default function EventHeader({ event }) {
     setOpen(false);
   }
 
-
   return (
     !loading && (
       <Card raised className={classes.header}>
@@ -48,7 +47,9 @@ export default function EventHeader({ event }) {
             </Button>
           </div>
         </CardMedia>
-        {artistsList.length && <EventArtistSelect open={open} onClose={handleClose} /> }
+        {artistsList.length && (
+          <EventArtistSelect artistsList={artistsList} open={open} onClose={handleClose} />
+        )}
       </Card>
     )
   );

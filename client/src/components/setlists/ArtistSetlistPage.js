@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 
 import { getArtistSetlists } from '../../api/setlistfmApi';
 import useStyles from './styles/ArtistSetlistPageStyles';
@@ -33,10 +34,17 @@ export default function ArtistSetlistPage({
         </Typography>
         <Typography variant="body2">Setlists</Typography>
       </div>
-      {setlists && (
+      {setlists ? (
         <div className={classes.setlists}>
           <SetlistPanels setlists={setlists} />
         </div>
+      ) : (
+        <Paper elevation={10} className={classes.noSetlists}>
+          <Typography variant="h4">No setlists found...</Typography>
+          <Typography variant="body1">
+            Add at <a href="https://www.setlist.fm/">Setlist.fm</a>
+          </Typography>
+        </Paper>
       )}
       <div className={classes.attribution}>
         <Typography>Powered by</Typography>

@@ -5,7 +5,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    minHeight: '94vh',
+    minHeight: '94vh'
   },
   header: {
     display: 'flex',
@@ -14,14 +14,14 @@ const useStyles = makeStyles(theme => ({
     width: '50%',
     [theme.breakpoints.down('xs')]: {
       width: '100%',
-      marginTop: 0,
-    },
+      marginTop: 0
+    }
   },
   cardMedia: {
     width: '100%',
     position: 'relative',
     backgroundPosition: 'top',
-    alignItems: 'flex-end',
+    alignItems: 'flex-end'
   },
   title: {
     display: 'flex',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: '1.2rem',
     paddingRight: '1.2rem',
     color: '#fff',
-    background: 'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.80) 100%)',
+    background: 'linear-gradient(0deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.80) 100%)'
   },
   setlistsButton: {
     position: 'absolute',
@@ -38,8 +38,8 @@ const useStyles = makeStyles(theme => ({
     bottom: 10,
     '& button': {
       color: '#fff',
-      backgroundColor: 'rgba(246,173,105,0.5)',
-    },
+      backgroundColor: 'rgba(246,173,105,0.5)'
+    }
   },
   details: {
     display: 'flex',
@@ -47,18 +47,18 @@ const useStyles = makeStyles(theme => ({
     width: '65%',
     margin: '10px auto',
     [theme.breakpoints.down('xs')]: {
-      width: '95%',
-    },
+      width: '95%'
+    }
   },
   detailCard: {
     width: '30%',
     height: 150,
-    textAlign: 'center',
+    textAlign: 'center'
   },
   icons: {
     margin: 10,
     fontSize: '2rem',
-    color: '#eb9335',
+    color: '#eb9335'
   },
   artistInfo: {
     display: 'flex',
@@ -69,21 +69,21 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column-reverse',
       width: '95%',
       alignItems: 'center',
-      margin: theme.spacing(2),
-    },
+      margin: theme.spacing(2)
+    }
   },
   bioPanel: {
     width: '60%',
     padding: theme.spacing(3),
-    maxHeight: 496,
+    maxHeight: 500,
     overflow: 'scroll',
     [theme.breakpoints.down('xs')]: {
       width: '90%',
-      padding: theme.spacing(2),
-    },
+      padding: theme.spacing(2)
+    }
   },
   bioSource: {
-    fontSize: '0.8em',
+    fontSize: '0.8em'
   },
   player: {
     width: '33%',
@@ -93,23 +93,23 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'flex-start',
     [theme.breakpoints.down('xs')]: {
       width: '100%',
-      marginTop: theme.spacing(2),
-    },
+      marginTop: theme.spacing(2)
+    }
   },
   songList: {
-    maxHeight: 400,
-    overflow: 'scroll',
+    maxHeight: 450,
+    overflow: 'scroll'
   },
   selectedSong: {
-    backgroundColor: '#d9e2ec',
+    backgroundColor: '#d9e2ec'
   },
   albumContainer: {
     position: 'relative',
     width: 64,
     height: 64,
     '&:hover overlay': {
-      opacity: 1,
-    },
+      opacity: 1
+    }
   },
   playOverlay: {
     display: 'flex',
@@ -127,15 +127,15 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'transparent',
     '&:hover': {
       opacity: 1,
-      backgroundColor: '#ffe6b3',
-    },
+      backgroundColor: '#ffe6b3'
+    }
   },
   playIcon: {
-    color: '#fff',
+    color: '#fff'
   },
   songText: {
-    marginLeft: 10,
-  },
+    marginLeft: 10
+  }
 }));
 
 export default useStyles;
