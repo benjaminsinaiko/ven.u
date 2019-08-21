@@ -1,9 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import Typography from '@material-ui/core/Typography';
 
 import { getArtistSetlists } from '../../api/setlistfmApi';
+import useStyles from './styles/ArtistSetlistPageStyles';
 import SetlistPanels from './SetlistPanels';
+import setlistLogo from '../../assets/sfm-logo.png';
 
-export default function ArtistSetlistPage({ location: { state: { artistInfo } } }) {
+export default function ArtistSetlistPage({
+  location: {
+    state: { artistInfo }
+  }
+}) {
+  const classes = useStyles();
   const [setlists, setSetlists] = useState([]);
   const artistId = artistInfo.mbid;
 
@@ -18,9 +26,22 @@ export default function ArtistSetlistPage({ location: { state: { artistInfo } } 
   console.log('setlists', setlists);
 
   return (
-    <div>
-      <h1>{artistInfo.name}</h1>
-      {setlists && <SetlistPanels setlists={setlists} />}
+    <div className={classes.root}>
+      <div className={classes.header}>
+        <Typography component="h1" className={classes.artistName}>
+          {artistInfo.name}
+        </Typography>
+        <Typography variant="body2">Setlists</Typography>
+      </div>
+      {setlists && (
+        <div className={classes.setlists}>
+          <SetlistPanels setlists={setlists} />
+        </div>
+      )}
+      <div className={classes.attribution}>
+        <Typography>Powered by</Typography>
+        <img src={setlistLogo} alt="setlist.fm logo" />
+      </div>
     </div>
   );
 }

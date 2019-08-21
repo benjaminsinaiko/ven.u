@@ -11,35 +11,59 @@ import useStyles from './styles/SetlistPageStyles';
 
 export default function SetlistCard({ event }) {
   const classes = useStyles();
-  let count = 1;
+  let count = 0;
 
   return (
-    <Card className={classes.card}>
+    <Card raised className={classes.card}>
       <CardContent className={classes.cardContent}>
+        <Typography className={classes.venueName} color="textSecondary">
+          at {event.venue.name}
+        </Typography>
         {event.tour && (
-          <Typography className={classes.title} color="textSecondary" gutterBottom>
+          <Typography className={classes.tour} color="textSecondary" gutterBottom>
             Tour: {event.tour.name}
           </Typography>
         )}
-        <Typography variant="h5" component="h2">
-          {event.artist.name}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-          at {event.venue.name}
-        </Typography>
+        <Typography className={classes.artistName}>{event.artist.name}</Typography>
+        {event.info && <Typography className={classes.eventInfo}>*{event.info}*</Typography>}
         <List>
           {event.sets.set.map((set, index) => (
             <div key={index}>
-              {set.name && <ListItem className={classes.setName}>{set.encore ? (set.encore === 1 ? 'Encore' : `Encore ${set.encore}`) : set.name}</ListItem>}
+              {set.name && (
+                <ListItem className={classes.setName}>
+                  {set.encore ? (set.encore === 1 ? 'Encore' : `Encore ${set.encore}`) : set.name}
+                </ListItem>
+              )}
               {set.song.map((song, i) => (
-                <ListItem key={i}>{count++}. <span className={classes.songName}>{song.name}</span></ListItem>
+                <ListItem key={i} disableGutters className={classes.songContainer}>
+                  <div className={classes.songNameRow}>
+                    {(count += 1)}. <span className={classes.songName}>{song.name}</span>
+                  </div>
+                  <div className={classes.songExtrasRow}>
+                    {song.with && (
+                      <Typography className={classes.songExtraInfo}>
+                        with/ {song.with.name}
+                      </Typography>
+                    )}
+                    {song.cover && (
+                      <Typography className={classes.songExtraInfo}>
+                        Cover of {song.cover.name}
+                      </Typography>
+                    )}
+                    {song.info && (
+                      <Typography className={classes.songExtraInfo}>Info: {song.info}</Typography>
+                    )}
+                  </div>
+                </ListItem>
               ))}
             </div>
           ))}
         </List>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button color="primary" size="small" href={event.url}>
+          From Setlist.fm
+        </Button>
       </CardActions>
     </Card>
   );
