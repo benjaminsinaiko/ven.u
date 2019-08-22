@@ -17,6 +17,15 @@ export function userHasRole(user, roleName) {
 }
 
 // EVENTS
+export async function getAllEvents() {
+  try {
+    const { data } = await axios.get('/parse/events/');
+    return data;
+  } catch (err) {
+    return err;
+  }
+}
+
 export async function getUpcomingEvents(limit, skip) {
   try {
     // set limit and skip

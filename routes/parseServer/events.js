@@ -4,6 +4,12 @@ const router = express.Router();
 
 const eventsController = require('./controllers/eventsController');
 
+// GET count events
+router.get('/count', eventsController.countEvents);
+
+// GET all events
+router.get('/', eventsController.allEvents);
+
 // GET event
 router.get('/event/:eventId', eventsController.searchEvent);
 
@@ -21,5 +27,6 @@ router.post('/', eventsController.createEvent);
 
 // POST update Event
 router.post('/event/:eventId', eventsController.updateEvent);
+
 
 module.exports = router;

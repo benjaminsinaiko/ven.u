@@ -21,15 +21,15 @@ function App() {
     <AppProviders>
       <NavBar />
       <Switch>
-        <Route exact path="/" component={LandingPage} />
         <EventsProvider>
+          <Route exact path="/" component={LandingPage} />
           <VenuesProvider>
-            <Route path="/events" component={UpcomingEventsPage} />
+            {/* <Route path="/events" component={UpcomingEventsPage} />
             <Route path="/event/:eventId" component={EventPage} />
             <Route path="/venue/:venueId" component={VenuePage} />
-            <Route path="/setlists" component={ArtistSetlistPage} />
+            <Route path="/setlists" component={ArtistSetlistPage} /> */}
             {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
-            <Route exact path="/add-events" component={AddEventsPage} />
+            {/* <Route exact path="/add-events" component={AddEventsPage} /> */}
           </VenuesProvider>
         </EventsProvider>
         <Route path="/privacy" component={Privacy} />

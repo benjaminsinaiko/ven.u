@@ -7,7 +7,7 @@ const moment = require('moment');
 const startOfDay = moment().startOf('day');
 const utcStart = moment.utc(startOfDay).format();
 
-/* ############### ALL UPCOMING EVENTS ############### */
+/* ############### ALL UPCOMING EVENTS W/Limits ############### */
 exports.index = function (req, res) {
   const Events = Parse.Object.extend('Events');
   const queryEvents = new Parse.Query(Events);
@@ -25,6 +25,31 @@ exports.index = function (req, res) {
     'venue.venuAvatar',
     'venue.Address',
     'venue.venueCity',
+    'artist.artistName',
+  ]);
+
+  queryEvents
+    .find()
+    .then((events) => {
+      res.json(events);
+    })
+    .catch(err => res.json(err));
+};
+
+/* ############### ALL UPCOMING EVENTS ############### */
+exports.allEvents = function (req, res) {
+  const Events = Parse.Object.extend('Events');
+  const queryEvents = new Parse.Query(Events);
+  queryEvents.notEqualTo('NotPublished', true);
+  queryEvents.greaterThanOrEqualTo('eventStartDateTime', new Date(utcStart));
+  queryEvents.ascending('eventStartDateTime');
+  queryEvents.limit(1000);
+  queryEvents.include('artist');
+  queryEvents.include('venue');
+  queryEvents.select([
+    'eventStartDateTime.iso',
+    'title',
+    'venue.venueName',
     'artist.artistName',
   ]);
 
@@ -58,6 +83,17 @@ exports.searchEvent = function (req, res) {
       res.json(events);
     })
     .catch(err => res.json(err));
+};
+
+/* ############### COUNT EVENTS ############### */
+exports.countEvents = function (req, res) {
+  const Events = Parse.Object.extend('Events');
+  const query = new Parse.Query(Events);
+
+  query.notEqualTo('NotPublished', true);
+  query.greaterThanOrEqualTo('eventStartDateTime', new Date(utcStart));
+
+  query.count().then(count => res.json({ total_events: count }));
 };
 
 /* ############### FUTURE EVENTS BY VENUE ############### */

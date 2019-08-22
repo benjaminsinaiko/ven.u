@@ -10,3 +10,13 @@ export default async function getTopSongs(artistName) {
     return err;
   }
 }
+
+export async function getArtistImage(artistSlug) {
+  try {
+    const { data } = await axios.get(`spotify/artists/search/${artistSlug}`);
+    const artistImgs = data.images;
+    return artistImgs;
+  } catch (err) {
+    return err;
+  }
+}

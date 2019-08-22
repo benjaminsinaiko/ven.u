@@ -1,32 +1,44 @@
 import React, { useReducer, createContext, useEffect } from 'react';
 
+import toSlug from '../utils/toSlug';
 import eventsReducer from '../reducers/eventsReducer';
-import { getUpcomingEvents } from '../api/parseApi';
+import useSessionStorageReducer from '../hooks/useSessionStorageReducer';
+import { getAllEvents } from '../api/parseApi';
 
 const initialState = {
   loading: false,
   events: null,
-  skip: 0,
-  errors: null,
+  errors: null
 };
 
 export const EventsContext = createContext();
 export const EventsDispatchContext = createContext();
 
 export const EventsProvider = ({ children }) => {
-  const [eventsData, dispatch] = useReducer(eventsReducer, initialState);
+  const [eventsData, dispatch] = useSessionStorageReducer('events', initialState, eventsReducer);
 
   useEffect(() => {
     async function fetchEvents() {
       dispatch({ type: 'START_LOADING' });
       try {
-        const response = await getUpcomingEvents(25);
-        dispatch({ type: 'LOAD_EVENTS', events: response });
+        const response = await getAllEvents();
+        const withSlug = await response.map(event => {
+          event.artist['artistSlug'] = toSlug(event.artist.artistName);
+          return event;
+        });
+        dispatch({ type: 'LOAD_EVENTS', events: withSlug });
       } catch (error) {
         dispatch({ type: 'LOAD_ERROR', errors: error });
       }
     }
-    fetchEvents();
+    const cachedEvents = JSON.parse(window.sessionStorage.getItem('events'));
+    if (cachedEvents.events === null) {
+      console.log('from fetch');
+      fetchEvents();
+    } else {
+      console.log('from sessionStorage');
+      dispatch({ type: 'LOAD_EVENTS', events: cachedEvents.events });
+    }
   }, [dispatch]);
 
   return (
