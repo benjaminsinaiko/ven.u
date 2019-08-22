@@ -18,6 +18,8 @@ spotifyApi.clientCredentialsGrant().then(
   (err) => {
     console.log('Something went wrong when retrieving an access token', err.message);
   },
-);
+).catch((error) => {
+  console.log('Something went wrong when retrieving an access token', error.message);
+});
 
 module.exports = spotifyApi;
