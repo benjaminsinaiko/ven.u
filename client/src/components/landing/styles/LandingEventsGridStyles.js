@@ -2,33 +2,23 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: 450,
     display: 'flex',
+    flexDirection: 'column',
+    height: 450,
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignContent: 'center',
     overflow: 'hidden',
     backgroundColor: '#ffda8d'
   },
   header: {
+    alignSelf: 'center',
     fontSize: '2rem',
     marginBottom: '35px'
   },
-  loading: {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
   gridList: {
     flexWrap: 'nowrap',
-    alignItems: 'center',
-    '& li': {
-      width: '40%'
-    }
-  },
-  tile: {
-    backgroundColor: theme.palette.background.paper
+    alignItems: 'center'
   },
   venueName: {
     display: 'flex',
@@ -52,14 +42,13 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.down('xs')]: {
       fontSize: '0.8rem'
     }
+  },
+  loading: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
-  // date: {
-  //   color: 'white',
-  //   marginRight: theme.spacing(1),
-  //   [theme.breakpoints.down('xs')]: {
-  //     fontSize: '0.5rem'
-  //   }
-  // }
 }));
 
 export default useStyles;
