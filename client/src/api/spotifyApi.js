@@ -1,5 +1,5 @@
 import axios from 'axios';
-import toSlug from '../utils/toSlug';
+import { toSlug } from '../utils/toSlug';
 import crowdImg from '../assets/crowdImage_small.jpg';
 
 export default async function getTopSongs(artistName) {

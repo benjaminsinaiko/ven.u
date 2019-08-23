@@ -54,4 +54,19 @@ export function time(utcDateTime) {
     .format('h:mm a');
 }
 
+export function getRecent(events) {
+  const pastDate = moment()
+    .subtract(30, 'days')
+    .startOf('day')
+    .format();
+  return events.filter(event => convertLocal(event.createdAt) > pastDate).slice(0, 20);
+}
+
+export function fromToday(events) {
+  const today = moment()
+    .startOf('day')
+    .format();
+  return events.filter(event => convertLocal(event.eventStartDateTime.iso) >= today);
+}
+
 // 2019-06-21T05:23:19.559Z

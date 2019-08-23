@@ -1,9 +1,10 @@
 import React, { createContext, useEffect } from 'react';
 
-import toSlug from '../utils/toSlug';
 import eventsReducer from '../reducers/eventsReducer';
 import useSessionStorageReducer from '../hooks/useSessionStorageReducer';
 import { getAllEvents } from '../api/parseApi';
+import { toSlug } from '../utils/toSlug';
+import { fromToday } from '../utils/dateTime';
 
 const initialState = {
   loading: false,
@@ -27,7 +28,7 @@ export const EventsProvider = ({ children }) => {
           newEvent.artist.artistSlug = toSlug(newEvent.artist.artistName);
           return newEvent;
         });
-        dispatch({ type: 'LOAD_EVENTS', events: withSlug });
+        dispatch({ type: 'LOAD_EVENTS', events: fromToday(withSlug) });
       } catch (error) {
         dispatch({ type: 'LOAD_ERROR', errors: error });
       }
@@ -38,7 +39,7 @@ export const EventsProvider = ({ children }) => {
       fetchEvents();
     } else {
       console.log('from sessionStorage');
-      dispatch({ type: 'LOAD_EVENTS', events: cachedEvents.events });
+      dispatch({ type: 'LOAD_EVENTS', events: fromToday(cachedEvents.events) });
     }
   }, [dispatch]);
 

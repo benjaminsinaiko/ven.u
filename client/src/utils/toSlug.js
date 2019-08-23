@@ -1,6 +1,6 @@
 import slug from 'slug';
 
-export default function toSlug(string) {
+export function toSlug(string) {
   return slug(string, { lower: true });
 }
 
