@@ -1,7 +1,6 @@
 import React, { createContext, useEffect } from 'react';
 
 import venuesReducer from '../reducers/venuesReducer';
-// import useLocalStorageReducer from '../hooks/useLocalStorageReducer';
 import useSessionStorageReducer from '../hooks/useSessionStorageReducer';
 import { getVenues, getFutureVenueEvents } from '../api/parseApi';
 
@@ -9,7 +8,7 @@ const initialState = {
   loading: true,
   venues: null,
   venuesEvents: null,
-  errors: null
+  errors: null,
 };
 
 export const VenuesContext = createContext();
@@ -39,7 +38,7 @@ export const VenuesProvider = ({ children }) => {
   useEffect(() => {
     async function fetchEvents() {
       try {
-        const eventsData = venuesData.venues.map(async venue => {
+        const eventsData = venuesData.venues.map(async (venue) => {
           const response = await getFutureVenueEvents(venue.objectId);
           return { ...venue, events: response };
         });
@@ -55,8 +54,7 @@ export const VenuesProvider = ({ children }) => {
     } else {
       dispatch({ type: 'LOAD_VENUES_EVENTS', venuesEvents: cachedVenues.venuesEvents });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [venuesData.venues]);
+  }, [venuesData.venues, dispatch]);
 
   return (
     <VenuesContext.Provider value={venuesData}>

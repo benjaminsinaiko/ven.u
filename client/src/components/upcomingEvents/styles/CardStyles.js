@@ -15,11 +15,11 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
     },
   },
-  spinner: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '77vh',
+  skeleton: {
+    height: SM_SIZE,
+    [theme.breakpoints.down('xs')]: {
+      height: XS_SIZE,
+    },
   },
   eventCard: {
     display: 'flex',

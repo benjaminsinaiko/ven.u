@@ -24,10 +24,10 @@ function App() {
         <EventsProvider>
           <Route exact path="/" component={LandingPage} />
           <VenuesProvider>
-            {/* <Route path="/events" component={UpcomingEventsPage} />
-            <Route path="/event/:eventId" component={EventPage} />
-            <Route path="/venue/:venueId" component={VenuePage} />
-            <Route path="/setlists" component={ArtistSetlistPage} /> */}
+            <Route path="/events" component={UpcomingEventsPage} />
+            {/* <Route path="/event/:eventId" component={EventPage} /> */}
+            {/* <Route path="/venue/:venueId" component={VenuePage} /> */}
+            {/* <Route path="/setlists" component={ArtistSetlistPage} /> */}
             {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
             {/* <Route exact path="/add-events" component={AddEventsPage} /> */}
           </VenuesProvider>

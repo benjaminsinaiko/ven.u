@@ -43,7 +43,8 @@ function UpcomingEventsPage({ match: { path }, location: { pathname } }) {
           onChange={handleChange}
           indicatorColor="primary"
           textColor="primary"
-          centered>
+          centered
+        >
           <Tab label="Recently Added" component={Link} to={`${path}/new`} />
           <Tab label="All Shows" component={Link} to={`${path}/all`} />
           <Tab label="Venues" component={Link} to={`${path}/venues`} />

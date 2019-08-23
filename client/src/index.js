@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
+import Parse from 'parse';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import Parse from 'parse';
 import facebookInit from './api/facebookIinit';
 
 // Initialize Parse
@@ -17,7 +17,7 @@ ReactDOM.render(
   <Router>
     <App />
   </Router>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

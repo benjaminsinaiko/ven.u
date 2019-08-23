@@ -15,27 +15,27 @@ import { getArtistImage } from '../../api/spotifyApi';
 
 const LandingEventsGrid = () => {
   const classes = useStyles();
-  const { events } = useContext(EventsContext);
-  const numUpcomingEvents = 15;
+  const { events, loading } = useContext(EventsContext);
+  const numUpcomingEvents = 1;
   const [upcomingEvents, setUpcomingEvents] = useState([]);
-  console.log('upcoming', upcomingEvents);
 
   useEffect(() => {
     async function fetchImages() {
       try {
-        const upcoming = events.slice(0, numUpcomingEvents).map(async event => {
+        const upcoming = events.slice(0, numUpcomingEvents).map(async (event) => {
           const response = await getArtistImage(event.artist.artistSlug, 'md');
-          event.artist.artistImg = response;
-          return event;
+          const newEvent = event;
+          newEvent.artist.artistImg = response;
+          return newEvent;
         });
         const eventsWithImages = await Promise.all(upcoming);
-        setUpcomingEvents(eventsWithImages);
+        return setUpcomingEvents(eventsWithImages);
       } catch (err) {
-        console.log(err);
+        return err;
       }
     }
-    fetchImages();
-  }, []);
+    if (!loading) fetchImages();
+  }, [events]);
 
   const theme = useTheme();
   const xsGrid = useMediaQuery(theme.breakpoints.down('xs'));
@@ -48,8 +48,8 @@ const LandingEventsGrid = () => {
       </Typography>
 
       <GridList className={classes.gridList} cols={columns} cellHeight={300}>
-        {upcomingEvents &&
-          upcomingEvents.map(event => (
+        {upcomingEvents
+          && upcomingEvents.map(event => (
             <GridListTile component={Link} key={event.objectId} to={`/event/${event.objectId}`}>
               <img style={{ width: '100%' }} src={event.artist.artistImg} alt={event.title} />
               <GridListTileBar title={event.venue.venueName} titlePosition="top" />
@@ -59,7 +59,7 @@ const LandingEventsGrid = () => {
                 classes={{
                   root: classes.titleBar,
                   title: classes.title,
-                  subtitle: classes.subtitle
+                  subtitle: classes.subtitle,
                 }}
               />
             </GridListTile>

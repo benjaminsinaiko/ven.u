@@ -1,6 +1,5 @@
 import Parse from 'parse';
 import axios from 'axios';
-import toSlug from '../utils/toSlug';
 
 // USERS
 
@@ -42,31 +41,6 @@ export async function searchEvent(objectId) {
     return data;
   } catch (err) {
     return err;
-  }
-}
-
-export async function addImage(event) {
-  try {
-    const artistSlug = toSlug(event.artist.artistName);
-    const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-    const artistImgs = data.images[2] || data.images[0];
-    return artistImgs;
-  } catch (error) {
-    return error;
-  }
-}
-
-export async function addImages(events) {
-  try {
-    for (const event of events) {
-      const artistSlug = toSlug(event.artist.artistName);
-      const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-      const artistImgs = data.images;
-      event.images = artistImgs;
-    }
-    return events;
-  } catch (error) {
-    return error;
   }
 }
 

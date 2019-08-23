@@ -14,7 +14,8 @@ export default async function getTopSongs(artistName) {
 
 export async function getArtistImage(artistSlug, size) {
   try {
-    const { data } = await axios.get(`spotify/artists/search/${artistSlug}`);
+    const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
+    console.log('hit spotify');
     const artistImgs = data.images;
     if (artistImgs) {
       switch (size) {

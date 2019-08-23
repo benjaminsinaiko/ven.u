@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import EventIcon from '@material-ui/icons/CalendarToday';
 // import EventAvailableIcon from '@material-ui/icons/EventAvailable';
 import IconButton from '@material-ui/core/IconButton';
+import Skeleton from '@material-ui/lab/Skeleton';
 
 import useStyles from './styles/CardStyles';
 import { convertLocalDisplay } from '../../utils/dateTime';
@@ -15,19 +16,17 @@ import useFetchImage from '../../hooks/useFetchImage';
 
 export default function ListEventCard({ event }) {
   const classes = useStyles();
-  const [artistImage, loading] = useFetchImage(event);
+  const [artistImage, loading] = useFetchImage(event.artist.artistSlug);
 
   return (
     <Link to={`/event/${event.objectId}`} style={{ textDecoration: 'none' }}>
       <Card className={classes.eventCard}>
         <Grid container>
           <Grid item xs={3}>
-            {!loading && artistImage && (
-              <img
-                src={artistImage[2].url || artistImage}
-                className={classes.eventImage}
-                alt="Artist"
-              />
+            {loading ? (
+              <Skeleton variant="rect" className={classes.skeleton} />
+            ) : (
+              <img src={artistImage} className={classes.eventImage} alt="Artist" />
             )}
           </Grid>
           <Grid item xs={7} sm={6} className={classes.details}>

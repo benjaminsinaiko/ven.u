@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useContext, memo } from 'react';
+import React, {
+  useState, useEffect, useContext, memo,
+} from 'react';
 import moment from 'moment';
-import CircularProgress from '@material-ui/core/CircularProgress';
 
 import useStyles from './styles/CardStyles';
 import { EventsContext } from '../../contexts/eventsContext';
@@ -14,10 +15,10 @@ function ListRecentEvents() {
 
   function getRecent(events) {
     const pastDate = moment()
-      .subtract(120, 'days')
+      .subtract(30, 'days')
       .startOf('day')
       .format();
-    return events.filter(event => convertLocal(event.createdAt) > pastDate);
+    return events.filter(event => convertLocal(event.createdAt) > pastDate).slice(0, 20);
   }
 
   useEffect(() => {
@@ -30,13 +31,7 @@ function ListRecentEvents() {
 
   return (
     <div className={classes.rootCard}>
-      {!recent ? (
-        <div className={classes.spinner}>
-          <CircularProgress />
-        </div>
-      ) : (
-        recent.map(event => <EventCard key={event.objectId} event={event} />)
-      )}
+      {recent && recent.map(event => <EventCard key={event.objectId} event={event} />)}
     </div>
   );
 }

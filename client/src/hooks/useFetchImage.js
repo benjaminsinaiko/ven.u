@@ -1,27 +1,23 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import toSlug from '../utils/toSlug';
-import crowdImage from '../assets/crowdImage_small.jpg';
+import { getArtistImage } from '../api/spotifyApi';
 
-export default function useFetchImage(event) {
-  const [fetchImage, setFetchImage] = useState(null);
+export default function useFetchImage(artistSlug) {
+  const [artistImage, setArtistImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchImage() {
       setLoading(true);
       try {
-        const artistSlug = toSlug(event.artist.artistName);
-        const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
-        const artistImg = data.images ? data.images : crowdImage;
-        setFetchImage(artistImg);
-      } catch (error) {
-        return error;
+        const response = await getArtistImage(artistSlug, 'sm');
+        setArtistImage(response);
+      } catch (err) {
+        setArtistImage(null);
       }
       setLoading(false);
     }
     fetchImage();
-  }, [event.artist.artistName]);
+  }, [artistSlug]);
 
-  return [fetchImage, loading];
+  return [artistImage, loading];
 }

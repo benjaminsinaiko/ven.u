@@ -1,4 +1,4 @@
-import React, { useReducer, createContext, useEffect } from 'react';
+import React, { createContext, useEffect } from 'react';
 
 import toSlug from '../utils/toSlug';
 import eventsReducer from '../reducers/eventsReducer';
@@ -8,7 +8,7 @@ import { getAllEvents } from '../api/parseApi';
 const initialState = {
   loading: false,
   events: null,
-  errors: null
+  errors: null,
 };
 
 export const EventsContext = createContext();
@@ -22,9 +22,10 @@ export const EventsProvider = ({ children }) => {
       dispatch({ type: 'START_LOADING' });
       try {
         const response = await getAllEvents();
-        const withSlug = await response.map(event => {
-          event.artist['artistSlug'] = toSlug(event.artist.artistName);
-          return event;
+        const withSlug = await response.map((event) => {
+          const newEvent = event;
+          newEvent.artist.artistSlug = toSlug(newEvent.artist.artistName);
+          return newEvent;
         });
         dispatch({ type: 'LOAD_EVENTS', events: withSlug });
       } catch (error) {
