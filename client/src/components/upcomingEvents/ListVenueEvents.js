@@ -7,17 +7,18 @@ import useStyles from './styles/CardStyles';
 
 function ListVenueEvents() {
   const classes = useStyles();
-  const { venues, venuesEvents, loading } = useContext(VenuesContext);
+  const { venues, loading } = useContext(VenuesContext);
+
 
   return (
     <div className={classes.rootCard}>
       <Grid container>
         {!loading
-          ? (venuesEvents ? venuesEvents : venues).map(venue => (
-              <Grid item xs={12} sm={6} key={venue.objectId}>
-                <VenueCard venue={venue} />
-              </Grid>
-            ))
+          ? (venues).map(venue => (
+            <Grid item xs={12} sm={6} key={venue.objectId}>
+              <VenueCard venue={venue} />
+            </Grid>
+          ))
           : null}
       </Grid>
     </div>

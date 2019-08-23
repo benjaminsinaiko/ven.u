@@ -3,25 +3,19 @@ const venuesReducer = (state, action) => {
     case 'START_LOADING':
       return {
         ...state,
-        loading: true
+        loading: true,
       };
     case 'LOAD_VENUES':
       return {
         ...state,
         loading: false,
-        venues: action.venues
-      };
-    case 'LOAD_VENUES_EVENTS':
-      return {
-        ...state,
-        loading: false,
-        venuesEvents: action.venuesEvents
+        venues: action.venues,
       };
     case 'LOAD_ERROR':
       return {
         ...state,
         loading: false,
-        errors: action.error
+        errors: action.error,
       };
     default:
       return state;
