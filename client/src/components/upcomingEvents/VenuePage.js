@@ -1,8 +1,7 @@
-import React, {
-  useEffect, useState, useContext,
-} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 
 import useStyles from './styles/VenueStyles';
+import { EventsContext } from '../../contexts/eventsContext';
 import { VenuesContext } from '../../contexts/venuesContext';
 import VenueHeader from './VenueHeader';
 import VenueDescription from './VenueDescription';
@@ -10,8 +9,10 @@ import VenueEventsList from './VenueEventsList';
 
 export default function VenuePage({ match: { params } }) {
   const classes = useStyles();
-  const venuesData = useContext(VenuesContext);
+  const { events } = useContext(EventsContext);
+  const { venues } = useContext(VenuesContext);
   const [venue, setVenue] = useState(null);
+  const [venueEvents, setVenueEvents] = useState(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,11 +20,19 @@ export default function VenuePage({ match: { params } }) {
 
   useEffect(() => {
     function getVenue() {
-      const venueData = venuesData.venuesEvents.find(({ objectId }) => objectId === params.venueId);
+      const venueData = venues.find(({ objectId }) => objectId === params.venueId);
       setVenue(venueData);
     }
-    if (venuesData.venues) getVenue();
-  }, [venuesData, params.venueId]);
+    getVenue();
+  }, [events, venues, params.venueId]);
+
+  useEffect(() => {
+    function filterEvents() {
+      const filteredEvents = events.filter(e => e.venue.objectId === venue.objectId);
+      setVenueEvents(filteredEvents);
+    }
+    if (venue) filterEvents();
+  }, [events, venue]);
 
   return (
     <div className={classes.root}>
@@ -31,7 +40,7 @@ export default function VenuePage({ match: { params } }) {
         <>
           <VenueHeader venue={venue} />
           <VenueDescription venue={venue} />
-          <VenueEventsList venue={venue} />
+          <VenueEventsList events={venueEvents} />
         </>
       ) : null}
     </div>

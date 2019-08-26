@@ -16,7 +16,7 @@ import useFetchImage from '../../hooks/useFetchImage';
 
 export default function ListEventCard({ event }) {
   const classes = useStyles();
-  const [artistImage, loading] = useFetchImage(event.artist.artistSlug);
+  const [artistImage, loading] = useFetchImage(event.artist.artistSlug, 'sm');
 
   return (
     <Link to={`/event/${event.objectId}`} style={{ textDecoration: 'none' }}>

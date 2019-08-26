@@ -10,7 +10,7 @@ import EventSongs from './EventSongs';
 
 export default function EventPage({ match: { params } }) {
   const classes = useStyles();
-  const eventsData = useContext(EventsContext);
+  const { events } = useContext(EventsContext);
   const [event, setEvent] = useState(null);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function EventPage({ match: { params } }) {
 
   useEffect(() => {
     async function getEvent() {
-      const eventData = eventsData.events.find(({ objectId }) => objectId === params.eventId);
+      const eventData = events.find(({ objectId }) => objectId === params.eventId);
       if (eventData) {
         setEvent(eventData);
       } else {
@@ -27,8 +27,8 @@ export default function EventPage({ match: { params } }) {
         setEvent(...newEventData);
       }
     }
-    if (eventsData.events) getEvent();
-  }, [eventsData, params.eventId]);
+    if (events) getEvent();
+  }, [events, params.eventId]);
 
   return (
     <div className={classes.root}>

@@ -9,8 +9,8 @@ import setlistLogo from '../../assets/sfm-logo.png';
 
 export default function ArtistSetlistPage({
   location: {
-    state: { artistInfo }
-  }
+    state: { artistInfo },
+  },
 }) {
   const classes = useStyles();
   const [setlists, setSetlists] = useState([]);
@@ -23,8 +23,6 @@ export default function ArtistSetlistPage({
     }
     fetchSetlists();
   }, [artistId]);
-
-  console.log('setlists', setlists);
 
   return (
     <div className={classes.root}>
