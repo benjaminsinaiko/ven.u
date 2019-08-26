@@ -1,47 +1,43 @@
-import React, { useState, useContext, memo } from 'react';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
+import React, { useState, useContext } from 'react';
+import Skeleton from '@material-ui/lab/Skeleton';
+import { Typography } from '@material-ui/core';
 import { EventsContext } from '../../contexts/eventsContext';
-import { EventsDispatchContext } from '../../contexts/eventsContext';
-import { getUpcomingEvents } from '../../api/parseApi';
-import EventCard from './ListEventCard';
+
 import useStyles from './styles/CardStyles';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
-import { Typography } from '@material-ui/core';
+import EventCard from './ListEventCard';
 
 function ListAllEvents() {
   const classes = useStyles();
-  const { events, skip } = useContext(EventsContext);
-  const dispatch = useContext(EventsDispatchContext);
+  const { events } = useContext(EventsContext);
   const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreEvents);
-  const [moreToFetch, setMoreToFetch] = useState(true);
+  const [moreToShow, setMoreToShow] = useState(true);
+  const [displayEvents, setDisplayEvents] = useState(events.slice(0, 20));
 
   function fetchMoreEvents() {
     setTimeout(async () => {
-      if (moreToFetch) {
-        const fetchMore = await getUpcomingEvents(25, skip);
+      const displayLength = displayEvents.length;
+      if (displayLength < events.length) {
+        const newShowEvents = events.slice(displayLength, displayLength + 5);
+        setDisplayEvents([...displayEvents, ...newShowEvents]);
         setIsFetching(false);
-        if (fetchMore.length) {
-          dispatch({ type: 'LOAD_MORE_EVENTS', moreEvents: fetchMore });
-        } else {
-          setMoreToFetch(false);
-        }
-        return;
+      } else {
+        setMoreToShow(false);
+        setIsFetching(false);
       }
-    }, 1000);
+    }, 1500);
   }
 
   return (
     <div className={classes.rootCard}>
-      {events && events.map(event => <EventCard key={event.objectId} event={event} />)}
-      {isFetching && moreToFetch && (
-        <div className={classes.spinner}>
-          <CircularProgress />
-        </div>
+      {displayEvents
+        && displayEvents.map(event => <EventCard key={event.objectId} event={event} />)}
+      {isFetching && <Skeleton className={classes.skeleton} variant="rect" />}
+      {!moreToShow && (
+        <Typography className={classes.allEventsShown}>All Events Showing</Typography>
       )}
-      {!moreToFetch && <Typography className={classes.allEventsShown}>All Showing</Typography>}
     </div>
   );
 }
 
-export default memo(ListAllEvents);
+export default ListAllEvents;
