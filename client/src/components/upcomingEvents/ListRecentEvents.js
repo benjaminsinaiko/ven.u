@@ -11,12 +11,21 @@ function ListRecentEvents() {
   const [recent, setRecent] = useState([]);
 
   useEffect(() => {
-    async function getRecentWithImgs() {
+    async function getRecentEvents() {
       const recentFiltered = await getRecent(eventsData.events);
-      setRecent(recentFiltered);
+      if (recentFiltered.length) {
+        setRecent(recentFiltered);
+      } else {
+        const last10Events = eventsData.events
+          .sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1))
+          .slice(0, 6);
+        setRecent(last10Events);
+      }
     }
-    if (eventsData.events) getRecentWithImgs();
+    if (eventsData.events) getRecentEvents();
   }, [eventsData]);
+
+  console.log(recent);
 
   return (
     <div className={classes.rootCard}>

@@ -17,7 +17,7 @@ export async function getArtistImage(artistSlug, size) {
     const { data } = await axios.get(`/spotify/artists/search/${artistSlug}`);
     console.log('hit spotify');
     const artistImgs = data.images;
-    if (artistImgs) {
+    if (artistImgs && artistImgs.length) {
       switch (size) {
         case 'lg':
           return artistImgs[0].url;
