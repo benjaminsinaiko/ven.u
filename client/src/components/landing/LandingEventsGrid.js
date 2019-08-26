@@ -51,7 +51,7 @@ const LandingEventsGrid = () => {
         {upcomingEvents
           && upcomingEvents.map(event => (
             <GridListTile component={Link} key={event.objectId} to={`/event/${event.objectId}`}>
-              <img style={{ width: '100%' }} src={event.artist.artistImg} alt={event.title} />
+              <img src={event.artist.artistImg} alt={event.title} />
               <GridListTileBar title={event.venue.venueName} titlePosition="top" />
               <GridListTileBar
                 title={event.title}
