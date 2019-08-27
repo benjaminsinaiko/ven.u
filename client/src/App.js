@@ -10,6 +10,7 @@ import UpcomingEventsPage from './components/upcomingEvents';
 import EventPage from './components/upcomingEvents/EventPage';
 import VenuePage from './components/upcomingEvents/VenuePage';
 import ArtistSetlistPage from './components/setlists/ArtistSetlistPage';
+import ProfilePage from './components/profile';
 import AddEventsPage from './components/addEvents/AddEventsPage';
 
 import AppProviders from './contexts/AppProviders';
@@ -28,6 +29,7 @@ function App() {
             <Route path="/event/:eventId" component={EventPage} />
             <Route path="/venue/:venueId" component={VenuePage} />
             <Route path="/setlists" component={ArtistSetlistPage} />
+            <Route path="/profile" component={ProfilePage} />
             {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
             <Route exact path="/add-events" component={AddEventsPage} />
           </VenuesProvider>

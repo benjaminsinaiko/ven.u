@@ -94,7 +94,9 @@ function Navbar() {
                 open={menuOpen}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={handleMenuClose} component={Link} to="/profile">
+                  Profile
+                </MenuItem>
                 {currentUser.isAdmin && (
                   <MenuItem onClick={handleMenuClose} component={Link} to="/add-events">
                     Add Events

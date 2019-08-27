@@ -1,4 +1,6 @@
-import React, { useState, createContext, useContext, useEffect } from 'react';
+import React, {
+ useState, createContext, useContext, useEffect 
+} from 'react';
 
 import * as authClient from '../utils/authClient';
 import { getCurrentUser, userHasRole } from '../api/parseApi';
@@ -10,16 +12,16 @@ function AuthProvider(props) {
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    userHasRole(user, 'admin').then(isAdmin => {
-      setIsAdmin(isAdmin);
+    userHasRole(user, 'admin').then((adminResponse) => {
+      setIsAdmin(adminResponse);
     });
   }, [user]);
 
   const login = async (username, password) => {
-    const user = await authClient.login(username, password);
+    const userData = await authClient.login(username, password);
     try {
-      if (user instanceof Error === false) setUser(user);
-      return user;
+      if (userData instanceof Error === false) setUser(userData);
+      return userData;
     } catch (e) {
       return e;
     }
@@ -51,7 +53,15 @@ function AuthProvider(props) {
 
   return (
     <AuthContext.Provider
-      value={{ isAdmin, user, login, logout, signUp, fbLogin, fbLogout }}
+      value={{
+        isAdmin,
+        user,
+        login,
+        logout,
+        signUp,
+        fbLogin,
+        fbLogout,
+      }}
       {...props}
     />
   );

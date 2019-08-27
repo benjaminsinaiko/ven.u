@@ -17,6 +17,6 @@ router.post('/reset', usersController.resetPassword);
 router.get('/history/:userId', usersController.userHistory);
 
 // GET user attending
-router.get('/upcoming/:userId', usersController.userAttending);
+router.get('/attending/:userId', usersController.userAttending);
 
 module.exports = router;
