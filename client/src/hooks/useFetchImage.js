@@ -17,7 +17,7 @@ export default function useFetchImage(artistSlug, size = 'sm') {
       setLoading(false);
     }
     fetchImage();
-  }, [artistSlug]);
+  }, [artistSlug, size]);
 
   return [artistImage, loading];
 }

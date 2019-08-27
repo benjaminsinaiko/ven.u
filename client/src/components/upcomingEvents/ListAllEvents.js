@@ -19,13 +19,13 @@ function ListAllEvents() {
       const displayLength = displayEvents.length;
       if (displayLength < events.length) {
         const newShowEvents = events.slice(displayLength, displayLength + 5);
-        setDisplayEvents([...displayEvents, ...newShowEvents]);
+        setDisplayEvents(prevState => [...prevState, ...newShowEvents]);
         setIsFetching(false);
       } else {
         setMoreToShow(false);
         setIsFetching(false);
       }
-    }, 1500);
+    }, 1000);
   }
 
   return (

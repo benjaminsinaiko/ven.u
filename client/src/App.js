@@ -29,7 +29,7 @@ function App() {
             <Route path="/venue/:venueId" component={VenuePage} />
             <Route path="/setlists" component={ArtistSetlistPage} />
             {/* <PrivateRoute exact path="/add-events" component={AddEventsPage} /> */}
-            {/* <Route exact path="/add-events" component={AddEventsPage} /> */}
+            <Route exact path="/add-events" component={AddEventsPage} />
           </VenuesProvider>
         </EventsProvider>
         <Route path="/privacy" component={Privacy} />

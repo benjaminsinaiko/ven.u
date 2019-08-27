@@ -17,7 +17,7 @@ const useInfiniteScroll = (callback) => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isFetching]);
 
   useEffect(() => {
     if (!isFetching) return;

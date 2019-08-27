@@ -15,7 +15,7 @@ import { getArtistImage } from '../../api/spotifyApi';
 
 const LandingEventsGrid = () => {
   const classes = useStyles();
-  const { events, loading } = useContext(EventsContext);
+  const { events } = useContext(EventsContext);
   const numUpcomingEvents = 15;
   const [upcomingEvents, setUpcomingEvents] = useState([]);
 
@@ -34,7 +34,7 @@ const LandingEventsGrid = () => {
         return err;
       }
     }
-    if (!loading) fetchImages();
+    if (events.length) fetchImages();
   }, []);
 
   const theme = useTheme();
