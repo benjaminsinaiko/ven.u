@@ -46,12 +46,7 @@ exports.allEvents = function (req, res) {
   queryEvents.limit(1000);
   queryEvents.include('artist');
   queryEvents.include('venue');
-  queryEvents.select([
-    'eventStartDateTime.iso',
-    'title',
-    'venue.venueName',
-    'artist.artistName',
-  ]);
+  queryEvents.select(['eventStartDateTime.iso', 'title', 'venue.venueName', 'artist.artistName']);
 
   queryEvents
     .find()
@@ -224,8 +219,12 @@ exports.updateEvent = async function (req, res) {
   const Events = Parse.Object.extend('Events');
   const query = new Parse.Query(Events);
   query.get(req.params.eventId).then((event) => {
-    if (req.body.eventStartDateTime) event.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
-    if (req.body.eventEndDateTime) event.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
+    if (req.body.eventStartDateTime) {
+      event.set('eventStartDateTime', new Date(req.body.eventStartDateTime));
+    }
+    if (req.body.eventEndDateTime) {
+      event.set('eventEndDateTime', new Date(req.body.eventEndDateTime));
+    }
     if (req.body.artist) {
       event.set('artist', {
         __type: 'Pointer',

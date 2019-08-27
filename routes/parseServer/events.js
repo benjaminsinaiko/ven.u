@@ -28,5 +28,4 @@ router.post('/', eventsController.createEvent);
 // POST update Event
 router.post('/event/:eventId', eventsController.updateEvent);
 
-
 module.exports = router;
