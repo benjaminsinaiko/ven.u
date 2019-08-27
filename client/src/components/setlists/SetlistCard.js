@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -11,7 +11,7 @@ import useStyles from './styles/SetlistPageStyles';
 
 export default function SetlistCard({ event }) {
   const classes = useStyles();
-  let count = 0;
+  const count = useRef(0);
 
   return (
     <Card raised className={classes.card}>
@@ -37,7 +37,7 @@ export default function SetlistCard({ event }) {
               {set.song.map((song, i) => (
                 <ListItem key={i} disableGutters className={classes.songContainer}>
                   <div className={classes.songNameRow}>
-                    {(count += 1)}. <span className={classes.songName}>{song.name}</span>
+                    {(count.current += 1)}. <span className={classes.songName}>{song.name}</span>
                   </div>
                   <div className={classes.songExtrasRow}>
                     {song.with && (

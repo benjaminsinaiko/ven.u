@@ -11,7 +11,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
 import { useAuth } from '../../contexts/authContext';
-import { useUser } from '../../contexts/userContext.js';
+import { useUser } from '../../contexts/userContext';
 import useStyles from './styles/NavbarStyles';
 import logoName from '../../assets/navLogo.png';
 import LoginForm from '../login/LoginModal';
@@ -44,7 +44,7 @@ function Navbar() {
     setAnchorEl(null);
   };
 
-  const handleMenu = e => {
+  const handleMenu = (e) => {
     setAnchorEl(e.currentTarget);
   };
   const handleMenuClose = () => {
@@ -60,7 +60,8 @@ function Navbar() {
             edge="start"
             className={classes.menuButton}
             color="inherit"
-            aria-label="Menu">
+            aria-label="Menu"
+          >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.logo}>
@@ -77,7 +78,8 @@ function Navbar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleMenu}
-                color="inherit">
+                color="inherit"
+              >
                 <AccountCircle />
               </IconButton>
               <Menu
@@ -87,13 +89,14 @@ function Navbar() {
                 keepMounted
                 transformOrigin={{
                   vertical: 'top',
-                  horizontal: 'right'
+                  horizontal: 'right',
                 }}
                 open={menuOpen}
-                onClose={handleMenuClose}>
+                onClose={handleMenuClose}
+              >
                 <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
                 {currentUser.isAdmin && (
-                  <MenuItem onClick={handleMenuClose} component={Link} to={'/add-events'}>
+                  <MenuItem onClick={handleMenuClose} component={Link} to="/add-events">
                     Add Events
                   </MenuItem>
                 )}
