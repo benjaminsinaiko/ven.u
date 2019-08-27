@@ -7,7 +7,7 @@ const UserContext = createContext();
 function UserProvider(props) {
   const { isAdmin, user } = useAuth();
   const [history, hloading] = useFetch(`/parse/users/history/${user.id}/`);
-  const [attending, aloading] = useFetch(`/parse/users/upcoming/${user.id}/`);
+  const [attending, aloading] = useFetch(`/parse/users/attending/${user.id}/`);
 
   if (!hloading) user.history = history;
   if (!aloading) user.attending = attending;
