@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { useUser } from '../../contexts/userContext';
+import ProfileHeader from './ProfileHeader';
 
 export default function ProfilePage() {
   const { user } = useUser();
@@ -10,8 +11,7 @@ export default function ProfilePage() {
   return (
     <div>
       {!user && <Redirect to="/" />}
-      <h1>Profile Page</h1>
-      <p>{user.attributes.fullname}</p>
+      <ProfileHeader user={user} />
     </div>
   );
 }
