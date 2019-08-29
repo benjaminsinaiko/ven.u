@@ -3,6 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
 import useStyles from './styles/ProfilePageStyles';
+import { getInitials } from '../../utils/profileHelpers';
 
 export default function ProfileHeader({ user }) {
   const classes = useStyles();
@@ -11,15 +12,6 @@ export default function ProfileHeader({ user }) {
 
   function handleImgError() {
     setImgError(true);
-  }
-
-  function getInitials(fullName) {
-    const splitName = fullName.split(' ');
-    const initials = splitName.reduce((acc, cur) => acc + cur[0], '').toUpperCase();
-    if (initials.length > 2) {
-      return initials[0] + initials[initials.length - 1];
-    }
-    return initials;
   }
 
   return (
@@ -37,7 +29,7 @@ export default function ProfileHeader({ user }) {
           onError={handleImgError}
         />
       )}
-      {fullname && <Typography>{fullname}</Typography>}
+      {fullname && <Typography className={classes.userName}>{fullname}</Typography>}
     </div>
   );
 }
