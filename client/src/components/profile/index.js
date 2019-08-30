@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 
 import { useUser } from '../../contexts/userContext';
 import ProfileHeader from './ProfileHeader';
-import ProfileStatBoxes from './ProfileStatBoxes';
+import ProfileStat from './ProfileStats';
 
 export default function ProfilePage() {
   const { user } = useUser();
@@ -13,7 +13,7 @@ export default function ProfilePage() {
     <div>
       {!user && <Redirect to="/" />}
       <ProfileHeader user={user} />
-      <ProfileStatBoxes history={user.history} />
+      <ProfileStat history={user.history} />
     </div>
   );
 }

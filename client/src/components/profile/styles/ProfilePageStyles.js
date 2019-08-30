@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   userName: {
     fontSize: '1.5em',
   },
-  statContainer: {
+  statBoxContainer: {
     display: 'flex',
     justifyContent: 'center',
     height: 230,
@@ -32,7 +32,6 @@ const useStyles = makeStyles(theme => ({
   statBox: {
     width: '30%',
     marginTop: -25,
-    marginBottom: 10,
     backgroundColor: '#4b7da5',
   },
   statInfo: {
@@ -47,6 +46,32 @@ const useStyles = makeStyles(theme => ({
     },
     '& p': {
       fontSize: '1.2em',
+    },
+  },
+  statRowContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 250,
+  },
+  statRow: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '30%',
+    height: '100%',
+    paddingRight: theme.spacing(2),
+    paddingLeft: theme.spacing(2),
+    '& h4': {
+      textAlign: 'center',
+      fontSize: '1.4em',
+
+      color: '#00476b',
+    },
+    '& p': {
+      fontStyle: 'italic',
+      color: '#1e1e1e',
     },
   },
 }));

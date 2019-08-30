@@ -15,6 +15,27 @@ export function countEvents(events) {
 }
 
 export function countVenues(events) {
+  const venueIds = events.map(event => event.event.venue.objectId);
+  const venueCount = [...new Set(venueIds)];
+  return venueCount.length;
+}
+
+export function getMostArtist(events) {
+  const countedArtists = events.reduce((allEvents, event) => {
+    const artistId = event.event.artist.artistName;
+    if (artistId in allEvents) {
+      allEvents[artistId]++;
+    } else {
+      allEvents[artistId] = 1;
+    }
+    return allEvents;
+  }, {});
+  const sortArtists = Object.entries(countedArtists).sort((a, b) => b[1] - a[1]);
+
+  return sortArtists;
+}
+
+export function getMostVenue(events) {
   const countedVenues = events.reduce((allEvents, event) => {
     const venue = event.event.venue.objectId;
     if (venue in allEvents) {
@@ -24,5 +45,12 @@ export function countVenues(events) {
     }
     return allEvents;
   }, {});
-  return Object.keys(countedVenues).length;
+  const sortVenues = Object.entries(countedVenues).sort((a, b) => b[1] - a[1]);
+
+  return sortVenues;
+}
+
+export function getVenueName(venues, venueId) {
+  const foundVenue = venues.find(venue => venue.objectId === venueId);
+  return foundVenue.venueName;
 }
