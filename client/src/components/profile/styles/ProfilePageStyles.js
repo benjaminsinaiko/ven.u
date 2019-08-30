@@ -33,6 +33,12 @@ const useStyles = makeStyles(theme => ({
     width: '30%',
     marginTop: -25,
     backgroundColor: '#4b7da5',
+    [theme.breakpoints.down('md')]: {
+      width: '40%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+    },
   },
   statInfo: {
     display: 'flex',
@@ -53,6 +59,11 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
     alignItems: 'center',
     height: 250,
+    [theme.breakpoints.down('sm')]: {
+      height: 'fit-content',
+      paddingTop: 25,
+      paddingBottom: 25,
+    },
   },
   statRow: {
     display: 'flex',
@@ -66,12 +77,28 @@ const useStyles = makeStyles(theme => ({
     '& h4': {
       textAlign: 'center',
       fontSize: '1.4em',
-
       color: '#00476b',
     },
     '& p': {
       fontStyle: 'italic',
       color: '#1e1e1e',
+    },
+    [theme.breakpoints.down('md')]: {
+      width: '40%',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '50%',
+      '& h4': {
+        fontSize: '1.1em',
+      },
+    },
+    [theme.breakpoints.down('xs')]: {
+      '& h4': {
+        fontSize: '1em',
+      },
+      '& p': {
+        fontSize: '0.8em',
+      },
     },
   },
 }));

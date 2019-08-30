@@ -7,7 +7,6 @@ import ProfileStat from './ProfileStats';
 
 export default function ProfilePage() {
   const { user } = useUser();
-  // console.log('user', user);
 
   return (
     <div>

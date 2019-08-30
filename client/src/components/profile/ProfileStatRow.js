@@ -32,7 +32,7 @@ export default function ProfileStatRow({ history }) {
       <div className={classes.statRow}>
         <Typography gutterBottom>Most Seen Artist</Typography>
         {mostArtists.length
-          ? mostArtists.slice(0, 3).map(artist => (
+          ? mostArtists.slice(0, 5).map(artist => (
             <Typography key={artist[0]} variant="h4">
                 {`${artist[0]} (${artist[1]})`}
               </Typography>
@@ -42,7 +42,7 @@ export default function ProfileStatRow({ history }) {
       <div className={classes.statRow}>
         <Typography gutterBottom>Most Visited Venues</Typography>
         {mostVenues.length
-          ? mostVenues.slice(0, 3).map(venue => (
+          ? mostVenues.slice(0, 5).map(venue => (
             <Typography key={venue[0]} variant="h4">
                 {`${getVenueName(venues, venue[0])} (${venue[1]})`}
               </Typography>

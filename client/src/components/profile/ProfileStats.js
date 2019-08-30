@@ -9,9 +9,6 @@ export default function ProfileStats({ history }) {
   const classes = useStyles();
   const [totalEvents, setTotalEvents] = useState(0);
   const [totalVenues, setTotalVenues] = useState(0);
-  console.log('history', history);
-  console.log('count', totalEvents);
-  console.log('venues', totalVenues);
 
   useEffect(() => {
     function count() {
