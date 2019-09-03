@@ -17,7 +17,7 @@ export default function ProfileStatRow({ history }) {
       setMostVenues(v);
     }
     if (history && history.length) findVenues();
-  }, [history, getMostVenue]);
+  }, [history]);
 
   useEffect(() => {
     function findArtist() {
@@ -25,7 +25,7 @@ export default function ProfileStatRow({ history }) {
       setMostArtists(a);
     }
     if (history && history.length) findArtist();
-  }, [history, getMostArtist]);
+  }, [history]);
 
   return (
     <div className={classes.statRowContainer}>

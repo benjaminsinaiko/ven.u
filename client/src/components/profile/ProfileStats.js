@@ -16,7 +16,7 @@ export default function ProfileStats({ history }) {
       setTotalEvents(eTotal);
     }
     if (history && history.length) count();
-  }, [history, countEvents]);
+  }, [history]);
 
   useEffect(() => {
     function count() {
@@ -24,7 +24,7 @@ export default function ProfileStats({ history }) {
       setTotalVenues(vTotal);
     }
     if (history && history.length) count();
-  }, [history, countVenues]);
+  }, [history]);
 
   return (
     <div className={classes.statContainer}>
